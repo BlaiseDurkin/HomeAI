@@ -3,11 +3,11 @@ def estimate_activity(pose_results, state):
     #estimate activity given pose
     #if short time has surpassed since last pose estimation -> smooth~moving average analog
     print("Estimating activity...")
-    if state["orientation"] == "center":
+    if state.orientation == "center":
         print("Orientation is center")
-    if state["orientation"] == "left":
+    if state.orientation == "left":
         print("Orientation is left")
-    if state["orientation"] == "right":
+    if state.orientation == "right":
         print("Orientation is right")
     return "idk"
 

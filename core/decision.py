@@ -18,7 +18,9 @@ def process_command(command, state):
         state.running = False
         response = "Goodbye!
     """
+    response = None
     if command.intent == "STOP":
         state.running = False
         response = "Ending program, Goodbye!"
         return state, response
+    return state, response

@@ -23,7 +23,8 @@ def speak(text):
 speak("")
 # message = "sorry to wake you up, please go back to sleep"
 # message = "this is not an emergency, please go back to sleep"
-message = "I'm sorry Dave, I'm afraid I can't do that"
+#message = "I'm sorry Dave, I'm afraid I can't do that"
+message = "Home AI turning on"
 
 volume = 200
 speak(message)

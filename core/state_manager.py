@@ -25,11 +25,16 @@ class State:
         self.pose = None                  # Raw pose keypoints from MediaPipe
         self.activity = None              # Interpreted action (e.g., chopping, idle)
         self.last_pose_time = time.time()
-        self.pose_history = deque(maxlen=config.POSE_SMOOTHING_WINDOW)
+        #self.pose_history = deque(maxlen=config.POSE_SMOOTHING_WINDOW)
         self.user_position = None         # Approx. kitchen location (fridge, stove, etc.)
+        self.orientation = "center"
+        self.pose_history = []
 
         # --- Speech Recognition ---
         self.last_text = ""
+        self.last_control_text = ""
+        self.last_control = None
+        self.last_control_time = time.time()
         self.last_command = None
         self.last_command_time = time.time()
 
@@ -62,9 +67,17 @@ class State:
 
         # Speech data
         if "last_command" in new_data and new_data["last_command"]:
-            self.last_command = new_data["last_command"]
-            self.last_text = new_data["last_command"].raw_text if hasattr(new_data["last_command"], "raw_text") else str(new_data["last_command"])
+            self.last_control = new_data["last_command"]
+            self.last__control_text = new_data["last_command"].raw_text if hasattr(new_data["last_command"], "raw_text") else str(new_data["last_command"])
+            self.last_control_time = time.time()
+            
+        if "last_message" in new_data and new_data["last_message"]:
+            self.last_command = new_data["last_message"]
+            self.last_text = new_data["last_message"].raw_text if hasattr(new_data["last_message"], "raw_text") else str(new_data["last_command"])
             self.last_command_time = time.time()
+        if "orientation" in new_data and new_data["orientation"]:
+            self.orientation = new_data["orientation"]
+        
 
         # Update derived states
         self._update_idle_time()

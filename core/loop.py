@@ -7,7 +7,8 @@ from speech.parser import parse_message
 
 from input.text import start_inputter, get_latest_text
 
-from decision import process_command
+
+from core.decision import process_command
 
 
 from output.speech_out import speak
@@ -39,6 +40,7 @@ def run_loop(state, camera, flow):
         message = get_latest_spoken()
         voice_msg = parse_message(message)
 
+        print(message)
         # ------- Store Inputs -------------
         # --- 3. Update State ---
         state.update({
@@ -48,12 +50,12 @@ def run_loop(state, camera, flow):
             "last_message": voice_msg,
             "orientation": camera.orientation,
         })
-
+        print(state)
         # --------- Process Inputs ----------
         # --- 4. Decision Logic ---
         response = None
         if command or message:
-            state, response = process_command(state)
+            state, response = process_command(voice_msg, state)
 
 
 

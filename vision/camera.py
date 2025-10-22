@@ -1,6 +1,6 @@
 # test servo motor
 
-from pose_detection import *
+#from pose_detection import *
 import config
 from config import *
 
