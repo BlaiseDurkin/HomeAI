@@ -30,21 +30,14 @@ VERBS = {"walked","eat","eats","ate","run","runs","ran","chase","chased","see","
 
 accepted_verbs = ['want', 'need', 'give', 'tell', 'recommend', 'suggest', 'share', 'think', 'plan', 'what']
 meal_words = ['eat', 'food', 'eating', 'dinner', 'meal', 'recipe', 'dish', 'cook', 'cooking']
+#arrest of tea == recipe
 import os
 
-print("=== DEBUGGING PATHS ===")
-print(f"CURRENT WORKING DIRECTORY: {os.getcwd()}")
-print(f"Absolute path of script: {os.path.abspath(__file__)}")
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 KITCHEN_DIR = os.path.join(SCRIPT_DIR, "../kitchen")  # No more ../ !
-print(SCRIPT_DIR)
-print(KITCHEN_DIR)
-print("========================")
+
 data_dir = KITCHEN_DIR
-print(f"Trying to access directory: '{data_dir}'")
-print(f"Full absolute path: {os.path.abspath(data_dir)}")
-print(f"Does it exist? {os.path.exists(data_dir)}")
-print(f"Is it a directory? {os.path.isdir(data_dir)}")
+
 food_df = pd.read_csv(os.path.join(KITCHEN_DIR,'NLP_flavor_clean.csv'))
 food_ingredients = food_df['item'].tolist()
 #print(food_ingredients)
@@ -81,7 +74,7 @@ def parse_message(text):
         #create message object = recommend_meal(user_input=food_item_list)
         print('RecommendMeal()')
         print(food_item_list)
-    return Message(text)
+    return Message(text, "command")
 
 
 
@@ -96,13 +89,13 @@ def parse_message(text):
 
 
 class Message:
-    def __init__(self, text):
+    def __init__(self, text, type):
         self.text = text
         self.intent = "PASS"
-        self.type = "command"
+        self.type = type
         
 
-
+"""
 ft1 = 'I want a recipe with eggplant'
 ft2 = 'Give me a dish'
 ft3 = 'I need to know what to eat tonight'
@@ -116,3 +109,4 @@ parse_message(ft3)
 parse_message(ft4)
 parse_message(ft5)
 parse_message(ft6)
+"""

@@ -29,7 +29,7 @@ def _callback(indata, frames, time, status):
     _q.put(bytes(indata))
 
 
-def _listen(model_path, samplerate=16000):
+def _listen():
     global _running, _result_text
     print(" Text inputter started — text anytime...")
     while _running:

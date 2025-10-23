@@ -19,6 +19,12 @@ class State:
         # --- System Flags ---
         self.running = True
         self.start_time = time.time()
+        
+        # need more vars to track state...
+        self.is_engaged = False #turn to true when 'Hey computer', turn to false after 5 min
+        # when waking up speak to clear throat clear_throat()
+        self.expecting_confirmation = False #turn to true when asking user {yes,no}
+        self.is_occupied = False #true when doing subroutine ~{kitchen_mngmt, etc...}
 
         # --- Vision / Pose Tracking ---
         self.frame = None

@@ -41,6 +41,25 @@ def detect_pose(frame):
     except Exception as ex:
         print(ex)
     cv2.imshow("Pose", frame)
+    # Handle keyboard input
+    key = cv2.waitKey(1) & 0xFF
+    if key == ord('q'):
+        print("user pressed q")
+        
+    """
+    elif key == ord('a'):
+        current_angle = turn_left(current_angle)
+        print(f"Current angle: {current_angle}°")
+    elif key == ord('d'):
+        current_angle = turn_right(current_angle)
+        print(f"Current angle: {current_angle}°")
+    elif key == ord('w'):
+        current_angle = turn_center()
+        print(f"Current angle: {current_angle}°")
+    elif key == ord('i'):
+        print('info')
+        get_info(frame)
+    """
     return results
 
 

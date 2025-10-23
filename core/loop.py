@@ -40,7 +40,7 @@ def run_loop(state, camera, flow):
         message = get_latest_spoken()
         voice_msg = parse_message(message)
 
-        print(message)
+        print("msg: ",message)
         # ------- Store Inputs -------------
         # --- 3. Update State ---
         state.update({
@@ -50,7 +50,7 @@ def run_loop(state, camera, flow):
             "last_message": voice_msg,
             "orientation": camera.orientation,
         })
-        print(state)
+        #print(state)
         # --------- Process Inputs ----------
         # --- 4. Decision Logic ---
         response = None
