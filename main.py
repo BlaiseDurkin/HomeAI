@@ -32,7 +32,7 @@ def main():
     camera = init_camera(config.CAMERA_ID)
     camera.turn_center(camera.servo_pwm)
 
-
+    state.add_camera(camera)
     #TODO
     # - inititalize action objects
     flow = CookingFlow()

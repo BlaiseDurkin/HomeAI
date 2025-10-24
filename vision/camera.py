@@ -118,7 +118,15 @@ class VideoCamera:
         cv2.destroyAllWindows()
         print("Resources cleaned up.")
 
-
+    def turn_(self, direction):
+        current_angle = self.orientation
+        pwm = self.servo_pwm
+        if direction == 'left':
+            self.turn_left(current_angle, pwm)
+        if direction == 'center' or direction == 'middle' or direction == 'forward':
+            self.turn_center(pwm)
+        if direction == 'right':
+            self.turn_right(current_angle, pwm)
 
     def turn_left(self, current_angle, pwm):
         if self.orientation == 'left':

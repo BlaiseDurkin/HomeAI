@@ -30,6 +30,9 @@ VERBS = {"walked","eat","eats","ate","run","runs","ran","chase","chased","see","
 
 accepted_verbs = ['want', 'need', 'give', 'tell', 'recommend', 'suggest', 'share', 'think', 'plan', 'what']
 meal_words = ['eat', 'food', 'eating', 'dinner', 'meal', 'recipe', 'dish', 'cook', 'cooking']
+
+look_verbs = ['turn', 'look']
+look_directions = ['left', 'right', 'center', 'middle', 'forward']
 #arrest of tea == recipe
 import os
 
@@ -49,7 +52,7 @@ def parse_message(text):
     #check if message is recognized command
     if text == None:
         return text
-    print(text)
+    #print(text)
     #return command object
     # command : (computer) VP NP
     # who is the subject
@@ -58,6 +61,10 @@ def parse_message(text):
 
     #assume
     #1 clean message from .,()/|\-+*
+    has_look_trigger_1 = False
+    has_look_trigger_2 = False
+    key_param = ''
+    
     has_food_trigger_1 = False
     has_food_trigger_2 = False
     food_item_list = [] #TODO - negate elements
@@ -70,11 +77,20 @@ def parse_message(text):
             has_food_trigger_2 = True
         if word in food_ingredients:
             food_item_list.append(word)
+        
+        if word in look_verbs:
+            has_look_trigger_1 = True
+        if word in look_directions:
+            has_look_trigger_2 = True
+            key_param = word
     if has_food_trigger_1 and has_food_trigger_2:
         #create message object = recommend_meal(user_input=food_item_list)
-        print('RecommendMeal()')
-        print(food_item_list)
-    return Message(text, "command")
+        #print('RecommendMeal()')
+        #print(food_item_list)
+        return Message(text, "command", "recommend_meal", key_param)
+    if has_look_trigger_1 and has_look_trigger_2:
+        return Message(text, "command", "turn_camera", key_param)
+    return Message(text, "idk", "idk", key_param)
 
 
 
@@ -89,10 +105,11 @@ def parse_message(text):
 
 
 class Message:
-    def __init__(self, text, type):
+    def __init__(self, text, type, intent, params):
         self.text = text
-        self.intent = "PASS"
+        self.intent = intent
         self.type = type
+        self.params = params
         
 
 """

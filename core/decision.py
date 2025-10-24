@@ -3,6 +3,16 @@
 #increase volume
 #decrease volume
 
+
+"""
+recognized commands:
+ - recommend meal
+ - turn {left, center, right}
+ - look {left, center, right}
+ - set a timer
+ - set a reminder
+ - 
+"""
 def process_command(command, state):
     """
     if command.intent == "RECOMMEND_MEAL":
@@ -19,8 +29,19 @@ def process_command(command, state):
         response = "Goodbye!
     """
     response = None
-    if command.intent == "STOP":
+    
+    if command.intent == "shut_down":
         state.running = False
         response = "Ending program, Goodbye!"
         return state, response
+    elif command.intent == "recommend_meal":
+        response = "Sure, I can, recommend, a, meal"
+    elif command.intent == "turn_camera":
+        direction = command.params
+        
+        response = "camera turning "+direction
+        state.camera.turn_(direction)
+        
+        
+        
     return state, response

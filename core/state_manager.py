@@ -27,7 +27,8 @@ class State:
         self.is_occupied = False #true when doing subroutine ~{kitchen_mngmt, etc...}
 
         # --- Vision / Pose Tracking ---
-        self.frame = None
+        self.camera = None
+        self.frame = None #redundant slop... todo: delete this later
         self.pose = None                  # Raw pose keypoints from MediaPipe
         self.activity = None              # Interpreted action (e.g., chopping, idle)
         self.last_pose_time = time.time()
@@ -57,6 +58,9 @@ class State:
     # -------------------------------
     # Core Update Methods
     # -------------------------------
+    def add_camera(self, cam):
+        self.camera = cam
+        
     def update(self, new_data: dict):
         """
         Update state from new subsystem outputs (vision, speech, etc.)
