@@ -34,7 +34,7 @@ class State:
         self.last_pose_time = time.time()
         #self.pose_history = deque(maxlen=config.POSE_SMOOTHING_WINDOW)
         self.user_position = None         # Approx. kitchen location (fridge, stove, etc.)
-        self.orientation = "center"
+        self.orientation = ""
         self.pose_history = []
 
         # --- Speech Recognition ---

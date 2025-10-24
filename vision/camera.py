@@ -102,7 +102,7 @@ class VideoCamera:
         pwm = GPIO.PWM(SERVO_PIN, FREQUENCY)
         pwm.start(0)  # Start once here, with 0 duty (inactive)
         self.servo_pwm = pwm
-        self.orientation = 'center'
+        self.orientation = ''
         self.time2last_scan = 0
 
     def capture_frame(self):

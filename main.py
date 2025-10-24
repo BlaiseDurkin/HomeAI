@@ -24,6 +24,7 @@ from core.state_manager import State
 from vision.camera import init_camera
 from kitchen.cooking_flow import CookingFlow
 import config
+import time
 
 def main():
     # --- Initialization ---
@@ -31,7 +32,7 @@ def main():
     state = State()
     camera = init_camera(config.CAMERA_ID)
     camera.turn_center(camera.servo_pwm)
-
+    time.sleep(1)
     state.add_camera(camera)
     #TODO
     # - inititalize action objects
