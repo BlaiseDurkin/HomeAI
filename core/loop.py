@@ -38,7 +38,7 @@ def run_loop(state, camera, flow):
 
         # --- voice command ---
         message = get_latest_spoken()
-        voice_msg = parse_message(message) #message object
+        voice_msg = parse_message(message, state) #message object
 
         print("msg: ",message)
         # ------- Store Inputs -------------
