@@ -1,7 +1,7 @@
+import kitchen.recommender
+from kitchen.recommender import *
 
-from recommender import *
-
-
+test_rec_file()
 
 # ----------- recipe ----------------
 class Recipe:
@@ -101,6 +101,7 @@ KAG = KitchenAssistantGraph(start_diet)
 
 
 # --------------- Create Nodes ---------------------------------------
+print('before fail')
 
 asked_user_if_invent_meal = SubNode(['yes', 'no'], {'yes': [invent_meal], 'no': [give_random_meal]}, KAG)
 

@@ -1,8 +1,13 @@
-from kitchen.cooking_flow import list_to_print_string, KAG
-from recipes import *
+
+from kitchen.recipes import *
 import random
 import math
 
+print('recommender.py loaded...')
+
+def test_rec_file():
+    print('recommender.py test')
+from kitchen.cooking_flow import list_to_print_string, KAG
 #functions for processing user input related to food
 #user data is formatted in previous parsing and processing function
 
