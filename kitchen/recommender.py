@@ -7,11 +7,19 @@ print('recommender.py loaded...')
 
 def test_rec_file():
     print('recommender.py test')
-from kitchen.cooking_flow import list_to_print_string, KAG
+
 #functions for processing user input related to food
 #user data is formatted in previous parsing and processing function
 
 #-------- herlper _----------------
+def list_to_print_string(sequence):
+    string = ""
+    for i in range(len(sequence)):
+        if i < len(sequence) - 1:
+            string += sequence[i] + ', '
+        elif i == len(sequence) - 1 and len(sequence) > 1:
+            string += +' and '+sequence[i]
+
 def statistics(scores):
     if not scores:  # Handle empty list
         return None, None
@@ -332,7 +340,7 @@ def make_meal_with_diet(diet):
 
 
 # (2) suggest meal recommendation given minimal data
-def give_random_meal(diet):
+def give_random_meal(diet, graph):
     print('Giving random meal...')
 
     #TODO - move current_node to gave_random
@@ -341,7 +349,8 @@ def give_random_meal(diet):
     current_node = gave_meal
     """
     #this is not super random... should have region
-    return give_super_random_meal(diet)
+
+    return give_super_random_meal()
 
 def give_random_meal_from_(region):
     return random.choice(RegionRecipes[region])
@@ -349,7 +358,7 @@ def give_random_meal_from_(region):
 
 
 # (3) create meal using flavor model
-def invent_meal(diet):
+def invent_meal(diet, graph):
     print('Inventing meal...')
     # which direction given data? region, ingredients, both?
     recipe = make_meal_with_diet(diet)
@@ -357,37 +366,38 @@ def invent_meal(diet):
     return recipe
 
 
-def change_meal(diet):
+def change_meal(diet, KAG):
     #if new data --> recommend_meal(data += data) & hope the same meal doesnt get chosen
     og_meal = KAG.recipe
-    new_meal = just_call_recommend(diet)
+    diet = KAG.diet
+    new_meal = just_call_recommend(diet, KAG)
     if new_meal == og_meal:
-        return list_to_print_string(give_random_meal(diet))
+        return list_to_print_string(give_random_meal(diet, KAG))
     return list_to_print_string(new_meal)
 
-def explain_meal(diet):
+def explain_meal(diet, KAG):
     pass
 
-def repeat_meal(diet):
+def repeat_meal(diet, KAG):
     return list_to_print_string(KAG.recipe)
 
-def just_call_recommend(diet):
+def just_call_recommend(diet, KAG):
     return recommend_meal(diet, KAG)
 
-def say_next_item(diet):
+def say_next_item(diet, graph):
     pass
-def say_previous_item(diet):
+def say_previous_item(diet, graph):
     pass
 
 
-def ask_user_for_ingredients(diet):
+def ask_user_for_ingredients(diet, graph):
     print('asking for ingredients...')
     #TODO move node on graph
     response = 'do you, want, to use, certain ingredients'
     return response
 
 
-def ask_user_max_separability(pair):
+def ask_user_max_separability(pair, graph):
     print("asking question to compare")
     #Ex: results = SEAsia + EAsia  --> ask: "SEAsia or EAsia"
     #   -> do you prefer thai and vietnamese or indian
@@ -451,7 +461,7 @@ def recommend_meal(diet, graph):
 
     if random.random() <= prob_ask_for_ingredients:
         graph.current_node = graph.all_nodes[2]
-        return ask_user_for_ingredients(diet)
+        return ask_user_for_ingredients(diet, graph)
 
     if top_meal_region == None:
         graph.current_node = graph.all_nodes[0]
@@ -497,9 +507,9 @@ test recommend_meal function
 """
 
 
-user_list = ['ginger', 'soy_sauce']
-test_diet = {'ingredients': user_list, 'allergies': []}
-recommend_meal(test_diet)
+#user_list = ['ginger', 'soy_sauce']
+#test_diet = {'ingredients': user_list, 'allergies': []}
+#recommend_meal(test_diet, graph)
 #todo - apply user preference weights to regions
 #   - if user known -> use their preferences, else use average preferences
 #

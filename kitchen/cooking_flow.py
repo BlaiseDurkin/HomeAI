@@ -1,4 +1,4 @@
-import kitchen.recommender
+
 from kitchen.recommender import *
 
 test_rec_file()
@@ -84,7 +84,7 @@ class SubNode:
     def update(self, message):
         key = self.process_input(message.params)
         self.graph.current_node = self.map[key][1]
-        response = self.map[key][0](self.graph.diet)
+        response = self.map[key][0](self.graph.diet, self.graph)
 
 
         return response
