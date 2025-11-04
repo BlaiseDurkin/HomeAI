@@ -7,7 +7,7 @@
 # adjectives = [vegan,...]
 
 # Blaise
-# adjectives = [vegan,...]
+# adjectives = [,...]
 """
 Schedule:
     8:30 wake
@@ -16,6 +16,18 @@ Schedule:
     10:30 run
     11:30 lunch
     12:30 work
+
+** reality -- wake -> doom scroll for 1 hour +
+
+Target Schedule
+    wake
+    quick workout { 1 min handstand, 40 squat, 100 pushup, 3 min meditate stretch}
+    math/CS challenge - AI generated schedule
+     - study & record
+     - code
+    run
+    lunch
+    work
 
 """
 

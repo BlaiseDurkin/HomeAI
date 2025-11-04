@@ -1,3 +1,7 @@
+
+#TODO: add themes {thanksgiving, christmas, etc..}
+
+
 #use spider graph to visualize
 
 #East Asia
@@ -71,4 +75,10 @@ RegionRecipes = {'EastAsia': EA_meals, 'SouthEastAsia': SEA_meals, 'SouthAsia': 
 
 #Maman
 M1 = ['rice', 'zucchini', 'celery', 'onion', 'tofu', 'spinach', 'soy_sauce']
+
+
+
+
+
+
 

@@ -31,10 +31,10 @@ def run_loop(state, camera, flow):
         #activity = "test activity"
 
         # --- 2. text command ---
-        text = get_latest_text()
+        text = get_latest_text() #mainly used for debugging
         #TODO: change to parse_last_message
         #   - check if command or statement: {give information, express feeling/belief} or question
-        command = parse_message(text) if text else None
+        command = parse_message(text, state) if text else None
 
         # --- voice command ---
         message = get_latest_spoken()
@@ -64,8 +64,11 @@ def run_loop(state, camera, flow):
             response = "uh oh, i reached the time"
 
         # --- 5. Output ---
+        # todo -- if (time_since_last_spoke > 30 sec) --> clear_throat(time_since_last_spoke)
         if response:
-            speak(response)
+            #todo clear_throat()
+            joke = ''
+            speak(response + joke)
         #display_overlay(frame, state)
 
         # --- 6. Loop Rate ---
