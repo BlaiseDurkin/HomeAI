@@ -336,6 +336,7 @@ def give_random_meal(diet):
     current_node = gave_meal
     """
     #this is not super random... should have region
+    return give_super_random_meal(diet)
 
 def give_random_meal_from_(region):
     return random.choice(RegionRecipes[region])
@@ -356,8 +357,8 @@ def change_meal(diet):
     og_meal = KAG.recipe
     new_meal = just_call_recommend(diet)
     if new_meal == og_meal:
-        return
-    pass
+        return list_to_print_string(give_random_meal(diet))
+    return list_to_print_string(new_meal)
 
 def explain_meal(diet):
     pass
@@ -430,7 +431,6 @@ def give_super_random_meal():
 
 #TODO -- change user_set to user_data
 def recommend_meal(diet, graph):
-    #TODO move node????????????????????????????????????????????????????????????????????????????
 
     region_scores, top_meal, top_meal_region, canidates, scores = find_suggestions_from_food_list(diet["ingredients"])
     #if many canidates with similar scores -> low confidence prediction
@@ -445,9 +445,8 @@ def recommend_meal(diet, graph):
         prediction_confidence = max(scores) - scores_mean
 
     if random.random() <= prob_ask_for_ingredients:
-        # TODO move node to asked for ingred
         graph.current_node = graph.all_nodes[2]
-        return ask_user_for_ingredients()
+        return ask_user_for_ingredients(diet)
 
     if top_meal_region == None:
         graph.current_node = graph.all_nodes[0]

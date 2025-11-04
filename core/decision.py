@@ -51,7 +51,7 @@ def process_command(command, state):
     elif command.intent == "recommend_meal":
         state.active_sub = "kitchen"
         state.sub_in_action = True
-        state.sub_in_action = state.kitchen_graph
+        state.sub_graph = state.kitchen_graph
         #what if the active sub is allready kitchen????
         preamble = "You sound, hungry, here you go,"
         response = recommend_meal(command.params, state.kitchen_graph) # return function response & direction... update node = direction

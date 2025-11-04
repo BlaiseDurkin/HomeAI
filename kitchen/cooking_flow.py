@@ -56,7 +56,8 @@ class KitchenAssistantGraph:
         #   message.params = words in set of expected words
         response = self.current_node.update(message)
         self.recipe = response
-        response = list_to_print_string(response)
+        if type(response) == list:
+            response = list_to_print_string(response)
         return response
 
 #  ------------------ Node --------------------
