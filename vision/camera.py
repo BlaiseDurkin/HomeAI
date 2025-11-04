@@ -148,7 +148,7 @@ class VideoCamera:
             time.sleep(STEP_DELAY)
 
         pwm.ChangeDutyCycle(0)  # "Stop" signal without pwm.stop()
-        self.orientation == 'left'
+        self.orientation = 'left'
         return current_angle
 
 
@@ -172,7 +172,7 @@ class VideoCamera:
             time.sleep(STEP_DELAY)
 
         pwm.ChangeDutyCycle(0)  # "Stop" signal without pwm.stop()
-        self.orientation == 'right'
+        self.orientation = 'right'
         return current_angle
 
 
