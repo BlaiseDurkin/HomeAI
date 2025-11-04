@@ -27,7 +27,7 @@ class State:
         self.expecting_confirmation = False #turn to true when asking user {yes,no}
         self.is_occupied = False #true when doing subroutine ~{kitchen_mngmt, etc...}
 
-        self.kitchen_graph = KitchenAssistantGraph()
+        self.kitchen_graph = KAG
         self.sub_graph = self.kitchen_graph
         self.sub_in_action = False
         self.active_sub = None
