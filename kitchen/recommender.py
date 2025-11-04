@@ -18,7 +18,7 @@ def list_to_print_string(sequence):
         if i < len(sequence) - 1:
             string += sequence[i] + ', '
         elif i == len(sequence) - 1 and len(sequence) > 1:
-            string += +' and '+sequence[i]
+            string += ' and '+sequence[i]
 
 def statistics(scores):
     if not scores:  # Handle empty list
