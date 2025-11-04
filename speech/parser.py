@@ -90,6 +90,7 @@ def parse_message(text, state):
     is_vegetarian = False
     is_allergic = False
     is_pescetarian = False
+    nxt = ''
 
     message = text.split()
     i = 0
