@@ -75,7 +75,7 @@ class SubNode:
     def process_input(self, params):
         diet = params['diet']
         diet = self.graph.update_diet(diet)
-
+        # fixed typo 'expected_words' -> 'expected'
         expected_words = params['expected'] #todo : create map: senitment to expected words
         for word in expected_words:
             if word in self.map.keys():
