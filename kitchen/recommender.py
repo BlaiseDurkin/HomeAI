@@ -420,7 +420,7 @@ def ask_user_to_invent_meal(user_data):
     if len(user_data['ingredients']) > 0:
         i = 0
         while i < len(user_data['ingredients']):
-            good += user_data['ingredients']
+            good += user_data['ingredients'][i]
             if i < len(user_data['ingredients']) - 1:
                 good += ' and, '
             i += 1
