@@ -76,7 +76,7 @@ class SubNode:
         diet = params['diet']
         diet = self.graph.update_diet(diet)
 
-        expected_words = params['expected_words'] #todo : create map: senitment to expected words
+        expected_words = params['expected'] #todo : create map: senitment to expected words
         for word in expected_words:
             if word in self.map.keys():
                 key = word
