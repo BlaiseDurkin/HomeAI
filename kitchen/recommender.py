@@ -20,6 +20,8 @@ def list_to_print_string(sequence):
         elif i == len(sequence) - 1 and len(sequence) > 1:
             string += ' and '+sequence[i]
 
+    return string
+
 def statistics(scores):
     if not scores:  # Handle empty list
         return None, None
@@ -439,6 +441,7 @@ def give_super_random_meal():
     print('giving super random meal...')
     random_key = random.choice(list(RegionRecipes.keys()))
     random_recipe = random.choice(RegionRecipes[random_key])
+    print('random recipe: ',random_recipe)
     return random_recipe
 
 

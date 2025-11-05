@@ -22,7 +22,7 @@ class Recipe:
 def diet_union(d1, d2):
     for key in d1.keys():
         if key in d2.keys():
-            d2[key] = set(d1[key]) + set(d2[key])
+            d2[key] = set(d1[key]) | set(d2[key]) #union
     return d2
 
 def list_to_print_string(sequence):
@@ -31,7 +31,8 @@ def list_to_print_string(sequence):
         if i < len(sequence) - 1:
             string += sequence[i] + ', '
         elif i == len(sequence) - 1 and len(sequence) > 1:
-            string += +' and '+sequence[i]
+            string += ' and '+sequence[i]
+    return string
 
 # ----------------- Graph -------------------------
 class KitchenAssistantGraph:
