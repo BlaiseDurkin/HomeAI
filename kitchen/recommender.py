@@ -437,7 +437,7 @@ def ask_user_to_invent_meal(user_data):
 
 def give_super_random_meal():
     print('giving super random meal...')
-    random_key = random.choice(RegionRecipes.keys())
+    random_key = random.choice(list(RegionRecipes.keys()))
     random_recipe = random.choice(RegionRecipes[random_key])
     return random_recipe
 
