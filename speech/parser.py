@@ -79,6 +79,7 @@ def parse_message(text, state):
     expected_set = []
     if state.sub_in_action:
         expected_set = state.sub_graph.current_node.expected_words
+        #todo -> check if expected set is empty... empty maps default function and new node or does nothing?
     expected_words = []
 
     has_food_trigger_1 = False

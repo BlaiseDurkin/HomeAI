@@ -66,9 +66,12 @@ E_meals = [E1, E2, E3, E4, E5, E6]
 #Africa
 A1 = ["lamb", "couscous", "paprika"]
 A2 = ["fish", "yam", "peanut"]
-Af_meals = []
+Af_meals = [A1, A2]
 #Mex
-Mx_meals = []
+Mx1 = ["corn", "beans"]
+Mx2 = ["beans", "pepper"]
+
+Mx_meals = [Mx1, Mx2]
 
 
 RegionRecipes = {'EastAsia': EA_meals, 'SouthEastAsia': SEA_meals, 'SouthAsia': SA_meals, 'WestAsia': WA_meals, "Europe": E_meals, "Africa": Af_meals, "America": Mx_meals}

@@ -75,7 +75,7 @@ class SubNode:
     def process_input(self, params):
         diet = params['diet']
         diet = self.graph.update_diet(diet)
-        # fixed typo 'expected_words' -> 'expected'
+
         expected_words = params['expected'] #todo : create map: senitment to expected words
         key = ''
         for word in expected_words:
@@ -85,9 +85,12 @@ class SubNode:
 
     def update(self, message):
         key = self.process_input(message.params)
+
+        if key == '' and not key in self.map.keys():
+            return ''
+
         self.graph.current_node = self.map[key][1]
         response = self.map[key][0](self.graph.diet, self.graph)
-
 
         return response
 
@@ -116,6 +119,8 @@ asked_for_ingredients = SubNode([''], {'': [recommend_meal]}, KAG)
 explaining_recipe = SubNode(['next', 'back'], {'next': [say_next_item], 'back': [say_previous_item]}, KAG)
 
 recommend_meal_node = SubNode([''], {'': [recommend_meal]}, KAG)
+
+
 
 # ----- edges ---------------
 asked_user_if_invent_meal.map['yes'].append(gave_meal) #next node
