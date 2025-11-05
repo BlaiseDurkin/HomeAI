@@ -78,7 +78,7 @@ def parse_message(text, state):
     #todo -- EXPECTED WORDS FROM SUB ROUTINE
     expected_set = []
     if state.sub_in_action:
-        expected_set = state.sub_key_words
+        expected_set = state.sub_graph.current_node.expected_words
     expected_words = []
 
     has_food_trigger_1 = False
