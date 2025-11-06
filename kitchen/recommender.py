@@ -378,9 +378,11 @@ def change_meal(diet, KAG):
     return list_to_print_string(new_meal)
 
 def explain_meal(diet, KAG):
+    print('Explaining meal...')
     pass
 
 def repeat_meal(diet, KAG):
+    print('Repeating meal...')
     return list_to_print_string(KAG.recipe)
 
 def just_call_recommend(diet, KAG):

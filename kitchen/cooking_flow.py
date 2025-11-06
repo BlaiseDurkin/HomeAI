@@ -59,6 +59,7 @@ class KitchenAssistantGraph:
         self.recipe = response
         if type(response) == list:
             response = list_to_print_string(response)
+        print('update response: ',response)
         return response
 
 #  ------------------ Node --------------------
@@ -77,6 +78,8 @@ class SubNode:
         diet = self.graph.update_diet(diet)
 
         expected_words = params['expected'] #todo : create map: senitment to expected words
+        print('processing input...')
+        print('key words: ',expected_words)
         key = ''
         for word in expected_words:
             if word in self.map.keys():
