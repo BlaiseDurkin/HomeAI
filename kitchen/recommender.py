@@ -383,6 +383,7 @@ def explain_meal(diet, KAG):
 
 def repeat_meal(diet, KAG):
     print('Repeating meal...')
+    print('KAG: ', KAG)
     print('recipe: ',KAG.recipe)
     return list_to_print_string(KAG.recipe)
 
