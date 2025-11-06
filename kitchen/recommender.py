@@ -385,7 +385,7 @@ def repeat_meal(diet, KAG):
     print('Repeating meal...')
     print('KAG: ', KAG)
     print('recipe: ',KAG.recipe)
-    return list_to_print_string(KAG.recipe)
+    return KAG.recipe
 
 def just_call_recommend(diet, KAG):
     return recommend_meal(diet, KAG)
