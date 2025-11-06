@@ -45,6 +45,7 @@ class KitchenAssistantGraph:
         self.recipe = None #TODO clear each day
         self.all_nodes = []
 
+
     def update_diet(self, diet):
         self.diet = diet_union(diet, self.diet)
         return self.diet

@@ -159,7 +159,7 @@ def parse_message(text, state):
         return Message(text, "command", "turn_camera", key_param)
 
     if state.sub_in_action:
-        if state.active_sub == 'kitchen':
+        if state.active_sub == 'kitchen' and len(expected_words) > 0:
             params = {'expected': expected_words, 'diet': diet}
             return Message(text, "command", "update_kitchen_graph", params)
     return Message(text, "idk", "idk", key_param)
