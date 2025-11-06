@@ -473,6 +473,8 @@ def recommend_meal(diet, graph):
         graph.current_node = graph.all_nodes[0]
         recipe = give_super_random_meal()
         graph.recipe = recipe
+        print('graph: ', graph)
+        print('graph recipe: ', graph.recipe)
         return list_to_print_string(recipe)
 
     #meal = give_random_meal_from_(top_meal_region)
