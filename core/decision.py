@@ -15,8 +15,8 @@ recognized commands:
  - 
 """
 def is_question(text):
-    print('check is question...')
-    print(type(text), ' should be string')
+    print('check if question...')
+    #print(type(text), ' should be string')
     if text.startswith('do you'):
         return True
     else:

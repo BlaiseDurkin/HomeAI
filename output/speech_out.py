@@ -22,7 +22,8 @@ def list_to_print_string(sequence):
 
 def speak(text):
     vol = 70
-    print(vol)
+    #print(vol)
+    print('say: ',text)
     cmd = f'espeak -a "{vol}" "{text}" -- stdout | aplay -D hw:1,0 2>/dev/null'
     subprocess.run(cmd, shell=True)
 

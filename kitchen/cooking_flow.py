@@ -86,7 +86,7 @@ class SubNode:
     def update(self, message):
         key = self.process_input(message.params)
 
-        if key == '' and not key in self.map.keys():
+        if not key in self.map.keys():
             return ''
 
         self.graph.current_node = self.map[key][1]
