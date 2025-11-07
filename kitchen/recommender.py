@@ -395,7 +395,7 @@ def change_meal(diet, KAG):
     #if new data --> recommend_meal(data += data) & hope the same meal doesnt get chosen
     og_meal = KAG.recipe
     diet = KAG.diet
-    new_meal = just_call_recommend(diet, KAG)
+    new_meal = recommend_meal(diet, KAG)
     if new_meal == og_meal:
         return give_random_meal(diet, KAG)
     return new_meal
@@ -423,10 +423,6 @@ def repeat_meal(diet, KAG):
     print('recipe: ',KAG.recipe)
     return KAG.recipe
 
-def just_call_recommend(diet, KAG):
-    return recommend_meal(diet, KAG)
-
-
 
 def ask_user_for_ingredients(diet, graph):
     print('asking for ingredients...')
@@ -444,6 +440,7 @@ def ask_user_max_separability(pair, graph):
 
 def ask_user_to_invent_meal(user_data):
     print("asking to invent meal...")
+    print('user_data: ', user_data, type(user_data))
     bad = ''
     good = ''
     if len(user_data['allergies']) > 0:
@@ -498,6 +495,10 @@ def recommend_meal(diet, graph):
     else:
         prediction_confidence = max(scores) - scores_mean
     print('prediction confidence: ', prediction_confidence)
+    # --------debugging... delete this after ---------
+    prediction_confidence = 1
+    #---------------------------------------------
+
 
     if random.random() <= prob_ask_for_ingredients:
         graph.current_node = graph.all_nodes[2]
@@ -525,6 +526,7 @@ def recommend_meal(diet, graph):
         #ask questions
         # probability_invent = f1(results)
         # probability_split = f2(results) -> ask_to_compare
+        #TODO check if necessary to invent meal before
         graph.current_node = graph.all_nodes[1]
         return ask_user_to_invent_meal(diet)
 
