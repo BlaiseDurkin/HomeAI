@@ -14,6 +14,16 @@ recognized commands:
  - set a reminder
  - 
 """
+def list_to_print_string(sequence):
+    string = ""
+    for i in range(len(sequence)):
+        if i < len(sequence) - 1:
+            string += sequence[i] + ', '
+        elif i == len(sequence) - 1 and len(sequence) > 1:
+            string += ' and '+sequence[i]
+
+    return string
+
 def is_question(text):
     print('check if question...')
     #print(type(text), ' should be string')
@@ -57,6 +67,8 @@ def process_command(command, state):
         #what if the active sub is allready kitchen????
         preamble = "You sound, hungry, here you go,"
         response = recommend_meal(command.params, state.kitchen_graph) # return function response & direction... update node = direction
+        if type(response) == list:
+            response = list_to_print_string(response)
         if is_question(response):
             preamble = "you sound, hungry, but,"
 
