@@ -393,7 +393,9 @@ def invent_meal(diet, graph):
 
 def change_meal(diet, KAG):
     #if new data --> recommend_meal(data += data) & hope the same meal doesnt get chosen
+    print('Changing meal...')
     og_meal = KAG.recipe
+    print('og_meal: ', og_meal)
     diet = KAG.diet
     new_meal = recommend_meal(diet, KAG)
     if new_meal == og_meal:
@@ -496,7 +498,7 @@ def recommend_meal(diet, graph):
         prediction_confidence = max(scores) - scores_mean
     print('prediction confidence: ', prediction_confidence)
     # --------debugging... delete this after ---------
-    prediction_confidence = 1
+    prediction_confidence = 1 #this is dumb... just call ask_user_to_invent_meal(diet)
     #---------------------------------------------
 
 
