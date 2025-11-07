@@ -44,6 +44,7 @@ class KitchenAssistantGraph:
         self.current_node = None
         self.recipe = None #TODO clear each day
         self.all_nodes = []
+        self.recipe_index = 0
 
 
     def update_diet(self, diet):
@@ -116,9 +117,9 @@ asked_user_if_invent_meal = SubNode(['yes', 'no'], {'yes': [invent_meal], 'no': 
 
 gave_meal = SubNode(['change', 'explain', 'repeat'], {'change': [change_meal], 'explain': [explain_meal], 'repeat': [repeat_meal]}, KAG)
 
-asked_user_to_compare = SubNode([''], {'': [recommend_meal]}, KAG)
+asked_user_to_compare = SubNode([''], {'': [recommend_meal]}, KAG) #todo change function -> update
 
-asked_for_ingredients = SubNode([''], {'': [recommend_meal]}, KAG)
+asked_for_ingredients = SubNode([''], {'': [recommend_meal]}, KAG) #todo : add default_key maps to recommend meal, default_key triggered by any ingredient or adjective{country, diet...}
 
 explaining_recipe = SubNode(['next', 'back'], {'next': [say_next_item], 'back': [say_previous_item]}, KAG)
 
@@ -149,4 +150,6 @@ recommend_meal_node.map[''].append(recommend_meal_node)
 all_nodes = [gave_meal, asked_user_if_invent_meal, asked_for_ingredients, asked_user_to_compare]
 KAG.all_nodes = all_nodes
 
+
+#TODO explain sauce
 

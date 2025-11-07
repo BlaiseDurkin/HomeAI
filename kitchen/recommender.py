@@ -273,8 +273,8 @@ def RecipeVariations(region, meal, diet):
             new_ingredients.append('oil')
         elif ing in meats:
             for meat_sub in meat_subsitutes[region]:
-                if not(vegan and meat_subsitutes[region][meat_sub] == 'cheese'):
-                    variations.append([meat_subsitutes[region][meat_sub]])
+                if not(vegan and meat_sub == 'cheese'):
+                    variations.append(meat_sub)
 
     if not (vegetarian or vegan):
         #was there meat in
@@ -331,6 +331,29 @@ def find_suggestions_from_food_list(user_set):
     #print(region_scores)
     return region_scores, top_meal,top_meal_region, canidates, scores
 
+def kosherize(meal, diet):
+    #check if allergies
+    animal_products = ['lard', 'ghee', 'butter', 'egg', 'chicken', 'steak', 'beef', 'pork', 'lamb', 'fish', 'shrimp',
+                       'tuna', 'salmon', 'clam', 'cheese', 'yogurt', 'honey']
+    not_vegetarian_products = ['lard', 'chicken', 'steak', 'beef', 'pork', 'lamb']
+    dairy = ['yogurt', 'cheese']
+    meats = ['chicken', 'fish', 'shrimp', 'steak', 'pork', 'lamb', 'salmon', 'tuna']
+    cooking_mediums = ['butter', 'ghee', 'lard']
+
+    vegan = False
+    vegetarian = False
+    meat_lover = False
+
+    final_recipe = []
+    omitted_ingredients = []
+    for word in meal:
+        if not word in diet['allergies'] and not (vegan and word in animal_products) and not (vegetarian and word in not_vegetarian_products):
+            final_recipe.append(word)
+        else:
+            omitted_ingredients.append(word)
+    #todo add ommitted ingredient subsitute... add region to recipe object
+    return final_recipe
+
 def make_meal_with_diet(diet):
     region_scores, top_meal, top_meal_region, canidates, scores = find_suggestions_from_food_list(diet["ingredients"])
     #use top_meal
@@ -379,7 +402,20 @@ def change_meal(diet, KAG):
 
 def explain_meal(diet, KAG):
     print('Explaining meal...')
-    pass
+    # item = read ingredient[0]
+    KAG.recipe_index = 0
+    #return 'first add the ' + item
+    return 'first, add, '+ KAG.recipe[KAG.recipe_index]
+
+def say_next_item(diet, graph):
+    if graph.recipe_index < len(graph.recipe) - 1:
+        graph.recipe_index += 1
+    return 'then, add, ' + graph.recipe[graph.recipe_index]
+
+def say_previous_item(diet, graph):
+    if graph.recipe_index > 0:
+        graph.recipe_index -= 1
+    return 'add, ' + graph.recipe[graph.recipe_index]
 
 def repeat_meal(diet, KAG):
     print('Repeating meal...')
@@ -390,10 +426,6 @@ def repeat_meal(diet, KAG):
 def just_call_recommend(diet, KAG):
     return recommend_meal(diet, KAG)
 
-def say_next_item(diet, graph):
-    pass
-def say_previous_item(diet, graph):
-    pass
 
 
 def ask_user_for_ingredients(diet, graph):
@@ -465,6 +497,7 @@ def recommend_meal(diet, graph):
         prob_ask_for_ingredients = 0.6
     else:
         prediction_confidence = max(scores) - scores_mean
+    print('prediction confidence: ', prediction_confidence)
 
     if random.random() <= prob_ask_for_ingredients:
         graph.current_node = graph.all_nodes[2]
@@ -473,9 +506,11 @@ def recommend_meal(diet, graph):
     if top_meal_region == None:
         graph.current_node = graph.all_nodes[0]
         recipe = give_super_random_meal()
+        recipe = kosherize(recipe, diet)
         graph.recipe = recipe
-        print('graph: ', graph)
-        print('graph recipe: ', graph.recipe)
+        #print('graph: ', graph)
+        #print('graph recipe: ', graph.recipe)
+
         return list_to_print_string(recipe)
 
     #meal = give_random_meal_from_(top_meal_region)
@@ -483,12 +518,13 @@ def recommend_meal(diet, graph):
     #return list_to_print_string(meal)
     if random.random() <= prediction_confidence:
         graph.current_node = graph.all_nodes[0]
+        top_meal = kosherize(top_meal, diet)
         graph.recipe = top_meal
         return list_to_print_string(top_meal)
     else:
         #ask questions
         # probability_invent = f1(results)
-        # probability_split = f2(results)
+        # probability_split = f2(results) -> ask_to_compare
         graph.current_node = graph.all_nodes[1]
         return ask_user_to_invent_meal(diet)
 

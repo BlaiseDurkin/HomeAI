@@ -59,6 +59,8 @@ def process_command(command, state):
         response = recommend_meal(command.params, state.kitchen_graph) # return function response & direction... update node = direction
         if is_question(response):
             preamble = "you sound, hungry, but,"
+
+        #TODO change preamble to not be repetitive
         response = preamble + response
 
     elif command.intent == "turn_camera":
