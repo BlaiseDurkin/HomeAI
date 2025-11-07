@@ -340,8 +340,8 @@ def kosherize(meal, diet):
     meats = ['chicken', 'fish', 'shrimp', 'steak', 'pork', 'lamb', 'salmon', 'tuna']
     cooking_mediums = ['butter', 'ghee', 'lard']
 
-    vegan = False
-    vegetarian = False
+    vegan = diet['diet']['vegan']
+    vegetarian = diet['diet']['vegetarian']
     meat_lover = False
 
     final_recipe = []
