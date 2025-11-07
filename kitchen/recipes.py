@@ -2,7 +2,7 @@
 #TODO: add themes {thanksgiving, christmas, etc..}
 import pandas as pd
 
-food_df = pd.read_csv('NLP_flavor_clean.csv')
+food_df = pd.read_csv('kitchen/NLP_flavor_clean.csv')
 food_ingredients = food_df['item'].tolist()
 
 vegetables_set = food_df.loc[food_df['plant'] > 0, 'item']
