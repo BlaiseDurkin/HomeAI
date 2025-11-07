@@ -1,21 +1,7 @@
 
 from kitchen.recommender import *
-
-test_rec_file()
-
-# ----------- recipe ----------------
-class Recipe:
-    def __init__(self, list_of_ingredients):
-        self.list_of_ingredients = list_of_ingredients
-        self.region = None
-        self.vegetables = self.parseVeg()
-    def parseVeg(self):
-        vegetables = []
-        for ingredient in self.list_of_ingredients:
-            vegetables.append(ingredient)
-        self.vegetables = vegetables
-
-
+from kitchen.recipes import *
+#test_rec_file()
 
 
 # ------- helper function --------
@@ -58,8 +44,11 @@ class KitchenAssistantGraph:
         print("Updating Kitchen Assistant Graph")
         #   message.params = words in set of expected words
         response = self.current_node.update(message)
-        self.recipe = response
+        # did this fix it??????
+        #TODO fix this -> if response ~ recipe then self.recipe = response
+        # if response type is recipe -> self.recipe = response
         if type(response) == list:
+            self.recipe = response
             response = list_to_print_string(response)
         print('update response: ',response)
         return response

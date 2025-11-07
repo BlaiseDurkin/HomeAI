@@ -397,8 +397,8 @@ def change_meal(diet, KAG):
     diet = KAG.diet
     new_meal = just_call_recommend(diet, KAG)
     if new_meal == og_meal:
-        return list_to_print_string(give_random_meal(diet, KAG))
-    return list_to_print_string(new_meal)
+        return give_random_meal(diet, KAG)
+    return new_meal
 
 def explain_meal(diet, KAG):
     print('Explaining meal...')

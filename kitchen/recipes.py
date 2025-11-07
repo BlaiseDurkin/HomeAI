@@ -1,5 +1,28 @@
 
 #TODO: add themes {thanksgiving, christmas, etc..}
+import pandas as pd
+
+food_df = pd.read_csv('NLP_flavor_clean.csv')
+food_ingredients = food_df['item'].tolist()
+
+vegetables_set = food_df.loc[food_df['plant'] > 0, 'item']
+vegetables_list = vegetables_set.tolist()
+
+
+# ----------- recipe ----------------
+class Recipe:
+    def __init__(self, list_of_ingredients):
+        self.list_of_ingredients = list_of_ingredients
+        self.region = None
+        self.vegetables = self.parseVeg()
+    def parseVeg(self):
+        vegetables = []
+        for ingredient in self.list_of_ingredients:
+            if ingredient in vegetables_list:
+                vegetables.append(ingredient)
+        self.vegetables = vegetables
+
+
 
 
 #use spider graph to visualize
