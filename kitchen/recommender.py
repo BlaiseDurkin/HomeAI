@@ -400,6 +400,7 @@ def change_meal(diet, KAG):
     new_meal = recommend_meal(diet, KAG)
     if new_meal == og_meal:
         return give_random_meal(diet, KAG)
+    print('should be different:', new_meal)
     return new_meal
 
 def explain_meal(diet, KAG):
