@@ -515,7 +515,7 @@ def recommend_meal(diet, graph):
         #print('graph: ', graph)
         #print('graph recipe: ', graph.recipe)
 
-        return list_to_print_string(recipe)
+        return recipe
 
     #meal = give_random_meal_from_(top_meal_region)
     #print(meal)
@@ -524,7 +524,7 @@ def recommend_meal(diet, graph):
         graph.current_node = graph.all_nodes[0]
         top_meal = kosherize(top_meal, diet)
         graph.recipe = top_meal
-        return list_to_print_string(top_meal)
+        return top_meal
     else:
         #ask questions
         # probability_invent = f1(results)
