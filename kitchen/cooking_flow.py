@@ -52,7 +52,7 @@ class KitchenAssistantGraph:
         if type(response) == list:
             self.recipe = response
             response = list_to_print_string(response)
-        print('update response: ',response)
+        #print('update response: ',response)
         return response
 
 #  ------------------ Node --------------------
@@ -81,13 +81,13 @@ class SubNode:
 
     def update(self, message):
         key = self.process_input(message.params)
-        print('node update: ',key)
+        #print('node update: ',key)
         if not key in self.map.keys():
             return ''
 
         self.graph.current_node = self.map[key][1]
         response = self.map[key][0](self.graph.diet, self.graph)
-        print('node update: ',response)
+        #print('node update: ',response)
         return response
 
 

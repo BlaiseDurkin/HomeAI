@@ -332,6 +332,7 @@ def find_suggestions_from_food_list(user_set):
     return region_scores, top_meal,top_meal_region, canidates, scores
 
 def kosherize(meal, diet):
+    print('kosherizing...')
     #check if allergies
     animal_products = ['lard', 'ghee', 'butter', 'egg', 'chicken', 'steak', 'beef', 'pork', 'lamb', 'fish', 'shrimp',
                        'tuna', 'salmon', 'clam', 'cheese', 'yogurt', 'honey']
@@ -395,12 +396,12 @@ def change_meal(diet, KAG):
     #if new data --> recommend_meal(data += data) & hope the same meal doesnt get chosen
     print('Changing meal...')
     og_meal = KAG.recipe
-    print('og_meal: ', og_meal)
+    #print('og_meal: ', og_meal)
     diet = KAG.diet
     new_meal = recommend_meal(diet, KAG)
     if new_meal == og_meal:
         return give_random_meal(diet, KAG)
-    print('should be different:', new_meal)
+    #print('should be different:', new_meal)
     return new_meal
 
 def explain_meal(diet, KAG):
@@ -485,7 +486,8 @@ def give_super_random_meal():
 
 #TODO -- change user_set to user_data
 def recommend_meal(diet, graph):
-
+    print('recommending meal...')
+    print('diet: ', diet)
     region_scores, top_meal, top_meal_region, canidates, scores = find_suggestions_from_food_list(diet["ingredients"])
     #if many canidates with similar scores -> low confidence prediction
     #prediction_confidence = g(results)
@@ -497,7 +499,7 @@ def recommend_meal(diet, graph):
         prob_ask_for_ingredients = 0.6
     else:
         prediction_confidence = max(scores) - scores_mean
-    print('prediction confidence: ', prediction_confidence)
+    #print('prediction confidence: ', prediction_confidence)
     # --------debugging... delete this after ---------
     prediction_confidence = 1 #this is dumb... just call ask_user_to_invent_meal(diet)
     #---------------------------------------------
