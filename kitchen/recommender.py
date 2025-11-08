@@ -400,9 +400,9 @@ def change_meal(diet, KAG):
     diet = KAG.diet
     new_meal = recommend_meal(diet, KAG)
     if new_meal == og_meal:
-        return give_random_meal(diet, KAG)
+        return kosherize(give_random_meal(diet, KAG), diet)
     #print('should be different:', new_meal)
-    return new_meal
+    return kosherize(new_meal, diet)
 
 def explain_meal(diet, KAG):
     print('Explaining meal...')
