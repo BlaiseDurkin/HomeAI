@@ -6,6 +6,9 @@ from kitchen.recipes import *
 
 # ------- helper function --------
 def diet_union(d1, d2):
+    print('diet union...')
+    print('og diet: ', d2)
+    print('new diet: ', d1)
     for key in d1.keys():
         if key in d2.keys():
             if type(d2[key]) == list:
