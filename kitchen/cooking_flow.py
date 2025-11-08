@@ -8,7 +8,9 @@ from kitchen.recipes import *
 def diet_union(d1, d2):
     for key in d1.keys():
         if key in d2.keys():
-            d2[key] = set(d1[key]) | set(d2[key]) #union
+            if type(d2[key]) == list:
+                d2[key] = set(d1[key]) | set(d2[key]) #union
+                d2[key] = list(d2[key])
     return d2
 
 def list_to_print_string(sequence):
