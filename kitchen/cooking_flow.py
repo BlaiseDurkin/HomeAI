@@ -14,6 +14,9 @@ def diet_union(d1, d2):
             if type(d2[key]) == list:
                 d2[key] = set(d1[key]) | set(d2[key]) #union
                 d2[key] = list(d2[key])
+            elif type(d2[key]) == dict:
+                for label in d2[key].keys():
+                    d2[key][label] = d2[key][label] or d1[key][label]
     return d2
 
 def list_to_print_string(sequence):
@@ -98,7 +101,7 @@ class SubNode:
 is_vegan = False
 is_vegetarian = False
 is_allergic = False
-is_pescetarian = True #Todo fix this
+is_pescetarian = False #Todo fix this
 
 start_diet = {'ingredients': [], 'allergies': [], 'diet': {'vegan':is_vegan, 'vegetarian': is_vegetarian, 'pescetarian': is_pescetarian, 'allergic': is_allergic}} #TODO add: feature_weight = {'meat' : -10 }
 KAG = KitchenAssistantGraph(start_diet)

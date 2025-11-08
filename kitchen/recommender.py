@@ -488,6 +488,8 @@ def give_super_random_meal():
 def recommend_meal(diet, graph):
     print('recommending meal...')
     print('diet: ', diet)
+    #ToDO
+    diet = graph.update_diet(diet)
     region_scores, top_meal, top_meal_region, canidates, scores = find_suggestions_from_food_list(diet["ingredients"])
     #if many canidates with similar scores -> low confidence prediction
     #prediction_confidence = g(results)
