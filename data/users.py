@@ -18,6 +18,7 @@ Schedule:
     12:30 work
 
 ** reality -- wake -> doom scroll for 1 hour +
+(((*@*))) solution -- read code in bed
 
 Target Schedule
     wake
@@ -29,6 +30,13 @@ Target Schedule
     lunch
     work
 
+** objective : optimize productivity via atmospheric variables (music), reminders, doom scroll blocker
+music schedule: morning (rise) late morning (grind) early afternoon (sprint) late afternoon (locked in) evening (ponder)
+rise = {andor, halo, vivaldi}
+grind = {house, doom}
+sprint = {dnb, dubstep}
+locked in = {binural beats}
+ponder = {dune, interstellar, oppenheimer, the king}
 """
 
 
@@ -36,7 +44,7 @@ Target Schedule
 # food preference: Europe, WestAsia, SouthAsia, Mex, SouthEastAsia, EastAsia, Africa
 
 #papa
-# food preferenes: Europe, WestAsia, SouthAsia, Mex, SouthEastAsia, EastAsia, Africa
+# food preference: Europe, WestAsia, SouthAsia, Mex, SouthEastAsia, EastAsia, Africa
 
 #Blaise
-# food preferenes: WestAsia, SouthAsia, EastAsia, Mex, SouthEastAsia, Europe,  Africa
+# food preference: WestAsia, SouthAsia, EastAsia, Mex, SouthEastAsia, Europe,  Africa

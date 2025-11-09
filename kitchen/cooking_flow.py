@@ -118,7 +118,7 @@ asked_user_to_compare = SubNode([''], {'': [recommend_meal]}, KAG) #todo change 
 
 asked_for_ingredients = SubNode([''], {'': [recommend_meal]}, KAG) #todo : add default_key maps to recommend meal, default_key triggered by any ingredient or adjective{country, diet...}
 
-explaining_recipe = SubNode(['next', 'back'], {'next': [say_next_item], 'back': [say_previous_item]}, KAG)
+explaining_recipe = SubNode(['next', 'back', 'repeat', 'everything', 'explain'], {'next': [say_next_item], 'back': [say_previous_item], 'repeat': [say_same_item], 'everything': [repeat_meal], 'explain': [explain_item]}, KAG)
 
 recommend_meal_node = SubNode([''], {'': [recommend_meal]}, KAG)
 
@@ -132,12 +132,16 @@ gave_meal.map['change'].append(gave_meal) #next node
 gave_meal.map['explain'].append(explaining_recipe) # next node
 gave_meal.map['repeat'].append(gave_meal) # next node
 
+#TODO test ask
 asked_user_to_compare.map[''].append(recommend_meal_node) #next node
-
+#TODO test ask
 asked_for_ingredients.map[''].append(recommend_meal_node) #next node
 
 explaining_recipe.map['next'].append(explaining_recipe)
 explaining_recipe.map['back'].append(explaining_recipe)
+explaining_recipe.map['repeat'].append(explaining_recipe)
+explaining_recipe.map['everything'].append(gave_meal)
+explaining_recipe.map['explain'].append(explaining_recipe)
 
 #recommend_meal_node.map[''].append(KAG.current_node) # this doesnt work
 recommend_meal_node.map[''].append(recommend_meal_node)

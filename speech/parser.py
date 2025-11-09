@@ -30,6 +30,7 @@ ADV = {"peacefully","quickly","slowly","quietly","loudly","well","badly","recent
 # small verb lexicon; if word not present we'll accept it heuristically as a verb when parsing VP
 VERBS = {"walked","eat","eats","ate","run","runs","ran","chase","chased","see","saw","think","thinks","said","say","says","be","am","is","are","have","has","make","made","go","went","sleep","slept","work","works","study","studies","know","knows","like","likes"}#left
 
+everything_synonyms = ['everything', 'all', 'whole', 'hole', 'every']
 accepted_verbs = ['want', 'need', 'give', 'tell', 'recommend', 'suggest', 'share', 'think', 'plan', 'what']
 meal_words = ['eat', 'food', 'eating', 'dinner', 'meal', 'recipe', 'dish', 'cook', 'cooking']
 
@@ -56,6 +57,14 @@ nation_adj_set = { "american", "canadian", "brazilian", "mexican", "argentine", 
 
 #print(food_ingredients)
 
+class Message:
+    def __init__(self, text, type, intent, params):
+        self.text = text
+        self.intent = intent
+        self.type = type
+        self.params = params
+
+
 # WARNING -- stupid approach --
 def parse_message(text, state):
     # assume concise easy messages
@@ -75,7 +84,7 @@ def parse_message(text, state):
     has_look_trigger_1 = False
     has_look_trigger_2 = False
     key_param = ''
-    #todo -- EXPECTED WORDS FROM SUB ROUTINE
+    #todo -- EXPECTED WORDS -> synonyms -> expected_words
     expected_set = []
     if state.sub_in_action:
         expected_set = state.sub_graph.current_node.expected_words
@@ -99,7 +108,8 @@ def parse_message(text, state):
     while i < len(message):
         word = message[i] #todo check variations (s) or no s ending
         word = word.strip(" .,()/|-+*").lower()
-        if word in expected_set:
+        #if word in synonymUnion(expected_set): #todo check for all symantic synonyms -> representative key word
+        if word in expected_words:
             expected_words.append(word)
         if word == "allergy" or word == "allergic":
             is_allergic = True
@@ -174,13 +184,6 @@ def parse_message(text, state):
 
 
 
-class Message:
-    def __init__(self, text, type, intent, params):
-        self.text = text
-        self.intent = intent
-        self.type = type
-        self.params = params
-        
 
 """
 ft1 = 'I want a recipe with eggplant'

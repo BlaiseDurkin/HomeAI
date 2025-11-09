@@ -334,6 +334,14 @@ def find_suggestions_from_food_list(user_set):
 def kosherize(meal, diet):
     print('kosherizing...')
     #check if allergies
+    meat_subsitutes = {'WestAsia': ['lentils', 'chickpeas'],
+                       'SouthAsia': ['lentils', 'chickpeas', 'cheese', 'mushroom'],
+                       'SouthEastAsia': ['lentils', 'green_beans', 'tofu', 'soy_beans', 'mushroom'],
+                       'EastAsia': ['green_beans', 'tofu', 'soy_beans', 'mushroom'],
+                       'Europe': ['green_beans', 'cheese', 'mushroom'],
+                       'Africa': ['soy_meat', 'beans'],
+                       'America': ['beans', 'mushroom']
+                       }
     animal_products = ['lard', 'ghee', 'butter', 'egg', 'chicken', 'steak', 'beef', 'pork', 'lamb', 'fish', 'shrimp',
                        'tuna', 'salmon', 'clam', 'cheese', 'yogurt', 'honey']
     not_vegetarian_products = ['lard', 'chicken', 'steak', 'beef', 'pork', 'lamb']
@@ -352,8 +360,33 @@ def kosherize(meal, diet):
             final_recipe.append(word)
         else:
             omitted_ingredients.append(word)
-    #todo add ommitted ingredient subsitute... add region to recipe object
+    region = get_region_from_meal(meal)
+    for word in omitted_ingredients:
+        if word in dairy:
+            final_recipe.append('sauce')
+        elif word in cooking_mediums:
+            final_recipe.append('oil')
+        elif word in meats:
+            meat_sub = random.choice(meat_subsitutes[region])
+            if not (vegan and meat_sub == 'cheese'):
+                final_recipe.append(meat_sub)
+            else:
+                final_recipe.append((meat_subsitutes[region].index(meat_sub) + 1)%len(meat_subsitutes))
+
+
     return final_recipe
+
+def get_region_from_meal(meal):
+    regions = ['Wasia', 'Easia', 'SEAsia', 'SAsia', 'Mex', 'Africa', 'Europe']
+
+    subset = food_df[food_df['item'].isin(meal)]
+
+    region_sums = subset[regions].sum()
+    reg_map = {'Wasia': 'WestAsia', 'Easia': 'EastAsia', 'SEAsia': 'SouthEastAsia', 'SAsia': 'SouthAsia', 'Mex': 'America', 'Africa': 'Africa', 'Europe': 'Europe'}
+
+    # Return the region with the maximum sum
+    return reg_map[region_sums.idxmax()]
+
 
 def make_meal_with_diet(diet):
     region_scores, top_meal, top_meal_region, canidates, scores = find_suggestions_from_food_list(diet["ingredients"])
@@ -404,6 +437,10 @@ def change_meal(diet, KAG):
     #print('should be different:', new_meal)
     return kosherize(new_meal, diet)
 
+def explain_item(diet, graph):
+    print('Explaining item')
+    return 'what, do you not, understand, just, add, ' + graph.recipe[graph.recipe_index]
+
 def explain_meal(diet, KAG):
     print('Explaining meal...')
     # item = read ingredient[0]
@@ -419,6 +456,9 @@ def say_next_item(diet, graph):
 def say_previous_item(diet, graph):
     if graph.recipe_index > 0:
         graph.recipe_index -= 1
+    return 'add, ' + graph.recipe[graph.recipe_index]
+
+def say_same_item(diet, graph):
     return 'add, ' + graph.recipe[graph.recipe_index]
 
 def repeat_meal(diet, KAG):
