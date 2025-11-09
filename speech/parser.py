@@ -109,7 +109,7 @@ def parse_message(text, state):
         word = message[i] #todo check variations (s) or no s ending
         word = word.strip(" .,()/|-+*").lower()
         #if word in synonymUnion(expected_set): #todo check for all symantic synonyms -> representative key word
-        if word in expected_words:
+        if word in expected_set:
             expected_words.append(word)
         if word == "allergy" or word == "allergic":
             is_allergic = True
