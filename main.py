@@ -22,7 +22,7 @@ actions:
 from core.loop import run_loop
 from core.state_manager import State
 from vision.camera import init_camera
-#from kitchen.cooking_flow import CookingFlow
+from kitchen.cooking_flow import CookingFlow
 import config
 import time
 
