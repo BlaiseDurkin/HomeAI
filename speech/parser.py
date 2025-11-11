@@ -196,21 +196,21 @@ def parse_message(text, state):
         elif state.active_sub == 'timer' and len(expected_words) > 0:
             key_param = ''#TODO - timeObj(text, total minutes)
             return Message(text, "command", "set_timer", key_param)
-    if message == 'clear diet' or message == 'reset diet':
+    if text == 'clear diet' or text == 'reset diet':
         return Message(text, "command", "clear_diet", diet)
-    if message == 'hello':
+    if text == 'hello':
         return Message(text, "command", "hello", diet)
-    if message == 'bonjour':
+    if text == 'bonjour':
         state.character_mode = "french"
         return Message(text, "command", "hello", diet)
-    if message == 'who are you':
+    if text == 'who are you':
         return Message(text, "command", "state_name", diet)
-    if message == 'i need advice' or message == 'i want help' or message == 'i need help' or message == 'i want advice':
+    if text == 'i need advice' or text == 'i want help' or text == 'i need help' or text == 'i want advice':
         return Message(text, "command", "health_advice", diet)
     if has_timer_trigger_1 and has_timer_trigger_2:
         key_param = ''#five or 5???
         pattern = r'(\d+)\s*(minutes?|seconds?|hours?)\b'
-        match = re.search(pattern, message, re.IGNORECASE)
+        match = re.search(pattern, text, re.IGNORECASE)
         state.active_sub = 'timer'
         #todo if match missing --> ask question
         if not match:
@@ -218,7 +218,7 @@ def parse_message(text, state):
             state.sub_graph.current_node = state.timer.all_nodes[0]
             return Message(text, "command", "set_timer_q", key_param)
         return Message(text, "command", "set_timer", key_param)
-    if message == 'switch character mode':
+    if text == 'switch character mode':
         return Message(text, "command", "switch_character_mode", key_param)
     return Message(text, "idk", "idk", key_param)
 
