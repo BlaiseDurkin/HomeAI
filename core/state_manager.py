@@ -13,6 +13,16 @@ from kitchen.cooking_flow import *
 track moving average of variables : ~user_activity
 
 """
+def pass_func():
+    pass
+class Timer:
+    def __init__(self):
+        current_node = None
+        all_nodes = []
+
+the_timer = Timer()
+timer_q_node = SubNode(['second', 'seconds', 'minute', 'minutes', 'hour', 'hours'], {'': pass_func}, the_timer)
+the_timer.all_nodes.append(timer_q_node)
 
 
 class State:
@@ -32,6 +42,11 @@ class State:
         self.sub_in_action = False
         self.active_sub = None
 
+        # --- Timer ----
+        self.active_timer = False
+        self.timer_set = False
+        self.timer_end = 100
+        self.timer = the_timer
 
 
 

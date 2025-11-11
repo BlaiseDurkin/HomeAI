@@ -1,4 +1,4 @@
-
+from kitchen.cooking_flow import SubNode
 from kitchen.recipes import *
 import random
 import math
@@ -73,6 +73,7 @@ Ex: "recommend me a meal"
 
 country_to_region = {
     "United States": "America",
+    "America": "America",
     "Canada": "America",
     "Brazil": "America",
     "Mexico": "America",
@@ -130,6 +131,66 @@ country_to_region = {
     "Asia": "EastAsia",
     "Central Asia": "WestAsia",
 
+}
+country_to_region = {
+    "united states": "America",
+    "america": "America",
+    "canada": "America",
+    "brazil": "America",
+    "mexico": "America",
+    "argentina": "America",
+    "united kingdom": "Europe",
+    "germany": "Europe",
+    "france": "Europe",
+    "italy": "Europe",
+    "spain": "Europe",
+    "russia": "Europe",
+    "poland": "Europe",
+    "netherlands": "Europe",
+    "sweden": "Europe",
+    "switzerland": "Europe",
+    "china": "EastAsia",
+    "japan": "EastAsia",
+    "south korea": "EastAsia",
+    "north korea": "EastAsia",
+    "korea": "EastAsia",
+    "mongolia": "EastAsia",
+    "india": "SouthAsia",
+    "pakistan": "SouthAsia",
+    "bangladesh": "SouthAsia",
+    "sri lanka": "SouthAsia",
+    "nepal": "SouthAsia",
+    "indonesia": "SouthEastAsia",
+    "thailand": "SouthEastAsia",
+    "vietnam": "SouthEastAsia",
+    "philippines": "SouthEastAsia",
+    "malaysia": "SouthEastAsia",
+    "singapore": "SouthEastAsia",
+    "saudi arabia": "WestAsia",
+    "iran": "WestAsia",
+    "persian": "WestAsia",
+    "iraq": "WestAsia",
+    "turkey": "WestAsia",
+    "israel": "WestAsia",
+    "united arab emirates": "WestAsia",
+    "egypt": "WestAsia",
+    "nigeria": "Africa",
+    "south africa": "Africa",
+    "kenya": "Africa",
+    "ethiopia": "Africa",
+    "algeria": "WestAsia",
+    "morocco": "WestAsia",
+    "ghana": "Africa",
+    "australia": "America",  # Note: Australia is often considered its own region but grouped here as per request
+    "colombia": "America",
+    "chile": "America",
+    "ukraine": "Europe",
+    "greece": "Europe",
+    "europe": "Europe",
+    "middle east": "WestAsia",
+    "africa": "Africa",
+    "asia": "EastAsia",
+    "central asia": "WestAsia",
 }
 
 adjective_to_region = {
@@ -298,10 +359,16 @@ def coverage(user_set, meal):
     return cov
 
 # (1) find best match given user data
-def find_suggestions_from_food_list(user_set):
+def find_suggestions_from_food_list(diet):
     #score each region with user_list : list of <str> ingredients
     # meal : list of <str> ingredients
-
+    user_set = diet['ingredients']
+    country = diet['preference']
+    favorite_region = ''
+    if country in country_to_region:
+        favorite_region = country_to_region[country]
+    if country in adjective_to_region:
+        favorite_region = adjective_to_region[country]
     canidates = []
     scores = []
 
@@ -316,7 +383,10 @@ def find_suggestions_from_food_list(user_set):
         region_score = 0
         for OG_meal in region_list:
             #meal_variations = RecipeVariations(OG_meal)
-            score = coverage(user_set, OG_meal)
+
+            score = coverage(user_set, OG_meal) # ~(0,1)
+            if region == favorite_region:
+                score += 0.15
             region_score += score
             if score > top_score:
                 top_score = score
@@ -389,7 +459,7 @@ def get_region_from_meal(meal):
 
 
 def make_meal_with_diet(diet):
-    region_scores, top_meal, top_meal_region, canidates, scores = find_suggestions_from_food_list(diet["ingredients"])
+    region_scores, top_meal, top_meal_region, canidates, scores = find_suggestions_from_food_list(diet)
     #use top_meal
     final_recipe = []
     for word in top_meal:
@@ -475,10 +545,20 @@ def ask_user_for_ingredients(diet, graph):
     return response
 
 
+def set_preference(pair, graph):
+    expected_words = pair
+    node_index = 3
+    graph.all_nodes[node_index].expected_words = expected_words
+
+
+
 def ask_user_max_separability(pair, graph):
     print("asking question to compare")
     #Ex: results = SEAsia + EAsia  --> ask: "SEAsia or EAsia"
     #   -> do you prefer thai and vietnamese or indian
+    #find x1 and x2
+    # find pair from diet
+    # set_preference(pair, graph)
     response = 'do you, prefer'
 
 
@@ -529,8 +609,13 @@ def recommend_meal(diet, graph):
     print('recommending meal...')
     print('diet: ', diet)
     #ToDO
+    # 1) ask_for_ing
+    # 2) if exist multiple region canidates --> ask preference
+
+    ask_preference_node_index = 3
+    graph.all_nodes[ask_preference_node_index].expected_words = []
     diet = graph.update_diet(diet)
-    region_scores, top_meal, top_meal_region, canidates, scores = find_suggestions_from_food_list(diet["ingredients"])
+    region_scores, top_meal, top_meal_region, canidates, scores = find_suggestions_from_food_list(diet)
     #if many canidates with similar scores -> low confidence prediction
     #prediction_confidence = g(results)
     scores_mean, scores_standev = mean_and_deviation(scores)
@@ -570,6 +655,8 @@ def recommend_meal(diet, graph):
         graph.recipe = top_meal
         return top_meal
     else:
+        #TODO when ask invent <- top score < 0.6
+        #       when ask compare <- reg_scores has multiple high value regions
         #ask questions
         # probability_invent = f1(results)
         # probability_split = f2(results) -> ask_to_compare

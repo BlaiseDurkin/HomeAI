@@ -20,6 +20,11 @@ def list_to_print_string(sequence):
         elif i == len(sequence) - 1 and len(sequence) > 1:
             string += +' and '+sequence[i]
 
+
+# !!!! TODO !!!!
+#  make seperate thread so it doesnt pause video
+
+
 def speak(text):
     vol = 70
     #print(vol)

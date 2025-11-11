@@ -1,3 +1,5 @@
+import random
+
 from kitchen.recommender import recommend_meal
 #process command
 #command functions
@@ -5,15 +7,11 @@ from kitchen.recommender import recommend_meal
 #decrease volume
 
 
-"""
-recognized commands:
- - recommend meal
- - turn {left, center, right}
- - look {left, center, right}
- - set a timer
- - set a reminder
- - 
-"""
+
+def random_health_advice():
+    health_activities = ['to do, 500, push ups', 'to do, 100, squats', 'to run', 'to do, a, hand stand, for one, minute', 'to meditate', 'to stop, eating', 'god']
+    y = random.choice(health_activities)
+    return y
 def list_to_print_string(sequence):
     string = ""
     for i in range(len(sequence)):
@@ -34,26 +32,7 @@ def is_question(text):
 #todo -> if in sub routine, continue sub routine
 #   ex: kitchen module
 def process_command(command, state):
-    """
-    if command.intent == "RECOMMEND_MEAL":
-        meal = recommend_meal(state)
-        response = f"How about {meal}?"
-        state.meal_state = flow.start_recipe(meal)
 
-
-
-    elif command.intent == "STOP":
-        state.running = False
-        response = "Goodbye!
-
-
-      elif command.intent == "NEXT_STEP":
-        step = flow.next_step()
-        response = step
-
-
-
-    """
     response = None
     
     if command.intent == "shut_down":
@@ -83,6 +62,22 @@ def process_command(command, state):
 
     elif command.intent == "update_kitchen_graph":
        response = state.sub_graph.update(command)
+
+    elif command.intent == "hello":
+        response = "uh, hey there"
+    elif command.intent == "state_name":
+        response = "uh, i am, the, kitchen assistant"
+    elif command.intent == "health_advice":
+        response = "listen, bro, you need, "+ random_health_advice()
+    elif command.intent == "set_timer": #or node = set_time_q
+        response = "no, i am, not, the, time keeper"
+    elif command.intent == "set_timer_q":
+        #todo set node to set_time_q
+        response = "ah, and, for, how long"
+        state.active_timer = True
+
+    elif command.intent == "weather_forecast":
+        response = "uh, i think, it will, be sunny"
     
 
         

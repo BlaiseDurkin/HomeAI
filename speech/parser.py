@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 #TODO
 #check if token is known
 # if token is unknown -> check if it exists as a hyphen
@@ -36,6 +37,7 @@ meal_words = ['eat', 'food', 'eating', 'dinner', 'meal', 'recipe', 'dish', 'cook
 
 look_verbs = ['turn', 'look']
 look_directions = ['left', 'right', 'center', 'middle', 'forward']
+time_units = ['hour', 'hours', 'minute', 'minutes', 'second', 'seconds']
 #arrest of tea == recipe
 import os
 
@@ -54,6 +56,18 @@ nation_adj_set = { "american", "canadian", "brazilian", "mexican", "argentine", 
                    "nigerian", "south african", "zambian", "kenyan", "ethiopian", "algerian", "moroccan", "ghanaian",
                    "australian", "colombian", "chilean", "ukrainian", "greek", "european", "middle eastern", "african",
                    "asian" }
+nations = {
+    "united states", "america", "canada", "brazil", "mexico", "argentina",
+    "united kingdom", "germany", "france", "italy", "spain", "russia",
+    "poland", "netherlands", "sweden", "switzerland", "china", "japan",
+    "south korea", "north korea", "korea", "mongolia", "india", "pakistan",
+    "bangladesh", "sri lanka", "nepal", "indonesia", "thailand", "vietnam",
+    "philippines", "malaysia", "singapore", "saudi arabia", "iran", "persian",
+    "iraq", "turkey", "israel", "united arab emirates", "egypt", "nigeria",
+    "south africa", "kenya", "ethiopia", "algeria", "morocco", "ghana",
+    "australia", "colombia", "chile", "ukraine", "greece", "europe",
+    "middle east", "africa", "asia", "central asia"
+}
 
 #print(food_ingredients)
 
@@ -81,6 +95,9 @@ def parse_message(text, state):
 
     # assume
     # 1 clean message from .,()/|\-+*
+    has_timer_trigger_1 = False
+    has_timer_trigger_2 = False
+
     has_look_trigger_1 = False
     has_look_trigger_2 = False
     key_param = ''
@@ -96,6 +113,7 @@ def parse_message(text, state):
 
     food_item_list = []  # TODO - negate elements
     allergy_list = [] #     {without __, i dont want __, no __}
+    region = ''
     is_vegan = False
     is_vegetarian = False
     is_allergic = False
@@ -122,7 +140,10 @@ def parse_message(text, state):
                 previous_no = True
         if i < len(message) - 1:
             nxt = message[i + 1]
-
+        if word == 'set' or word == 'start':
+            has_timer_trigger_1 = True
+        if word == 'timer' or word == 'time':
+            has_timer_trigger_2 = True
         if word in accepted_verbs:
             has_food_trigger_1 = True
         if word in meal_words:
@@ -157,7 +178,7 @@ def parse_message(text, state):
             continue
         i += 1
 
-    diet = {'ingredients': food_item_list, 'allergies': allergy_list, 'diet': {'vegan':is_vegan, 'vegetarian': is_vegetarian, 'pescetarian': is_pescetarian, 'allergic': is_allergic}} #TODO add feature weights: {spicy, Asian, etc...
+    diet = {'ingredients': food_item_list, 'allergies': allergy_list, 'diet': {'vegan':is_vegan, 'vegetarian': is_vegetarian, 'pescetarian': is_pescetarian, 'allergic': is_allergic}, 'preference': region} #TODO add feature weights: {spicy, Asian, etc...
     if has_food_trigger_1 and has_food_trigger_2:
         # create message object = recommend_meal(user_input=food_item_list)
         # print('RecommendMeal()')
@@ -172,31 +193,25 @@ def parse_message(text, state):
         if state.active_sub == 'kitchen' and len(expected_words) > 0:
             params = {'expected': expected_words, 'diet': diet}
             return Message(text, "command", "update_kitchen_graph", params)
+        elif state.active_sub == 'timer' and len(expected_words) > 0:
+            key_param = ''#TODO - timeObj(text, total minutes)
+            return Message(text, "command", "set_timer", key_param)
+    if message == 'hello':
+        return Message(text, "command", "hello", diet)
+    if message == 'who are you':
+        return Message(text, "command", "state_name", diet)
+    if message == 'i need advice' or message == 'i want help' or message == 'i need help' or message == 'i want advice':
+        return Message(text, "command", "health_advice", diet)
+    if has_timer_trigger_1 and has_timer_trigger_2:
+        key_param = ''#five or 5???
+        pattern = r'(\d+)\s*(minutes?|seconds?|hours?)\b'
+        match = re.search(pattern, message, re.IGNORECASE)
+        state.active_sub = 'timer'
+        #todo if match missing --> ask question
+        if not match:
+            state.sub_graph = state.timer
+            state.sub_graph.current_node = state.timer.all_nodes[0]
+            return Message(text, "command", "set_timer_q", key_param)
+        return Message(text, "command", "set_timer", key_param)
     return Message(text, "idk", "idk", key_param)
 
-"""
-    def parse_message(text):
-        #tokenize each element of text
-        #build groups: VP NP PP
-        #   attach adjacent tokens: upBranch~parent, downBranch~nested phrase, family~same phrase
-        #verb functions expect parameters. E.g. Give(to=NP, obj=NP, condition= Condition | PP)
-"""
-
-
-
-
-"""
-ft1 = 'I want a recipe with eggplant'
-ft2 = 'Give me a dish'
-ft3 = 'I need to know what to eat tonight'
-ft4 = 'What should I eat for dinner'
-ft5 = 'Tell me what to eat for dinner'
-ft6 = 'Recommend me a meal'
-
-parse_message(ft1)
-parse_message(ft2)
-parse_message(ft3)
-parse_message(ft4)
-parse_message(ft5)
-parse_message(ft6)
-"""

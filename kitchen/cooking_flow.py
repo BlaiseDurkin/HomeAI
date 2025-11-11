@@ -17,6 +17,10 @@ def diet_union(d1, d2):
             elif type(d2[key]) == dict:
                 for label in d2[key].keys():
                     d2[key][label] = d2[key][label] or d1[key][label]
+
+            elif type(d2[key]) == str:
+                if d1[key] != '':
+                    d2[key] = d1[key]
     return d2
 
 def list_to_print_string(sequence):
@@ -101,20 +105,22 @@ class SubNode:
 is_vegan = False
 is_vegetarian = False
 is_allergic = False
-is_pescetarian = False #Todo fix this
+is_pescetarian = False
 
-start_diet = {'ingredients': [], 'allergies': [], 'diet': {'vegan':is_vegan, 'vegetarian': is_vegetarian, 'pescetarian': is_pescetarian, 'allergic': is_allergic}} #TODO add: feature_weight = {'meat' : -10 }
+start_diet = {'ingredients': [], 'allergies': [], 'diet': {'vegan':is_vegan, 'vegetarian': is_vegetarian, 'pescetarian': is_pescetarian, 'allergic': is_allergic}, 'preference':''} #TODO add: feature_weight = {'meat' : -10 }
 KAG = KitchenAssistantGraph(start_diet)
 
 
 # --------------- Create Nodes ---------------------------------------
-print('before fail')
+
 
 asked_user_if_invent_meal = SubNode(['yes', 'no'], {'yes': [invent_meal], 'no': [give_random_meal]}, KAG)
 
 gave_meal = SubNode(['change', 'explain', 'repeat'], {'change': [change_meal], 'explain': [explain_meal], 'repeat': [repeat_meal]}, KAG)
 
-asked_user_to_compare = SubNode([''], {'': [recommend_meal]}, KAG) #todo change function -> update
+asked_user_to_compare = SubNode([], {'': [recommend_meal]}, KAG) #todo change function -> update
+#ask x1 or x2 where x in region
+#create node with x1 and x2 in expected, function = set diet['preference'] to x
 
 asked_for_ingredients = SubNode([''], {'': [recommend_meal]}, KAG) #todo : add default_key maps to recommend meal, default_key triggered by any ingredient or adjective{country, diet...}
 
@@ -142,6 +148,7 @@ explaining_recipe.map['back'].append(explaining_recipe)
 explaining_recipe.map['repeat'].append(explaining_recipe)
 explaining_recipe.map['everything'].append(gave_meal)
 explaining_recipe.map['explain'].append(explaining_recipe)
+#TODO change item for another item
 
 #recommend_meal_node.map[''].append(KAG.current_node) # this doesnt work
 recommend_meal_node.map[''].append(recommend_meal_node)
