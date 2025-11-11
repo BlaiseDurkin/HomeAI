@@ -22,7 +22,7 @@ actions:
 from core.loop import run_loop
 from core.state_manager import State
 from vision.camera import init_camera
-from kitchen.cooking_flow import CookingFlow
+#from kitchen.cooking_flow import CookingFlow
 import config
 import time
 
@@ -44,4 +44,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-d
