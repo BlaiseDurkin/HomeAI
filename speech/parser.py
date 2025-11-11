@@ -154,6 +154,8 @@ def parse_message(text, state):
         if word in look_directions:
             has_look_trigger_2 = True
             key_param = word
+        if word in nations or word in nation_adj_set:
+            region = word
         if word + '_' + nxt in food_ingredients:
             if previous_no:
                 allergy_list.append(word+ '_' + nxt)
@@ -162,7 +164,7 @@ def parse_message(text, state):
                 food_item_list.append(word + '_' + nxt)
             i += 2
             continue
-        elif word in food_ingredients or word in nation_adj_set:
+        elif word in food_ingredients:
             if previous_no:
                 allergy_list.append(word)
                 previous_no = False
