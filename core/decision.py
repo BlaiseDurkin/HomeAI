@@ -62,6 +62,9 @@ def process_command(command, state):
 
     elif command.intent == "update_kitchen_graph":
        response = state.sub_graph.update(command)
+    elif command.intent == "clear_diet":
+        state.kitchen_graph.diet = {'ingredients': [], 'allergies': [], 'diet': {'vegan':False, 'vegetarian': False, 'pescetarian': False, 'allergic': False}, 'preference': ''} #TODO add feature weights: {spicy, Asian, etc...
+        response = 'diet, is, reset'
 
     elif command.intent == "hello":
         response = "uh, hey there"
@@ -78,6 +81,10 @@ def process_command(command, state):
 
     elif command.intent == "weather_forecast":
         response = "uh, i think, it will, be sunny"
+    elif command.intent == "switch_character_mode":
+        #if no key_param
+        state.character_mode = state.all_characters[(state.all_characters.index(state.character_mode)+1)%len(state.all_characters)]
+        response = "changing, "+state.character_mode + ", mode, activated"
     
 
         

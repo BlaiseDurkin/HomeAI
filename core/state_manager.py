@@ -30,6 +30,9 @@ class State:
         # --- System Flags ---
         self.running = True
         self.start_time = time.time()
+
+        self.character_mode = 'french'
+        self.all_characters = ['default', 'french', 'black']
         
         # need more vars to track state...
         self.is_engaged = False #turn to true when 'Hey computer', turn to false after 5 min

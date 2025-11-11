@@ -196,7 +196,12 @@ def parse_message(text, state):
         elif state.active_sub == 'timer' and len(expected_words) > 0:
             key_param = ''#TODO - timeObj(text, total minutes)
             return Message(text, "command", "set_timer", key_param)
+    if message == 'clear diet' or message == 'reset diet':
+        return Message(text, "command", "clear_diet", diet)
     if message == 'hello':
+        return Message(text, "command", "hello", diet)
+    if message == 'bonjour':
+        state.character_mode = "french"
         return Message(text, "command", "hello", diet)
     if message == 'who are you':
         return Message(text, "command", "state_name", diet)
@@ -213,5 +218,7 @@ def parse_message(text, state):
             state.sub_graph.current_node = state.timer.all_nodes[0]
             return Message(text, "command", "set_timer_q", key_param)
         return Message(text, "command", "set_timer", key_param)
+    if message == 'switch character mode':
+        return Message(text, "command", "switch_character_mode", key_param)
     return Message(text, "idk", "idk", key_param)
 
