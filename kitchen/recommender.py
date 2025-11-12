@@ -1,4 +1,4 @@
-from kitchen.cooking_flow import start_diet
+#from kitchen.cooking_flow import start_diet
 from kitchen.recipes import *
 import random
 import math
