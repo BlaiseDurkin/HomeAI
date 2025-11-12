@@ -128,6 +128,7 @@ asked_user_to_compare = SubNode([], {'': [recommend_meal]}, KAG) #todo change fu
 asked_for_ingredients = SubNode([''], {'': [recommend_meal]}, KAG) #todo : add default_key maps to recommend meal, default_key triggered by any ingredient or adjective{country, diet...}
 
 explaining_recipe = SubNode(['next', 'back', 'repeat', 'everything', 'explain'], {'next': [say_next_item], 'back': [say_previous_item], 'repeat': [say_same_item], 'everything': [repeat_meal], 'explain': [explain_item]}, KAG)
+#TODO add swap item
 
 recommend_meal_node = SubNode([''], {'': [recommend_meal]}, KAG)
 

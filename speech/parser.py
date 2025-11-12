@@ -205,7 +205,7 @@ def parse_message(text, state):
     if text == 'bonjour':
         state.character_mode = "french"
         return Message(text, "command", "hello", diet)
-    if text == 'who are you':
+    if text == 'who are you' or text.endswith('your name'):
         return Message(text, "command", "state_name", diet)
     if text == 'i need advice' or text == 'i want help' or text == 'i need help' or text == 'i want advice':
         return Message(text, "command", "health_advice", diet)

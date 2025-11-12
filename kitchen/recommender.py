@@ -658,6 +658,9 @@ def recommend_meal(diet, graph, change=False):
         #graph.diet = start_diet #reset diet ?????????? maybe dont do this ????????
         pass
     else:
+        # clear diet ingredients if they dont align with preference
+        if diet['preference'] != '':
+            graph.diet['ingredients'] = []
         prob_ask += .2
     diet = graph.update_diet(diet)
     if len(diet['ingredients']) == 0:
@@ -684,6 +687,8 @@ def recommend_meal(diet, graph, change=False):
                 return recipe
 
     region_scores, top_meal, top_meal_region, canidates, scores, confidence = find_suggestions_from_food_list(diet)
+
+    # if change --> select 2nd choice
 
     if random.random() > confidence:
         #ask question ~ invent or preferenace
