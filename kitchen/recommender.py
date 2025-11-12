@@ -472,7 +472,8 @@ def kosherize(meal, diet):
 
 def get_region_from_meal(meal):
     regions = ['Wasia', 'Easia', 'SEAsia', 'SAsia', 'Mex', 'Africa', 'Europe']
-
+    print('getting region from meal...')
+    print('list???',meal)
     subset = food_df[food_df['item'].isin(meal)]
 
     region_sums = subset[regions].sum()
