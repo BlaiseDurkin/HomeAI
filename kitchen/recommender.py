@@ -532,7 +532,7 @@ def change_meal(diet, KAG):
     if new_meal == og_meal:
         return kosherize(give_random_meal(diet, KAG), diet)
     #print('should be different:', new_meal)
-    return new_meal, diet
+    return new_meal
 
 def explain_item(diet, graph):
     print('Explaining item')
