@@ -93,7 +93,10 @@ class SubNode:
         key = self.process_input(message.params)
         #print('node update: ',key)
         if not key in self.map.keys():
-            return ''
+            if '' in self.map.keys():
+                key = ''
+            else:
+                return ''
 
         self.graph.current_node = self.map[key][1]
         response = self.map[key][0](self.graph.diet, self.graph)

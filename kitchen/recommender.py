@@ -1,4 +1,4 @@
-
+from kitchen.cooking_flow import start_diet
 from kitchen.recipes import *
 import random
 import math
@@ -71,6 +71,7 @@ Ex: "recommend me a meal"
   - recommend sauce
 """
 
+
 country_to_region = {
     "United States": "America",
     "America": "America",
@@ -132,6 +133,8 @@ country_to_region = {
     "Central Asia": "WestAsia",
 
 }
+
+
 country_to_region = {
     "united states": "America",
     "america": "America",
@@ -254,6 +257,13 @@ adjective_to_region = {
     "asian": "EastAsia",
     "central asian": "WestAsia"
 }
+region_reps = {'EastAsia': ['chinese'],
+               'SouthEastAsia': ['thai'],
+               'SouthAsia': ['indian'],
+               'WestAsia': ['persian'],
+               'Europe': ['italian'],
+               'Africa': ['african'],
+               'America': ['mexican']}
 
 #key features
 """
@@ -373,21 +383,26 @@ def find_suggestions_from_food_list(diet):
     scores = []
 
     region_scores = {}
+    region_perfect_scores = {}
     top_meal = None
     top_meal_region = None
     top_score = 0
     max_region_score = 0
     for region, region_list in RegionRecipes.items():
         region_list = clean_list(region_list)
-
+        region_perfect_scores[region] = 0
         region_score = 0
         for OG_meal in region_list:
             #meal_variations = RecipeVariations(OG_meal)
 
             score = coverage(user_set, OG_meal) # ~(0,1)
+            if score >.75:
+                region_perfect_scores[region] = 1
+
             if region == favorite_region:
                 score += 0.15
-            region_score += score
+
+            region_score += score**2
             if score > top_score:
                 top_score = score
                 top_meal = OG_meal
@@ -399,7 +414,16 @@ def find_suggestions_from_food_list(diet):
             max_region_score = region_score
     #print(top_meal)
     #print(region_scores)
-    return region_scores, top_meal,top_meal_region, canidates, scores
+    f_l = math.sqrt(len(diet['ingredients']))
+    if len(diet['ingredients']) < 1:
+        f_l = 1
+    n = sum(region_perfect_scores.values())#number of regions with perfect match
+    #print(n)
+    g_n = ((n - 1.15 )** 2)/1.5 + .8
+    confinence = max(scores) / (f_l * g_n)
+    #print('confidence: ',confinence)
+    return region_scores, top_meal,top_meal_region, canidates, scores, confinence
+
 
 def kosherize(meal, diet):
     print('kosherizing...')
@@ -459,7 +483,7 @@ def get_region_from_meal(meal):
 
 
 def make_meal_with_diet(diet):
-    region_scores, top_meal, top_meal_region, canidates, scores = find_suggestions_from_food_list(diet)
+    region_scores, top_meal, top_meal_region, canidates, scores, confidence = find_suggestions_from_food_list(diet)
     #use top_meal
     final_recipe = []
     for word in top_meal:
@@ -472,16 +496,18 @@ def make_meal_with_diet(diet):
 def give_random_meal(diet, graph):
     print('Giving random meal...')
 
-    #TODO - move current_node to gave_random
-    """
-    give random meal if allergies -> swap
-    current_node = gave_meal
-    """
-    #this is not super random... should have region
-
+    region = ''
+    if diet['preference'] != '':
+        if diet['preference'] in adjective_to_region.keys():
+            region = adjective_to_region[diet['preference']]
+        if diet['preference'] in country_to_region.keys():
+            region = country_to_region[diet['preference']]
+    if region != '':
+        return give_random_meal_from_(region)
     return give_super_random_meal()
 
 def give_random_meal_from_(region):
+    print('Giving random meal from',region,'...')
     return random.choice(RegionRecipes[region])
 
 
@@ -501,7 +527,7 @@ def change_meal(diet, KAG):
     og_meal = KAG.recipe
     #print('og_meal: ', og_meal)
     diet = KAG.diet
-    new_meal = recommend_meal(diet, KAG)
+    new_meal = recommend_meal(diet, KAG, change=True)
     if new_meal == og_meal:
         return kosherize(give_random_meal(diet, KAG), diet)
     #print('should be different:', new_meal)
@@ -540,26 +566,27 @@ def repeat_meal(diet, KAG):
 
 def ask_user_for_ingredients(diet, graph):
     print('asking for ingredients...')
-    #TODO move node on graph
+    graph.all_nodes[2].expected_words = food_ingredients
     response = 'do you, want, to use, certain ingredients'
     return response
 
+def ask_user_max_separability(region_scores):
+    print("asking question to compare")
+    pair = get_compair_pair(region_scores)
+    response = 'do you, prefer, '+pair[0]+', or, '+pair[1]+' food'
+    return response, pair
 
 def set_preference(pair, graph):
     expected_words = pair
     node_index = 3
     graph.all_nodes[node_index].expected_words = expected_words
 
+def asking_to_compair(graph, region_scores):
+    response, pair = ask_user_max_separability(region_scores)
+    set_preference(pair, graph)
+    return response
 
 
-def ask_user_max_separability(pair, graph):
-    print("asking question to compare")
-    #Ex: results = SEAsia + EAsia  --> ask: "SEAsia or EAsia"
-    #   -> do you prefer thai and vietnamese or indian
-    #find x1 and x2
-    # find pair from diet
-    # set_preference(pair, graph)
-    response = 'do you, prefer'
 
 
 def ask_user_to_invent_meal(user_data):
@@ -601,68 +628,86 @@ def give_super_random_meal():
     print('random recipe: ',random_recipe)
     return random_recipe
 
+def get_compair_pair(region_scores):
+    #top 2 regions
+    top_2 = sorted(region_scores, key=region_scores.get, reverse=True)[:2]
+    canidate1 =random.choice(region_reps[top_2[0]])
+    canidate2 = random.choice(region_reps[top_2[1]])
+    return [canidate1, canidate2]
 
 #fulfill user request
 
 #TODO -- change user_set to user_data
-def recommend_meal(diet, graph):
+def recommend_meal(diet, graph, change=False):
     print('recommending meal...')
     print('diet: ', diet)
     #ToDO
     # 1) ask_for_ing
     # 2) if exist multiple region canidates --> ask preference
-
+    region = ''
+    if diet['preference'] != '':
+        if diet['preference'] in adjective_to_region.keys():
+            region = adjective_to_region[diet['preference']]
+        if diet['preference'] in country_to_region.keys():
+            region = country_to_region[diet['preference']]
     ask_preference_node_index = 3
     graph.all_nodes[ask_preference_node_index].expected_words = []
-    diet = graph.update_diet(diet)
-    region_scores, top_meal, top_meal_region, canidates, scores = find_suggestions_from_food_list(diet)
-    #if many canidates with similar scores -> low confidence prediction
-    #prediction_confidence = g(results)
-    scores_mean, scores_standev = mean_and_deviation(scores)
-    prob_ask_for_ingredients = 0
-    prediction_confidence = 0
-
-    if scores_mean == None:
-        prob_ask_for_ingredients = 0.6
+    prob_ask = 0
+    if not change:
+        #graph.diet = start_diet #reset diet ?????????? maybe dont do this ????????
+        pass
     else:
-        prediction_confidence = max(scores) - scores_mean
-    #print('prediction confidence: ', prediction_confidence)
-    # --------debugging... delete this after ---------
-    prediction_confidence = 1 #this is dumb... just call ask_user_to_invent_meal(diet)
-    #---------------------------------------------
+        prob_ask += .2
+    diet = graph.update_diet(diet)
+    if len(diet['ingredients']) == 0:
+        if diet['preference'] == '':
+            prob_ask += .45
+
+            if random.random() < prob_ask:
+                # ask ingredients
+                graph.current_node = graph.all_nodes[2]
+                return ask_user_for_ingredients(diet, graph)
+            else:
+                #super random
+                graph.current_node = graph.all_nodes[0]
+                recipe = give_super_random_meal()
+                recipe = kosherize(recipe, diet)
+                graph.recipe = recipe
+                return recipe
+        else:
+            if region != '':
+                graph.current_node = graph.all_nodes[0]
+                recipe = give_random_meal_from_(region)
+                recipe = kosherize(recipe, diet)
+                graph.recipe = recipe
+                return recipe
+
+    region_scores, top_meal, top_meal_region, canidates, scores, confidence = find_suggestions_from_food_list(diet)
+
+    if random.random() > confidence:
+        #ask question ~ invent or preferenace
+        if diet['preference'] == '':
+            graph.current_node = graph.all_nodes[3]
+            return asking_to_compair(graph, region_scores)
+
+        if len(diet['ingredients']) > 1 and max(scores) < .9:
+            #ask to invent
+            graph.current_node = graph.all_nodes[1]
+            return ask_user_to_invent_meal(diet)
 
 
-    if random.random() <= prob_ask_for_ingredients:
-        graph.current_node = graph.all_nodes[2]
-        return ask_user_for_ingredients(diet, graph)
 
     if top_meal_region == None:
         graph.current_node = graph.all_nodes[0]
         recipe = give_super_random_meal()
         recipe = kosherize(recipe, diet)
         graph.recipe = recipe
-        #print('graph: ', graph)
-        #print('graph recipe: ', graph.recipe)
-
         return recipe
 
-    #meal = give_random_meal_from_(top_meal_region)
-    #print(meal)
-    #return list_to_print_string(meal)
-    if random.random() <= prediction_confidence:
-        graph.current_node = graph.all_nodes[0]
-        top_meal = kosherize(top_meal, diet)
-        graph.recipe = top_meal
-        return top_meal
-    else:
-        #TODO when ask invent <- top score < 0.6
-        #       when ask compare <- reg_scores has multiple high value regions
-        #ask questions
-        # probability_invent = f1(results)
-        # probability_split = f2(results) -> ask_to_compare
-        #TODO check if necessary to invent meal before
-        graph.current_node = graph.all_nodes[1]
-        return ask_user_to_invent_meal(diet)
+    graph.current_node = graph.all_nodes[0]
+    return kosherize(top_meal, diet)
+
+
 
 
 

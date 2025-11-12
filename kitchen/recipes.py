@@ -28,11 +28,11 @@ class Recipe:
 #use spider graph to visualize
 
 #East Asia
-EA1 = ['rice', ' shrimp', ' ginger', ' garlic', ' carrot', ' broccoli', ' soy_sauce', ' sesame_oil', 'white_pepper', 'green_onion']
-EA2 = ['rice', ' steak', ' ginger', ' garlic', ' bell_pepper', ' broccoli', 'vinegar', ' soy_sauce', ' sesame_oil', 'white_pepper', 'green_onion']
-EA3 = ['rice', ' pork', ' ginger', ' garlic', ' cabbage', ' onion', 'carrot', 'soy_sauce', ' sesame_oil', 'white_pepper', 'green_onion']
-EA4 = ['rice', ' shrimp', ' ginger', ' garlic', ' carrot', 'bell_pepper', 'walnut', ' soy_sauce', ' sesame_oil', 'white_pepper', 'green_onion']
-EA5 = ['pasta', ' shrimp', ' ginger', ' garlic', ' carrot', 'broccoli', 'seaweed', ' soy_sauce', ' sesame_oil', 'white_pepper', 'green_onion']
+EA1 = ['rice', 'shrimp', 'ginger', 'garlic', 'carrot', 'broccoli', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion']
+EA2 = ['rice', 'steak', 'ginger', 'garlic', 'bell_pepper', 'broccoli', 'vinegar', 'soy_sauce', ' sesame_oil', 'white_pepper', 'green_onion']
+EA3 = ['rice', 'pork', 'ginger', 'garlic', 'cabbage', 'onion', 'carrot', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion']
+EA4 = ['rice', 'shrimp', 'ginger', 'garlic', 'carrot', 'bell_pepper', 'walnut', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion']
+EA5 = ['pasta', 'shrimp', 'ginger', 'garlic', 'carrot', 'broccoli', 'seaweed', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion']
 EA6 = ['rice', 'chicken', 'garlic', 'chili_pepper', 'soy_sauce', 'sesame_oil', 'ginger', 'green_onion', 'vinegar', 'peanut']
 EA7 = ['rice', 'steak', 'soy_sauce', 'sesame_oil', 'garlic', 'green_onion', 'spinach', 'carrot', 'zucchini', 'shiitake_mushroom', 'sprouts', 'egg', 'sesame_seed']
 EA8 = ['carrot', 'cabbage', 'green_onion', 'sesame_seed', 'soy_sauce', 'sesame_oil', 'chili_pepper', 'shiitake_mushroom', 'rice']
@@ -84,17 +84,28 @@ E3 = ['pasta', 'cheese', 'black_pepper', 'parsley', 'garlic', 'cream', 'mushroom
 E4 = ['pasta', 'garlic', 'broccoli', 'parsley', 'salmon', 'black_pepper']
 E5 = ["pork", "pasta", "tomato", "garlic"]
 E6 = ["chicken", "potato", "rosemary"]
-E_meals = [E1, E2, E3, E4, E5, E6]
+E7 = ['pasta', 'tomato', 'garlic', 'eggplant', 'oregano']
+E8 = ['pasta', 'zucchini', 'garlic', 'pork']
+E_meals = [E1, E2, E3, E4, E5, E6, E7, E8]
+
 
 #Africa
-A1 = ["lamb", "couscous", "paprika"]
+A1 = ["lamb", "couscous", "cucumber"]
 A2 = ["fish", "yam", "peanut"]
-Af_meals = [A1, A2]
-#Mex
-Mx1 = ["corn", "beans"]
-Mx2 = ["beans", "pepper"]
+A3 = ["fish", "peanut", "spinach", "yam"]
+A4 = ["oil", "onion", "tomato", "cabbage", "shima"]
+A5 = ["goat", "oil", "tomato", "shima"]
+A6 = ["okra", "peanut", "shima"]
+Af_meals = [A1, A2, A3, A4, A5, A6]
 
-Mx_meals = [Mx1, Mx2]
+#Mex America
+Mx1 = ["corn", "beans", "quinoa", "chipotle_pepper", "paprika"]
+Mx2 = ["beans", "pepper", "quinoa", "tomato"]
+Mx3 = ["tortilla", "chicken", "lettuce", "salsa"]
+Mx4 = ["tortilla","lard", "beans", "lettuce", "salsa"]
+Mx5 = ["tortilla", "pork", "onion", "cilantro", "chipotle_pepper"]
+Mx6 = ["tortilla", "steak", "cheese", "cream", "salsa"]
+Mx_meals = [Mx1, Mx2, Mx3, Mx4, Mx5, Mx6]
 
 
 RegionRecipes = {'EastAsia': EA_meals, 'SouthEastAsia': SEA_meals, 'SouthAsia': SA_meals, 'WestAsia': WA_meals, "Europe": E_meals, "Africa": Af_meals, "America": Mx_meals}
