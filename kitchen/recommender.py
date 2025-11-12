@@ -436,11 +436,11 @@ def kosherize(meal, diet):
                        'Africa': ['soy_meat', 'beans'],
                        'America': ['beans', 'mushroom']
                        }
-    animal_products = ['lard', 'ghee', 'butter', 'egg', 'chicken', 'steak', 'beef', 'pork', 'lamb', 'fish', 'shrimp',
+    animal_products = ['lard', 'ghee', 'butter', 'egg', 'chicken', 'steak','goat', 'beef', 'pork', 'lamb', 'fish', 'shrimp',
                        'tuna', 'salmon', 'clam', 'cheese', 'yogurt', 'honey']
-    not_vegetarian_products = ['lard', 'chicken', 'steak', 'beef', 'pork', 'lamb']
+    not_vegetarian_products = ['lard', 'chicken', 'steak', 'goat', 'beef', 'pork', 'lamb']
     dairy = ['yogurt', 'cheese']
-    meats = ['chicken', 'fish', 'shrimp', 'steak', 'pork', 'lamb', 'salmon', 'tuna']
+    meats = ['chicken', 'fish', 'shrimp', 'steak', 'goat', 'pork', 'lamb', 'salmon', 'tuna']
     cooking_mediums = ['butter', 'ghee', 'lard']
 
     vegan = diet['diet']['vegan']
@@ -478,7 +478,7 @@ def get_region_from_meal(meal):
 
     region_sums = subset[regions].sum()
     reg_map = {'Wasia': 'WestAsia', 'Easia': 'EastAsia', 'SEAsia': 'SouthEastAsia', 'SAsia': 'SouthAsia', 'Mex': 'America', 'Africa': 'Africa', 'Europe': 'Europe'}
-
+    print('region???',reg_map[region_sums.idxmax()])
     # Return the region with the maximum sum
     return reg_map[region_sums.idxmax()]
 
