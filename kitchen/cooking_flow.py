@@ -84,7 +84,7 @@ class SubNode:
 
     def process_input(self, params):
         diet = params['diet']
-        diet = self.graph.update_diet(diet)
+        self.graph.diet = self.graph.update_diet(diet) #bugggggggggggggggggggggggggggggggggggg
 
         expected_words = params['expected'] #todo : create map: senitment to expected words
         print('processing input...')
