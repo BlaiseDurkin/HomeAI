@@ -21,6 +21,7 @@ def diet_union(d1, d2):
             elif type(d2[key]) == str:
                 if d1[key] != '':
                     d2[key] = d1[key]
+    print('newer diet: ', d2)
     return d2
 
 def list_to_print_string(sequence):
