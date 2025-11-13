@@ -677,12 +677,10 @@ def recommend_meal(diet, graph, change=False, fresh=False):
         prob_ask += .2
     if len(diet['ingredients']) > 0 or fresh:
         print('clearing diet...')
-        print(diet)
-        print(graph.diet)
+        print('d1: ',hex(id(diet)))
+        print('d2: ',hex(id(graph.diet)))
         graph.diet['ingredients'] = []
-        print('graph diet = []')
-        print(diet)
-        print(graph.diet)
+
     diet = graph.update_diet(diet)
     if len(diet['ingredients']) == 0:
         if diet['preference'] == '':
