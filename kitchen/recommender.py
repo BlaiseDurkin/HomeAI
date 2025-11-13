@@ -680,6 +680,9 @@ def recommend_meal(diet, graph, change=False, fresh=False):
         print(diet)
         print(graph.diet)
         graph.diet['ingredients'] = []
+        print('graph diet = []')
+        print(diet)
+        print(graph.diet)
     diet = graph.update_diet(diet)
     if len(diet['ingredients']) == 0:
         if diet['preference'] == '':
