@@ -662,6 +662,8 @@ def recommend_meal(diet, graph, change=False):
         if diet['preference'] != '':
             graph.diet['ingredients'] = []
         prob_ask += .2
+    if len(diet['ingredients']) > 0:
+        graph.diet['ingredients'] = []
     diet = graph.update_diet(diet)
     if len(diet['ingredients']) == 0:
         if diet['preference'] == '':
