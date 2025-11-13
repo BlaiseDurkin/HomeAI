@@ -45,7 +45,7 @@ def process_command(command, state):
         state.sub_graph = state.kitchen_graph
         #what if the active sub is allready kitchen????
         preamble = "You sound, hungry, here you go,"
-        response = recommend_meal(command.params, state.kitchen_graph) # return function response & direction... update node = direction
+        response = recommend_meal(command.params, state.kitchen_graph, fresh=True) # return function response & direction... update node = direction
         if type(response) == list:
             response = list_to_print_string(response)
         if is_question(response):

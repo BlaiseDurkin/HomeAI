@@ -119,7 +119,7 @@ KAG = KitchenAssistantGraph(start_diet)
 
 asked_user_if_invent_meal = SubNode(['yes', 'no'], {'yes': [invent_meal], 'no': [give_random_meal]}, KAG)
 
-gave_meal = SubNode(['change', 'explain', 'repeat'], {'change': [change_meal], 'explain': [explain_meal], 'repeat': [repeat_meal]}, KAG)
+gave_meal = SubNode(['change', 'explain', 'repeat', 'add'], {'change': [change_meal], 'explain': [explain_meal], 'repeat': [repeat_meal], 'add': [add_shit]}, KAG)
 
 asked_user_to_compare = SubNode([], {'': [recommend_meal]}, KAG) #todo change function -> update
 #ask x1 or x2 where x in region
@@ -127,12 +127,14 @@ asked_user_to_compare = SubNode([], {'': [recommend_meal]}, KAG) #todo change fu
 
 asked_for_ingredients = SubNode([''], {'': [recommend_meal]}, KAG) #todo : add default_key maps to recommend meal, default_key triggered by any ingredient or adjective{country, diet...}
 
-explaining_recipe = SubNode(['next', 'back', 'repeat', 'everything', 'explain'], {'next': [say_next_item], 'back': [say_previous_item], 'repeat': [say_same_item], 'everything': [repeat_meal], 'explain': [explain_item]}, KAG)
+explaining_recipe = SubNode(['next', 'back', 'repeat', 'everything', 'explain', 'add', 'change'], {'next': [say_next_item], 'back': [say_previous_item], 'repeat': [say_same_item], 'everything': [repeat_meal], 'explain': [explain_item], 'add': [add_shit], 'change': [asking_swap_item]}, KAG)
 #TODO add swap item
 
 recommend_meal_node = SubNode([''], {'': [recommend_meal]}, KAG)
 
+asked_user_if_swap_item = SubNode(['yes', 'no'], {'yes': [ask_user_for_new_item], 'no': [sassy_response]}, KAG)
 
+asked_for_new_item = SubNode([''], {'': [say_modified_recipe]}, KAG)
 
 # ----- edges ---------------
 asked_user_if_invent_meal.map['yes'].append(gave_meal) #next node
@@ -141,6 +143,7 @@ asked_user_if_invent_meal.map['no'].append(gave_meal)  #next node
 gave_meal.map['change'].append(gave_meal) #next node
 gave_meal.map['explain'].append(explaining_recipe) # next node
 gave_meal.map['repeat'].append(gave_meal) # next node
+gave_meal.map['add'].append(gave_meal) # next node
 
 #TODO test ask
 asked_user_to_compare.map[''].append(recommend_meal_node) #next node
@@ -152,14 +155,22 @@ explaining_recipe.map['back'].append(explaining_recipe)
 explaining_recipe.map['repeat'].append(explaining_recipe)
 explaining_recipe.map['everything'].append(gave_meal)
 explaining_recipe.map['explain'].append(explaining_recipe)
-#TODO change item for another item
+explaining_recipe.map['add'].append(explaining_recipe)
+explaining_recipe.map['change'].append(asked_user_if_swap_item)
+
+
 
 #recommend_meal_node.map[''].append(KAG.current_node) # this doesnt work
 recommend_meal_node.map[''].append(recommend_meal_node)
 
+asked_user_if_swap_item.map['yes'].append(asked_for_new_item) # new node
+asked_user_if_swap_item.map['no'].append(gave_meal) #new node
+
+asked_for_new_item.map[''].append(gave_meal) #new node
+
 #-------------------------------------------------------------------
 
-all_nodes = [gave_meal, asked_user_if_invent_meal, asked_for_ingredients, asked_user_to_compare]
+all_nodes = [gave_meal, asked_user_if_invent_meal, asked_for_ingredients, asked_user_to_compare, asked_for_new_item]
 KAG.all_nodes = all_nodes
 
 

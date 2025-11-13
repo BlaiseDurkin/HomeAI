@@ -558,12 +558,25 @@ def say_previous_item(diet, graph):
 def say_same_item(diet, graph):
     return 'add, ' + graph.recipe[graph.recipe_index]
 
+def asking_swap_item(diet, graph):
+    return 'do you, want, me to, replace, '  + graph.recipe[graph.recipe_index]
+
+def add_shit(diet, graph):
+    return "no, i, will not, add, "+list_to_print_string(diet['ingredients'])
+
 def repeat_meal(diet, KAG):
     print('Repeating meal...')
     print('KAG: ', KAG)
     print('recipe: ',KAG.recipe)
     return KAG.recipe
 
+def say_modified_recipe(diet, graph):
+    graph.recipe[graph.recipe_index] = diet['ingredients'][0]
+    return "here, is your, new recipe, "+list_to_print_string(graph.recipe)
+
+def ask_user_for_new_item(diet, graph):
+    graph.all_nodes[4].expected_words = food_ingredients
+    return "tell me, the, new food, item"
 
 def ask_user_for_ingredients(diet, graph):
     print('asking for ingredients...')
@@ -639,7 +652,7 @@ def get_compair_pair(region_scores):
 #fulfill user request
 
 #TODO -- change user_set to user_data
-def recommend_meal(diet, graph, change=False):
+def recommend_meal(diet, graph, change=False, fresh=False):
     print('recommending meal...')
     print('diet: ', diet)
     #ToDO
@@ -662,7 +675,7 @@ def recommend_meal(diet, graph, change=False):
         if diet['preference'] != '':
             graph.diet['ingredients'] = []
         prob_ask += .2
-    if len(diet['ingredients']) > 0:
+    if len(diet['ingredients']) > 0 or fresh:
         graph.diet['ingredients'] = []
     diet = graph.update_diet(diet)
     if len(diet['ingredients']) == 0:
@@ -713,7 +726,9 @@ def recommend_meal(diet, graph, change=False):
         return recipe
 
     graph.current_node = graph.all_nodes[0]
-    return kosherize(top_meal, diet)
+    top_meal = kosherize(top_meal, diet)
+    graph.recipe = top_meal
+    return top_meal
 
 
 
@@ -722,7 +737,8 @@ def recommend_meal(diet, graph, change=False):
 #nodes: all_nodes = [gave_meal, asked_user_if_invent_meal, asked_for_ingredients, asked_user_to_compare]
 
 
-
+def sassy_response(d, g):
+    return "ok, maybe, think, before you, speak"
 
 
 
