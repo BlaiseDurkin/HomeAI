@@ -9,23 +9,25 @@ def diet_union(d1, d2):
     print('diet union...')
     #print('og diet: ', d2)
     print('new diet: ', d1)
-
+    d3 = {'ingredients': [], 'allergies': [], 'diet': {'vegan':is_vegan, 'vegetarian': is_vegetarian, 'pescetarian': is_pescetarian, 'allergic': is_allergic}, 'preference':''}
     for key in d1.keys():
         if key in d2.keys():
             if type(d1[key]) == list:
                 #d2[key] = set(d1[key]) | set(d2[key]) #union
                 #d2[key] = list(d2[key])
-                d1[key] = list(set(d1[key]) | set(d2[key]))
+                d3[key] = list(set(d1[key]) | set(d2[key]))
             elif type(d1[key]) == dict:
                 for label in d1[key].keys():
-                    d1[key][label] = d2[key][label] or d1[key][label]
+                    d3[key][label] = d2[key][label] or d1[key][label]
 
 
             elif type(d1[key]) == str:
                 if d1[key] != '':
-                    d2[key] = d1[key]
+                    d3[key] = d1[key]
+                else:
+                    d3[key] = d2[key]
     #print('newer diet: ', d2)
-    return d1
+    return d3
 
 def list_to_print_string(sequence):
     string = ""
