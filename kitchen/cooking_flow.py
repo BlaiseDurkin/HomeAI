@@ -93,10 +93,10 @@ class SubNode:
         for word in expected_words:
             if word in self.map.keys():
                 key = word
-        return key
+        return key, diet
 
     def update(self, message):
-        key = self.process_input(message.params)
+        key, diet = self.process_input(message.params)
         #print('node update: ',key)
         if not key in self.map.keys():
             if '' in self.map.keys():
@@ -105,7 +105,7 @@ class SubNode:
                 return ''
 
         self.graph.current_node = self.map[key][1]
-        response = self.map[key][0](self.graph.diet, self.graph)
+        response = self.map[key][0](diet, self.graph)
         #print('node update: ',response)
         return response
 
