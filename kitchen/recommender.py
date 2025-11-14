@@ -706,13 +706,13 @@ def recommend_meal(diet, graph, change=False, fresh=False):
                 graph.recipe = recipe
                 return recipe
 
-    region_scores, top_meal, top_meal_region, canidates, scores, confidence = find_suggestions_from_food_list(diet)
+    region_scores, top_meal, top_meal_region, candidates, scores, confidence = find_suggestions_from_food_list(diet)
 
     # if change --> select 2nd choice
 
     if random.random() > confidence:
         #ask question ~ invent or preferenace
-        if diet['preference'] == '':
+        if diet['preference'] == '' and graph.diet['preference'] == '':
             graph.current_node = graph.all_nodes[3]
             return asking_to_compair(graph, region_scores)
 
@@ -729,6 +729,18 @@ def recommend_meal(diet, graph, change=False, fresh=False):
         recipe = kosherize(recipe, diet)
         graph.recipe = recipe
         return recipe
+
+    if change:
+        graph.current_node = graph.all_nodes[0]
+        top_3 = sorted(zip(scores, candidates), reverse=True)[:3]
+        top_candidates = [candidate for score, candidate in top_3]
+        if top_candidates[0] == graph.recipe:
+            top_meal = top_candidates[1]
+        else:
+            top_meal = top_candidates[0]
+        top_meal = kosherize(top_meal, diet)
+        graph.recipe = top_meal
+        return top_meal
 
     graph.current_node = graph.all_nodes[0]
     top_meal = kosherize(top_meal, diet)
