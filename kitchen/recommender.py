@@ -527,7 +527,7 @@ def change_meal(diet, KAG):
     print('Changing meal...')
     og_meal = KAG.recipe
     #print('og_meal: ', og_meal)
-    diet = KAG.diet
+    #diet = KAG.diet   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! the bug
     new_meal = recommend_meal(diet, KAG, change=True)
     if new_meal == og_meal:
         return kosherize(give_random_meal(diet, KAG), diet)
