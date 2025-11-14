@@ -681,7 +681,10 @@ def recommend_meal(diet, graph, change=False, fresh=False):
         print('d2: ',hex(id(graph.diet)))
         graph.diet['ingredients'] = []
 
-    graph.diet = graph.update_diet(diet) #change to diet?????
+    #TODO:
+    # - condition A: diet = update_diet
+    # - condition B: graph.diet = update_diet
+    diet = graph.update_diet(diet) #change to diet?????
     if len(diet['ingredients']) == 0 and len(graph.diet['ingredients']) == 0: #change to include graph.diet??????
         print('no ingredients')
         if diet['preference'] == '':
