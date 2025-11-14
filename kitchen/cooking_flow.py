@@ -7,7 +7,7 @@ from kitchen.recipes import *
 # ------- helper function --------
 def diet_union(d1, d2):
     print('diet union...')
-    #print('og diet: ', d2)
+    print('og diet: ', d2)
     print('new diet: ', d1)
     d3 = {'ingredients': [], 'allergies': [], 'diet': {'vegan': False, 'vegetarian': False, 'pescetarian': False, 'allergic': False}, 'preference':''}
     for key in d1.keys():
@@ -85,6 +85,7 @@ class SubNode:
     def process_input(self, params):
         diet = params['diet']
         self.graph.diet = self.graph.update_diet(diet) #bugggggggggggggggggggggggggggggggggggg
+        print('gd: ',self.graph.diet['ingredients'])
 
         expected_words = params['expected'] #todo : create map: senitment to expected words
         print('processing input...')
