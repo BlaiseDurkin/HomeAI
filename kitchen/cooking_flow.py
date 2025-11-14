@@ -9,7 +9,7 @@ def diet_union(d1, d2):
     print('diet union...')
     #print('og diet: ', d2)
     print('new diet: ', d1)
-    d3 = {'ingredients': [], 'allergies': [], 'diet': {'vegan':is_vegan, 'vegetarian': is_vegetarian, 'pescetarian': is_pescetarian, 'allergic': is_allergic}, 'preference':''}
+    d3 = {'ingredients': [], 'allergies': [], 'diet': {'vegan': False, 'vegetarian': False, 'pescetarian': False, 'allergic': False}, 'preference':''}
     for key in d1.keys():
         if key in d2.keys():
             if type(d1[key]) == list:
