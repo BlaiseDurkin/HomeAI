@@ -482,16 +482,25 @@ def get_region_from_meal(meal):
     # Return the region with the maximum sum
     return reg_map[region_sums.idxmax()]
 
+#TODO fix this
+def make_meal_with_diet(diet, graph):
 
-def make_meal_with_diet(diet):
-    region_scores, top_meal, top_meal_region, canidates, scores, confidence = find_suggestions_from_food_list(diet)
-    #use top_meal
-    final_recipe = []
-    for word in top_meal:
-        if not word in diet["allergies"]:
-            final_recipe.append(word)
-    return final_recipe
+    region_scores, top_meal, top_meal_region, candidates, scores, confidence = find_suggestions_from_food_list(diet)
 
+    # if change --> select 2nd choice
+
+    if top_meal_region == None:
+        graph.current_node = graph.all_nodes[0]
+        recipe = give_super_random_meal()
+        recipe = kosherize(recipe, diet)
+        graph.recipe = recipe
+        return recipe
+
+
+    graph.current_node = graph.all_nodes[0]
+    top_meal = kosherize(top_meal, diet)
+    graph.recipe = top_meal
+    return top_meal
 
 # (2) suggest meal recommendation given minimal data
 def give_random_meal(diet, graph):
@@ -517,7 +526,7 @@ def give_random_meal_from_(region):
 def invent_meal(diet, graph):
     print('Inventing meal...')
     # which direction given data? region, ingredients, both?
-    recipe = make_meal_with_diet(diet)
+    recipe = make_meal_with_diet(diet, graph)
     # TODO recipe probably returns None or empty list
     return recipe
 
@@ -576,7 +585,7 @@ def say_modified_recipe(diet, graph):
 
 def ask_user_for_new_item(diet, graph):
     graph.all_nodes[4].expected_words = food_ingredients
-    return "tell me, the, new food, item"
+    return "tell me, the, new, item"
 
 def ask_user_for_ingredients(diet, graph):
     print('asking for ingredients...')
@@ -651,7 +660,9 @@ def get_compair_pair(region_scores):
 
 #fulfill user request
 
-#TODO -- change user_set to user_data
+#TODO --
+# - if new diet has ingredients then replace old ingredients
+# - else
 def recommend_meal(diet, graph, change=False, fresh=False):
     print('recommending meal...')
     #print('diet: ', diet)
