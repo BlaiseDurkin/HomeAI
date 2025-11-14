@@ -654,7 +654,7 @@ def get_compair_pair(region_scores):
 #TODO -- change user_set to user_data
 def recommend_meal(diet, graph, change=False, fresh=False):
     print('recommending meal...')
-    print('diet: ', diet)
+    #print('diet: ', diet)
     #ToDO
     # 1) ask_for_ing
     # 2) if exist multiple region canidates --> ask preference
