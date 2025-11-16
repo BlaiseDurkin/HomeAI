@@ -67,7 +67,10 @@ def process_command(command, state):
         response = 'diet, is, reset'
 
     elif command.intent == "hello":
-        response = "uh, hey there"
+        if state.character_mode == 'french':
+            response = "ah, so, you are, french"
+        else:
+            response = "uh, hey there"
     elif command.intent == "state_name":
         response = "uh, i am, the, kitchen assistant"
     elif command.intent == "health_advice":

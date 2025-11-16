@@ -128,7 +128,7 @@ KAG = KitchenAssistantGraph(start_diet)
 
 asked_user_if_invent_meal = SubNode(['yes', 'no'], {'yes': [invent_meal], 'no': [give_random_meal]}, KAG)
 
-gave_meal = SubNode(['change', 'explain', 'repeat', 'add'], {'change': [change_meal], 'explain': [explain_meal], 'repeat': [repeat_meal], 'add': [add_shit]}, KAG)
+gave_meal = SubNode(['change', 'explain', 'repeat', 'add', 'back'], {'change': [change_meal], 'explain': [explain_meal], 'repeat': [repeat_meal], 'add': [add_shit], 'back': [sorry_dave]}, KAG)
 
 asked_user_to_compare = SubNode([], {'': [recommend_meal]}, KAG) #todo change function -> update
 #ask x1 or x2 where x in region
@@ -153,6 +153,7 @@ gave_meal.map['change'].append(gave_meal) #next node
 gave_meal.map['explain'].append(explaining_recipe) # next node
 gave_meal.map['repeat'].append(gave_meal) # next node
 gave_meal.map['add'].append(gave_meal) # next node
+gave_meal.map['back'].append(gave_meal)
 
 #TODO test ask
 asked_user_to_compare.map[''].append(recommend_meal_node) #next node
@@ -182,6 +183,8 @@ asked_for_new_item.map[''].append(gave_meal) #new node
 all_nodes = [gave_meal, asked_user_if_invent_meal, asked_for_ingredients, asked_user_to_compare, asked_for_new_item]
 KAG.all_nodes = all_nodes
 
-
+#-----------------------------------------------------------------
 #TODO explain sauce
+
+
 

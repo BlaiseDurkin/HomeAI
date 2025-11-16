@@ -56,6 +56,7 @@ def run_loop(state, camera, flow):
         response = None
         if command or message:
             state, response = process_command(voice_msg, state)
+            state.just_spoke = False
 
 
 
@@ -69,6 +70,9 @@ def run_loop(state, camera, flow):
             #todo clear_throat()
             joke = ''
             speak(response + joke)
+            if response != '':
+                state.just_spoke = True
+                state.last_response = response
         #display_overlay(frame, state)
 
         # --- 6. Loop Rate ---

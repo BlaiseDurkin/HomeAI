@@ -32,7 +32,7 @@ class State:
         self.start_time = time.time()
 
         self.character_mode = 'french'
-        self.all_characters = ['default', 'french', 'black']
+        self.all_characters = ['default', 'french', 'fun']
         
         # need more vars to track state...
         self.is_engaged = False #turn to true when 'Hey computer', turn to false after 5 min
@@ -71,6 +71,8 @@ class State:
         self.last_control_time = time.time()
         self.last_command = None
         self.last_command_time = time.time()
+        self.just_spoke = False
+        self.last_response = ''
 
         # --- Kitchen / Cooking Logic ---
         self.meal_state = None            # Holds current recipe step

@@ -572,6 +572,8 @@ def asking_swap_item(diet, graph):
 
 def add_shit(diet, graph):
     return "no, i, will not, add, "+list_to_print_string(diet['ingredients'])
+def sorry_dave(diet, graph):
+    return "sorry, but, i, can not, do, that"
 
 def repeat_meal(diet, KAG):
     print('Repeating meal...')

@@ -86,7 +86,9 @@ def parse_message(text, state):
     # check if message is recognized command
     if text == None:
         return text
-    # print(text)
+    if state.just_spoke:
+        print('you: ',len(text))
+        print('me: ',len(state.last_response))
     # return command object
     # command : (computer) VP NP
     # who is the subject
@@ -182,10 +184,6 @@ def parse_message(text, state):
 
     diet = {'ingredients': food_item_list, 'allergies': allergy_list, 'diet': {'vegan':is_vegan, 'vegetarian': is_vegetarian, 'pescetarian': is_pescetarian, 'allergic': is_allergic}, 'preference': region} #TODO add feature weights: {spicy, Asian, etc...
     if has_food_trigger_1 and has_food_trigger_2:
-        # create message object = recommend_meal(user_input=food_item_list)
-        # print('RecommendMeal()')
-        # print(food_item_list)
-
         return Message(text, "command", "recommend_meal", diet)
 
     if has_look_trigger_1 and has_look_trigger_2:

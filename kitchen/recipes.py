@@ -32,18 +32,18 @@ EA1 = ['rice', 'shrimp', 'ginger', 'garlic', 'carrot', 'broccoli', 'soy_sauce', 
 EA2 = ['rice', 'steak', 'ginger', 'garlic', 'bell_pepper', 'broccoli', 'vinegar', 'soy_sauce', ' sesame_oil', 'white_pepper', 'green_onion']
 EA3 = ['rice', 'pork', 'ginger', 'garlic', 'cabbage', 'onion', 'carrot', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion']
 EA4 = ['rice', 'shrimp', 'ginger', 'garlic', 'carrot', 'bell_pepper', 'walnut', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion']
-EA5 = ['pasta', 'shrimp', 'ginger', 'garlic', 'carrot', 'broccoli', 'seaweed', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion']
+EA5 = ['noodles', 'shrimp', 'ginger', 'garlic', 'carrot', 'broccoli', 'seaweed', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion']
 EA6 = ['rice', 'chicken', 'garlic', 'chili_pepper', 'soy_sauce', 'sesame_oil', 'ginger', 'green_onion', 'vinegar', 'peanut']
 EA7 = ['rice', 'steak', 'soy_sauce', 'sesame_oil', 'garlic', 'green_onion', 'spinach', 'carrot', 'zucchini', 'shiitake_mushroom', 'sprouts', 'egg', 'sesame_seed']
-EA8 = ['carrot', 'cabbage', 'green_onion', 'sesame_seed', 'soy_sauce', 'sesame_oil', 'chili_pepper', 'shiitake_mushroom', 'rice']
-EA9 = ['cabbage', 'celery', 'onion', 'pasta', 'soy_sauce', 'oyster_sauce']
+EA8 = ['rice', 'carrot', 'cabbage', 'green_onion', 'sesame_seed', 'soy_sauce', 'sesame_oil', 'chili_pepper', 'shiitake_mushroom']
+EA9 = ['noodles', 'cabbage', 'celery', 'onion', 'soy_sauce', 'oyster_sauce']
 
 EA_meals = [EA1, EA2, EA3, EA4, EA5, EA6, EA7, EA8, EA9]
 
 #South East Asia
 SEA1 = ['rice', 'steak','garlic', 'cilantro', 'peanut', 'soy_sauce', 'vinegar', 'mint', 'peanut', 'bell_pepper', 'green_onion']
 SEA2 = ['rice','shrimp', 'carrot','lettuce', 'sprouts', 'cilantro', 'mint', 'vinegar', 'peanut']
-SEA3 = ['pasta', 'chicken', 'peanut','egg', 'sprouts', 'garlic', 'lime', 'vinegar', 'pepper', 'soy_sauce', 'basil', 'fish_sauce', 'green_onion'] #pad thai
+SEA3 = ['noodles', 'chicken', 'peanut','egg', 'sprouts', 'garlic', 'lime', 'vinegar', 'pepper', 'soy_sauce', 'basil', 'fish_sauce', 'green_onion'] #pad thai
 SEA4 = ['rice', 'chicken', 'onion', 'ginger', 'garlic', 'carrot', 'coriander', 'coconut', 'chili_pepper','turmeric','lemongrass', 'basil', 'green_beans'] #red curry
 SEA5 = ['rice', 'ginger', 'garlic', 'lemongrass', 'curry', 'eggplant', 'peas', 'coconut', 'basil', 'white_pepper']#green curry
 SEA6 = ['rice', 'zucchini', 'curry', 'coconut', 'turmeric', 'lemongrass', 'carrot', 'onion', 'coriander', 'cumin', 'white_pepper', 'ginger', 'garlic', 'cilantro', 'lime']#yellow curry
@@ -56,7 +56,7 @@ SEA_meals = [SEA1, SEA2, SEA3, SEA4, SEA5, SEA6, SEA7, SEA8]
 #South Asia
 SA1 = ['rice', 'lentils', 'turmeric','cumin','cardamom', 'curry', 'carrot', 'onion'] #dahl
 SA2 = ['rice', 'chicken', 'yogurt', 'turmeric', 'cumin', 'coriander', 'ginger', 'garlic', 'butter', 'onion', 'tomato', 'cashew', 'cilantro']
-SA3 = ['rice', 'spinach', 'cheese', 'onion', 'ginger', 'garlic', 'bell_pepper', 'cumin', 'turmeric', 'chili_pepper', 'cream', 'butter'] #palak paneer
+SA3 = ['rice', 'spinach', 'paneer', 'onion', 'ginger', 'garlic', 'bell_pepper', 'cumin', 'turmeric', 'chili_pepper', 'cream', 'butter'] #palak paneer
 SA4 = ['rice', 'chickpeas', 'onion', 'tomato', 'ginger', 'garlic', 'chili_pepper', 'cumin', 'coriander', 'turmeric', 'cilantro']
 SA5 = ['rice', 'lamb', 'yogurt', 'onion', 'ginger', 'garlic', 'tomato', 'chili_pepper', 'coriander', 'turmeric', 'clove', 'cardamom', 'cinnamon', 'cilantro']
 SA6 = ['rice', 'cauliflower', 'carrot', 'green_beans', 'potato', 'peas', 'onion', 'ginger', 'garlic', 'chili_pepper', 'yogurt', 'mint', 'cilantro', 'saffron', 'cumin', 'coriander', 'turmeric', 'cardamom', 'clove', 'cinnamon', 'butter', 'cashew']
