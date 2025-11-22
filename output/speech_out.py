@@ -1,6 +1,8 @@
 import os
 import subprocess
 
+from speech.recognizer import recognition_enabled
+
 # import espeak
 
 # espeak.init()
@@ -27,10 +29,12 @@ def list_to_print_string(sequence):
 
 def speak(text):
     vol = 70
+    recognition_enabled = False
     #print(vol)
     print('say: ',text)
     cmd = f'espeak -a "{vol}" "{text}" -- stdout | aplay -D hw:1,0 2>/dev/null'
     subprocess.run(cmd, shell=True)
+    recognition_enabled = True
 
 
 speak("")

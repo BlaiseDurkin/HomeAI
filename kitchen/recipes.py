@@ -86,6 +86,7 @@ E5 = ["pork", "pasta", "tomato", "garlic"]
 E6 = ["chicken", "potato", "rosemary"]
 E7 = ['pasta', 'tomato', 'garlic', 'eggplant', 'oregano']
 E8 = ['pasta', 'zucchini', 'garlic', 'pork']
+E9 = ['pasta', "pesto", "chicken"]
 E_meals = [E1, E2, E3, E4, E5, E6, E7, E8]
 
 

@@ -7,7 +7,7 @@ import json
 from vosk import Model, KaldiRecognizer
 
 q = queue.Queue()
-
+recognition_enabled = True
 def callback(indata, frames, time, status):
     if status:
         print(status, file=sys.stderr)
@@ -19,14 +19,14 @@ recognizer = KaldiRecognizer(model, 16000)  # 16k sample rate
 
 with sd.RawInputStream(samplerate=16000, blocksize=8000,
                        dtype='int16', channels=1, callback=callback):
-    print(" Speak now (Ctrl+C to stop)")
+
     while True:
         data = q.get()
+        if not recognition_enabled:
+            continue
         if recognizer.AcceptWaveform(data):
             print('full: ',json.loads(recognizer.Result())["text"])
         else:
             print(json.loads(recognizer.PartialResult())["partial"])
 
 
-#defualt commands
-# - look at ___
