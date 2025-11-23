@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-from speech.recognizer import recognition_enabled
+#from speech.recognizer import recognition_enabled
 
 # import espeak
 
