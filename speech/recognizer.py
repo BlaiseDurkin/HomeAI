@@ -23,6 +23,7 @@ with sd.RawInputStream(samplerate=16000, blocksize=8000,
     while True:
         data = q.get()
         if not recognition_enabled:
+            print('lalala im not listening...')
             continue
         if recognizer.AcceptWaveform(data):
             print('full: ',json.loads(recognizer.Result())["text"])

@@ -31,7 +31,7 @@ class State:
         self.running = True
         self.start_time = time.time()
 
-        self.character_mode = 'french'
+        self.character_mode = 'default'
         self.all_characters = ['default', 'french', 'fun']
         
         # need more vars to track state...
