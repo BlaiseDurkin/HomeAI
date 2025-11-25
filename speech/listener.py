@@ -13,6 +13,8 @@ import threading
 import sounddevice as sd
 from vosk import Model, KaldiRecognizer
 
+from core.utils import recognition_enabled
+
 # --- Globals (module-level state) ---
 _q = queue.Queue()
 _recognizer = None
@@ -45,6 +47,9 @@ def _listen(model_path, samplerate=16000):
         print(" Voice recognition started — speak anytime...")
         while _running:
             data = _q.get()
+            if not recognition_enabled:
+                print('not listening...')
+                continue
             if _recognizer.AcceptWaveform(data):
                 result = json.loads(_recognizer.Result())
                 text = result.get("text", "").strip()

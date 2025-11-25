@@ -1,13 +1,30 @@
 #test microphone
 #vosk
+
+
+#
+"""
+
+!!!!!!!!!!!!!!!!!!!!!!!
+THIS IS DUPLICATE UNUSED CODE!!!!
+
+
+"""
+
+
+
+
 import sys
 import sounddevice as sd
 import queue
 import json
 from vosk import Model, KaldiRecognizer
 
+
+from core.utils import recognition_enabled
+
 q = queue.Queue()
-recognition_enabled = True
+
 def callback(indata, frames, time, status):
     if status:
         print(status, file=sys.stderr)
@@ -26,6 +43,7 @@ with sd.RawInputStream(samplerate=16000, blocksize=8000,
             print('lalala im not listening...')
             continue
         if recognizer.AcceptWaveform(data):
+            print('im an idiot')
             print('full: ',json.loads(recognizer.Result())["text"])
         else:
             print(json.loads(recognizer.PartialResult())["partial"])

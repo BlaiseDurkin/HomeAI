@@ -10,6 +10,8 @@ from input.text import start_inputter, get_latest_text
 
 from core.decision import process_command
 
+from core.utils import recognition_enabled
+
 
 from output.speech_out import speak
 #from output.overlay import display_overlay
@@ -17,6 +19,7 @@ import config
 
 def run_loop(state, camera, flow):
     # Start Vosk listener thread
+    #TODO add state to start listener
     start_listener(model_path=config.VOSK_MODEL_PATH)
     start_inputter()
 
@@ -69,7 +72,9 @@ def run_loop(state, camera, flow):
         if response:
             #todo clear_throat()
             joke = ''
+            recognition_enabled = False
             speak(response + joke)
+            recognition_enabled = True
             if response != '':
                 state.just_spoke = True
                 state.last_response = response
