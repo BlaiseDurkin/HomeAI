@@ -13,7 +13,7 @@ THIS IS DUPLICATE UNUSED CODE!!!!
 
 
 
-
+"""
 import sys
 import sounddevice as sd
 import queue
@@ -49,3 +49,4 @@ with sd.RawInputStream(samplerate=16000, blocksize=8000,
             print(json.loads(recognizer.PartialResult())["partial"])
 
 
+"""
