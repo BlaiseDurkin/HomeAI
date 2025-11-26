@@ -13,7 +13,7 @@ import threading
 import sounddevice as sd
 from vosk import Model, KaldiRecognizer
 
-from core.utils import recognition_enabled
+
 
 # --- Globals (module-level state) ---
 _q = queue.Queue()
