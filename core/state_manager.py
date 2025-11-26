@@ -65,6 +65,7 @@ class State:
         self.pose_history = []
 
         # --- Speech Recognition ---
+        self.recognition_enabled = True
         self.last_text = ""
         self.last_control_text = ""
         self.last_control = None

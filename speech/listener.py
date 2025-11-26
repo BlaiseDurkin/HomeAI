@@ -33,7 +33,7 @@ def _callback(indata, frames, time, status):
     _q.put(bytes(indata))
 
 
-def _listen(model_path, samplerate=16000):
+def _listen(model_path, state, samplerate=16000):
     global _recognizer, _running, _result_text
 
     model = Model(model_path)
@@ -47,7 +47,7 @@ def _listen(model_path, samplerate=16000):
         print(" Voice recognition started — speak anytime...")
         while _running:
             data = _q.get()
-            if not recognition_enabled:
+            if not state.recognition_enabled: #TODO change to state
                 print('not listening...')
                 continue
             if _recognizer.AcceptWaveform(data):
@@ -61,14 +61,14 @@ def _listen(model_path, samplerate=16000):
 # Public API
 # -------------------------------
 
-def start_listener(model_path):
+def start_listener(model_path, state):
     """Launch the microphone listener in a background thread."""
     global _thread, _running
     if _running:
         return  # Already running
 
     _running = True
-    _thread = threading.Thread(target=_listen, args=(model_path,), daemon=True)
+    _thread = threading.Thread(target=_listen, args=(model_path, state,), daemon=True)
     _thread.start()
 
 
