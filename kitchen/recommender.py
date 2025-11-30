@@ -592,7 +592,7 @@ def add_shit(diet, graph):
     return "no, i, will not, add, "+list_to_print_string(diet['ingredients'])
 
 def recipe_back(diet, graph):
-    if graph.parent_recipe == None:
+    if graph.parent_recipe == None or graph.parent_recipe == graph.recipe:
         return sorry_dave(diet, graph)
     graph.recipe = graph.parent_recipe
     return list_to_print_string(graph.recipe)
