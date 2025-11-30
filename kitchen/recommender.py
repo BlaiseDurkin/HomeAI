@@ -552,7 +552,7 @@ def explain_item(diet, graph):
     print('Explaining item')
 
     if graph.recipe[graph.recipe_index] in processed_recipes.keys():
-        item = processed_recipes[graph.recipe_index]
+        item = graph.recipe[graph.recipe_index]
         recipe = []
         if type(processed_recipes[item]) == list:
             recipe = processed_recipes[item]
@@ -561,7 +561,7 @@ def explain_item(diet, graph):
         recipe = kosherize(recipe, diet)
         graph.parent_recipe = graph.recipe
         graph.recipe = recipe
-        return item + ', is, '+list_to_print_string(recipe)
+        return item + ", is, " +list_to_print_string(recipe)
 
     return 'what, do you not, understand, just, add, ' + graph.recipe[graph.recipe_index]
 
