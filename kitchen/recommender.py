@@ -700,7 +700,7 @@ def recommend_meal(diet, graph, change=False, fresh=False):
     #holiday special
     today = date.today()
     if is_near_holiday(today, threshold_days=3):
-        return TG_meals[8]
+        return TG_meals[5] #test with thanksgiving
 
 
 
