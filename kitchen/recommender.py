@@ -2,7 +2,7 @@
 from kitchen.recipes import *
 import random
 import math
-from seasonal import *
+from kitchen.seasonal import *
 from datetime import datetime, timedelta
 
 print('recommender.py loaded...')
