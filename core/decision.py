@@ -44,7 +44,7 @@ def process_command(command, state):
         state.sub_in_action = True
         state.sub_graph = state.kitchen_graph
         #what if the active sub is allready kitchen????
-        preamble = "You sound, hungry, here you go,"
+        preamble = "You sound, hungry, here you go, "
         response = recommend_meal(command.params, state.kitchen_graph, fresh=True) # return function response & direction... update node = direction
         if type(response) == list:
             response = list_to_print_string(response)
@@ -56,7 +56,7 @@ def process_command(command, state):
 
     elif command.intent == "turn_camera":
         direction = command.params
-        response = "camera turning "+direction
+        response = "camera turning, "+direction
         state.camera.turn_(direction)
         
 

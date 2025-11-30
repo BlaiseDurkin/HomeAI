@@ -700,7 +700,11 @@ def recommend_meal(diet, graph, change=False, fresh=False):
     #holiday special
     today = date.today()
     if is_near_holiday(today, threshold_days=3):
-        return TG_meals[5] #test with thanksgiving
+        recipe = TG_meals[5]
+        recipe = kosherize(recipe, diet)
+        graph.current_node = graph.all_nodes[0]
+        graph.recipe = recipe
+        return recipe
 
 
 
