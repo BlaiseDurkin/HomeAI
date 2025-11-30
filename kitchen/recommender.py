@@ -2,6 +2,8 @@
 from kitchen.recipes import *
 import random
 import math
+from seasonal import *
+from datetime import datetime, timedelta
 
 print('recommender.py loaded...')
 
@@ -543,8 +545,24 @@ def change_meal(diet, KAG):
     #print('should be different:', new_meal)
     return new_meal
 
+def func():
+    pass
+
 def explain_item(diet, graph):
     print('Explaining item')
+
+    if graph.recipe[graph.recipe_index] in processed_recipes.keys():
+        item = processed_recipes[graph.recipe_index]
+        recipe = []
+        if type(processed_recipes[item]) == list:
+            recipe = processed_recipes[item]
+        elif type(processed_recipes[item]) == type(func):
+            recipe = processed_recipes[item]()
+        recipe = kosherize(recipe, diet)
+        graph.parent_recipe = graph.recipe
+        graph.recipe = recipe
+        return item + ', is, '+list_to_print_string(recipe)
+
     return 'what, do you not, understand, just, add, ' + graph.recipe[graph.recipe_index]
 
 def explain_meal(diet, KAG):
@@ -572,6 +590,13 @@ def asking_swap_item(diet, graph):
 
 def add_shit(diet, graph):
     return "no, i, will not, add, "+list_to_print_string(diet['ingredients'])
+
+def recipe_back(diet, graph):
+    if graph.parent_recipe == None:
+        return sorry_dave(diet, graph)
+    graph.recipe = graph.parent_recipe
+    return list_to_print_string(graph.recipe)
+
 def sorry_dave(diet, graph):
     return "sorry, but, i, can not, do, that"
 
@@ -662,15 +687,23 @@ def get_compair_pair(region_scores):
 
 #fulfill user request
 
+#def is_near_holiday():
+
+
+
 #TODO --
 # - if new diet has ingredients then replace old ingredients
 # - else
 def recommend_meal(diet, graph, change=False, fresh=False):
     print('recommending meal...')
-    #print('diet: ', diet)
-    #ToDO
-    # 1) ask_for_ing
-    # 2) if exist multiple region canidates --> ask preference
+
+    #holiday special
+    today = date.today()
+    if is_near_holiday(today, threshold_days=3):
+        return TG_meals[8]
+
+
+
     region = ''
     if diet['preference'] != '':
         if diet['preference'] in adjective_to_region.keys():

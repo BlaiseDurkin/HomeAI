@@ -47,6 +47,7 @@ class KitchenAssistantGraph:
         self.diet = diet #TODO clear each day
         self.current_node = None
         self.recipe = None #TODO clear each day
+        self.parent_recipe = None
         self.all_nodes = []
         self.recipe_index = 0
 
@@ -128,16 +129,13 @@ KAG = KitchenAssistantGraph(start_diet)
 
 asked_user_if_invent_meal = SubNode(['yes', 'no'], {'yes': [invent_meal], 'no': [give_random_meal]}, KAG)
 
-gave_meal = SubNode(['change', 'explain', 'repeat', 'add', 'back'], {'change': [change_meal], 'explain': [explain_meal], 'repeat': [repeat_meal], 'add': [add_shit], 'back': [sorry_dave]}, KAG)
+gave_meal = SubNode(['change', 'explain', 'repeat', 'add', 'back'], {'change': [change_meal], 'explain': [explain_meal], 'repeat': [repeat_meal], 'add': [add_shit], 'back': [recipe_back]}, KAG)
 
 asked_user_to_compare = SubNode([], {'': [recommend_meal]}, KAG) #todo change function -> update
-#ask x1 or x2 where x in region
-#create node with x1 and x2 in expected, function = set diet['preference'] to x
 
 asked_for_ingredients = SubNode([''], {'': [recommend_meal]}, KAG) #todo : add default_key maps to recommend meal, default_key triggered by any ingredient or adjective{country, diet...}
 
 explaining_recipe = SubNode(['next', 'back', 'repeat', 'everything', 'explain', 'add', 'change'], {'next': [say_next_item], 'back': [say_previous_item], 'repeat': [say_same_item], 'everything': [repeat_meal], 'explain': [explain_item], 'add': [add_shit], 'change': [asking_swap_item]}, KAG)
-
 
 recommend_meal_node = SubNode([''], {'': [recommend_meal]}, KAG)
 
@@ -155,9 +153,9 @@ gave_meal.map['repeat'].append(gave_meal) # next node
 gave_meal.map['add'].append(gave_meal) # next node
 gave_meal.map['back'].append(gave_meal)
 
-#TODO test ask
+
 asked_user_to_compare.map[''].append(recommend_meal_node) #next node
-#TODO test ask
+
 asked_for_ingredients.map[''].append(recommend_meal_node) #next node
 
 explaining_recipe.map['next'].append(explaining_recipe)
@@ -184,8 +182,15 @@ all_nodes = [gave_meal, asked_user_if_invent_meal, asked_for_ingredients, asked_
 KAG.all_nodes = all_nodes
 
 #-----------------------------------------------------------------
-#TODO explain sauce
+#TODO explain sauce or processed item
+# - same as explain recipe
 
+"""
+B: "explain how to make pumpkin pi"
+-> recipe = processed_recipes['pumpkin_pie']
+-> explain_recipe()
+
+"""
 
 
 

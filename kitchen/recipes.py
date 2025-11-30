@@ -1,6 +1,7 @@
 
 #TODO: add themes {thanksgiving, christmas, etc..}
 import pandas as pd
+import random
 
 food_df = pd.read_csv('kitchen/NLP_flavor_clean.csv')
 food_ingredients = food_df['item'].tolist()
@@ -114,9 +115,40 @@ RegionRecipes = {'EastAsia': EA_meals, 'SouthEastAsia': SEA_meals, 'SouthAsia': 
 #Maman
 M1 = ['rice', 'zucchini', 'celery', 'onion', 'tofu', 'spinach', 'soy_sauce']
 
+#ThanksGiving
+T1 = ['squash', 'rice', 'bell_pepper','onion', 'pumpkin_seed', 'chipotle_pepper','paprika', 'black_sage', 'cranberries']
+T2 = ['corn', 'beans', 'tomato', 'onion', 'lime', 'cilantro', 'avocado']
+T3 = ['turkey', 'garlic', 'walnut', 'onion', 'chipotle_pepper', 'paprika', 'black_sage']
+T4 = ['beans', 'squash', 'chipotle_pepper', 'black_sage']
+T5 = ['pumpkin', 'nutmeg', 'cinnamon', 'sugar']
+T6 = ['apple', 'nutmeg', 'cinnamon', 'honey']
+T7 = ['pie_dough', 'apple_filling'] #apple_filling = T6
+T8 = ['pie_dough', 'pumpkin_filling'] #pumpkin_filling = T5
+T9 = ['turkey', 'turkey_filling'] #turkey_filling = T3
+TG_meals = [T1, T2, T3, T4, T7, T8, T9]
 
+#ChineeseNewYear
+EAny1 = ['dumpling_dough', 'dumpling_filling']
+EAny2 = ['cabbage','carrot','green_onion','sesame_oil', 'white_pepper', 'soy_sauce']
+EAny3 = ['pork','cabbage','carrot','green_onion','sesame_oil', 'white_pepper', 'soy_sauce']
 
+dough = ['flour', 'water', 'salt']
+pie_dough = ['flour', 'butter', 'water', 'salt']
 
+#salad
+S1 = ['broccoli', 'sauce']
+
+#TODO add random sauces and salads
+
+def random_dumpling_filling():
+    options = [EAny2, EAny3]
+    return random.choice(options)
+
+processed_recipes = {'apple_filling': T6, 'pumpkin_filling': T5, 'turkey_filling': T3, 'dumpling_filling': random_dumpling_filling, 'dumpling_dough': dough, 'pie_dough': pie_dough}
+
+#pesto
+#vegan_sauce
+#salsa
 
 
 

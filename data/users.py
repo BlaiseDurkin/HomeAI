@@ -18,11 +18,13 @@ Schedule:
     12:30 work
 
 ** reality -- wake -> doom scroll for 1 hour +
-(((*@*))) solution -- read code in bed
+(((*@*))) solution -- read ode in bedc
 
 Target Schedule
     wake
+    garden - quick from garden_todo_list
     quick workout { 1 min handstand, 40 squat, 100 pushup, 3 min meditate stretch}
+    video lecture + arm work out {curl, shoulder circles}
     math/CS challenge - AI generated schedule
      - study & record
      - code
@@ -48,3 +50,6 @@ ponder = {dune, interstellar, oppenheimer, the king}
 
 #Blaise
 # food preference: WestAsia, SouthAsia, EastAsia, Mex, SouthEastAsia, Europe,  Africa
+
+#TODO get user data from file
+# - write to file if new user added or user user data changes
