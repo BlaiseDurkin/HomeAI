@@ -64,6 +64,10 @@ class State:
         self.orientation = ""
         self.pose_history = []
 
+        # -- Speaking --
+        self.message = None
+        self.talking = False
+
         # --- Speech Recognition ---
         self.recognition_enabled = True
         self.last_text = ""

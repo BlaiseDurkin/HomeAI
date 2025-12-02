@@ -344,6 +344,8 @@ def RecipeVariations(region, meal, diet):
         elif ing in cooking_mediums:
             #add oil
             new_ingredients.append('oil')
+        elif ing == 'honey':
+            new_ingredients.append('sugar')
         elif ing in meats:
             for meat_sub in meat_subsitutes[region]:
                 if not(vegan and meat_sub == 'cheese'):
@@ -700,6 +702,7 @@ def recommend_meal(diet, graph, change=False, fresh=False):
     #holiday special
     today = date.today()
     if is_near_holiday(today, threshold_days=3):
+        #todo: change to holiday
         recipe = TG_meals[5]
         recipe = kosherize(recipe, diet)
         graph.current_node = graph.all_nodes[0]

@@ -1,6 +1,7 @@
 import random
 
 from kitchen.recommender import recommend_meal
+from core.utils import *
 #process command
 #command functions
 #increase volume
@@ -88,7 +89,23 @@ def process_command(command, state):
         #if no key_param
         state.character_mode = state.all_characters[(state.all_characters.index(state.character_mode)+1)%len(state.all_characters)]
         response = "changing, "+state.character_mode + ", mode, activated"
-    
+    elif command.intent == 'stop':
+        state.talking = False
+        response = "ok, say continue, when, ready"
+    elif command.intent == 'continue' and state.message:
+        state.talking = True
 
+    elif state.talking:
+        response = state.message.phases[state.message.current]
+        state.message.current += 1
+
+    if not state.talking and len(response.split()) >7:
+        state.message = LongMessage(response)
+        state.talking = True
+        response = state.message.phases[state.message.current]
+        state.message.current += 1
+
+    if state.talking and state.message.current >= len(state.message.phases):
+            state.talking = False
         
     return state, response

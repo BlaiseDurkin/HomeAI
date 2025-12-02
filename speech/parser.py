@@ -220,5 +220,10 @@ def parse_message(text, state):
         return Message(text, "command", "set_timer", key_param)
     if text == 'switch character mode':
         return Message(text, "command", "switch_character_mode", key_param)
+
+    if text == 'stop':
+        return Message(text, "command", "stop", key_param)
+    if text == 'continue':
+        return Message(text, "command", "continue", key_param)
     return Message(text, "idk", "idk", key_param)
 

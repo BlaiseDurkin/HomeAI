@@ -78,6 +78,7 @@ def run_loop(state, camera, flow):
             if response != '':
                 state.just_spoke = True
                 state.last_response = response
+
         #display_overlay(frame, state)
 
         # --- 6. Loop Rate ---
