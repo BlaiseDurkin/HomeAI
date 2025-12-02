@@ -45,7 +45,7 @@ def is_near_holiday(today, threshold_days: int = 2):
         "Asian New Year": _lunar_new_year_date(this_year),
         "My Birthday": date(this_year, 5, 15),
     }
-
+    close_holiday = None
     closest = None
     min_dist = float('inf')
 
