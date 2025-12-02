@@ -701,7 +701,8 @@ def recommend_meal(diet, graph, change=False, fresh=False):
 
     #holiday special
     today = date.today()
-    if is_near_holiday(today, threshold_days=3):
+    is_near_day, time_2_day, day_name = is_near_holiday(today, threshold_days=2)
+    if is_near_day:
         #todo: change to holiday
         recipe = TG_meals[5]
         recipe = kosherize(recipe, diet)
