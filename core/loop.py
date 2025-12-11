@@ -1,6 +1,6 @@
 import time
 from vision.camera import detect_pose
-from vision.activity import estimate_activity
+from vision.activity import estimate_activity, Activity
 
 from speech.listener import start_listener, get_latest_spoken
 from speech.parser import parse_message
@@ -31,7 +31,8 @@ def run_loop(state, camera, flow):
         frame = camera.capture_frame()
         pose_data = detect_pose(frame)
         activity = estimate_activity(pose_data, state)
-        print(activity)
+        if activity is not Activity.UNKNOWN:
+            print(activity)
 
         # --- 2. text command ---
         text = get_latest_text() #mainly used for debugging
