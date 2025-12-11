@@ -1,5 +1,5 @@
 
-from coach_ass import *
+from coach.coach_ass import *
 
 
 
