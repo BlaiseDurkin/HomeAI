@@ -31,7 +31,7 @@ def run_loop(state, camera, flow):
         frame = camera.capture_frame()
         pose_data = detect_pose(frame)
         activity = estimate_activity(pose_data, state)
-        #activity = "test activity"
+        print(activity)
 
         # --- 2. text command ---
         text = get_latest_text() #mainly used for debugging
