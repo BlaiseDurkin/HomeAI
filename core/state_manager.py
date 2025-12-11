@@ -7,6 +7,7 @@ import time
 from collections import deque
 import config
 from kitchen.cooking_flow import *
+from coach.coaching_flow import *
 
 """
 
@@ -44,6 +45,10 @@ class State:
         self.sub_graph = self.kitchen_graph
         self.sub_in_action = False
         self.active_sub = None
+
+        # --- Morning ---
+        self.morning_graph = CAG
+
 
         # --- Timer ----
         self.active_timer = False

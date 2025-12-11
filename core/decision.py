@@ -1,6 +1,7 @@
 import random
 
 from kitchen.recommender import recommend_meal
+from coach.coach_ass import good_morning
 from core.utils import *
 #process command
 #command functions
@@ -59,7 +60,16 @@ def process_command(command, state):
         direction = command.params
         response = "camera turning, "+direction
         state.camera.turn_(direction)
-        
+
+    elif command.intent == "morning_update":
+        response = state.sub_graph.update(command)
+
+    elif command.intent == "morning":
+        state.active_sub = "morning"
+        state.sub_in_action = True
+        state.sub_graph = state.morning_graph
+        response = good_morning()
+        state.sub_graph.current_node = state.sub_graph.all_nodes[0]
 
     elif command.intent == "update_kitchen_graph":
        response = state.sub_graph.update(command)

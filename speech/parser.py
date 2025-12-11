@@ -120,6 +120,7 @@ def parse_message(text, state):
     is_vegetarian = False
     is_allergic = False
     is_pescetarian = False
+    is_morning = False
     nxt = ''
 
     message = text.split()
@@ -131,6 +132,8 @@ def parse_message(text, state):
         #if word in synonymUnion(expected_set): #todo check for all symantic synonyms -> representative key word
         if word in expected_set:
             expected_words.append(word)
+        if word == "morning":
+            is_morning = True
         if word == "allergy" or word == "allergic":
             is_allergic = True
         if word == "vegetarian": #todo check for negation
@@ -196,6 +199,12 @@ def parse_message(text, state):
         elif state.active_sub == 'timer' and len(expected_words) > 0:
             key_param = ''#TODO - timeObj(text, total minutes)
             return Message(text, "command", "set_timer", key_param)
+        elif state.active_sub == 'morning' and len(expected_words) > 0:
+            params = {'expected': expected_words}
+            return Message(text, "command", "morning_update", params)
+    if is_morning:
+        params = {'expected': expected_words}
+        return Message(text, "command", "morning", params)
     if text == 'clear diet' or text == 'reset diet':
         return Message(text, "command", "clear_diet", diet)
     if text == 'hello':
