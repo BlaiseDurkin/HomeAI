@@ -8,6 +8,48 @@
 #garage
 # -- todo_list
 
+#TODO
+# - read new messages, weather prediction, world fake news summary
+"""
+Good, morning, today is, monday, december, 8. time is 8:15.
+do not, look, at, your phone. do not, look, at, your screen.
+go, splash, water, on your, face. go, chug, water. how, did, you, sleep.
+...
+> wait for user to say 'start workout'
+> generate workout - say good job
+> list garden_task
+> for all tasks: ask if item is complete - say good job and make new list
+> recommend item from list... wait for response {no, yes, finished}
+> generate work out snack
+> list hard_task
+> for all tasks: ask if item is complete - say good job and make new list
+> recommend item from list... wait for response {no, yes, finished}
+> give reminder at noon to run
+>
+"""
+
+# - build productivity manager
+#   - morning work out & health coach
+#       - water chug outside
+#       - no coffee, no food, no screen
+#       - work out
+#   - discipline reward dopamine hack guru -- focus on tasks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # ---------------- mood -----------------------------------------------

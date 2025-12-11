@@ -99,7 +99,7 @@ def process_command(command, state):
         response = state.message.phases[state.message.current]
         state.message.current += 1
 
-    if not state.talking and response and len(response.split()) >7:
+    if not state.talking and response and len(response.split(".")) > 1:
         state.message = LongMessage(response)
         state.talking = True
         response = state.message.phases[state.message.current]

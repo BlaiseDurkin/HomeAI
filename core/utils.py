@@ -16,7 +16,7 @@ class LongMessage:
         break message into phases of length ~ 3 or 4
         """
         #mu = mean bin size
-
+        """
         arr = self.message.split()
         l = len(arr)
 
@@ -44,7 +44,8 @@ class LongMessage:
             i += mu
             phases.append(s)
         return phases
-
+        """
+        return self.message.split(".")
 
 
 
