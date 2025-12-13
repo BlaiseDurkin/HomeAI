@@ -80,6 +80,7 @@ said_workout.map["repeat"].append(said_workout)
 said_workout.map["done"].append(said_task) #default next node
 
 said_task.map["repeat"].append(said_task)
+said_task.map["done"].append(said_task)
 
 #__task list__
 #-apply to jobs

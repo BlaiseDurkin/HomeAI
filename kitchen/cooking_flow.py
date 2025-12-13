@@ -186,10 +186,9 @@ KAG.all_nodes = all_nodes
 # - same as explain recipe
 
 """
-B: "explain how to make pumpkin pi"
--> recipe = processed_recipes['pumpkin_pie']
--> explain_recipe()
-
+european pesto = ['nut', 'olive_oil', 'salt', 'garlic', 'basil']
+west asia ['lemon', 'garlic', 'parsley', 'salt']
+south asia ['cashew', ''] 
 """
 
 

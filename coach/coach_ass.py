@@ -1,26 +1,38 @@
 import random
+from datetime import datetime
+import calendar
+from data.users import *
 
 def good_morning():
-    txt = "Good, morning, today is, monday, december, 8. time is 8:15. do not, look, at, your phone. do not, look, at, your screen. go, splash, water, on your, face. go, chug, water. how, did, you, sleep."
+    #todo fix date time
+    # afternoon
+    # evening
+    hr = datetime.now().hour
+    time_greet = "good, morning, "
+    if hr > 11 and hr < 18:
+        time_greet = "good, afternoon, "
+    if hr >= 18:
+        time_greet = "good, evening, "
+    txt = time_greet+"today is, "+datetime.now().strftime("%A")+", "+calendar.month_name[datetime.now().month]+", "+str(datetime.now().day)+". time is "+str(datetime.now().hour)+", "+str(datetime.now().minute)+". do not, look, at, your phone. do not, look, at, your screen. go, splash, water, on your, face. go, chug, water. how, did, you, sleep."
     return txt
 
 
 def slept_good(graph):
-    workout = "300, push ups. 100, squats. 200, flutter kicks"
+    workout = "200, push ups. 100, squats. 500, flutter kicks"
     graph.workout = workout
     response = 'good, i made, a workout, tell me, when, to start'
     return response
 
 def slept_bad(graph):
-    workout = "300, push ups. 200, lunge walks. 100, donkey kicks. 1, minute, hand, stand"
+    workout = "200, push ups. 200, lunge walks. 100, donkey kicks. 1, minute, hand, stand"
     graph.workout = workout
     response = 'lets, do, a workout, tell me, when, to start'
     return response
 
 def slept_fine(graph):
-    workout = "300, push ups. 100, donkey kicks. 200, flutter kicks"
+    workout = "200, push ups. 100, donkey kicks. 400, flutter kicks"
     graph.workout = workout
-    response = 'fine, fine, tell me, when, to start, workout'
+    response = 'fine, just, fine, tell me, when, to start, workout'
     return response
 
 def start_workout(graph):
@@ -28,6 +40,10 @@ def start_workout(graph):
 
 def repeat_workout(graph):
     return graph.workout
+
+
+def select_tasks(graph):
+    pass
 
 def finished_workout(graph):
     #congrats
@@ -39,9 +55,15 @@ def finished_workout(graph):
         return response + " now, do, "+graph.workout
     else:
         graph.current_node = graph.all_nodes[3]
-    # or pick task from list
-    # set graph.current_node = graph.all_nodes[i]
-    pass
+        # discipline lecture
+        # - no weed because get stoned faded and forgetful, time skips forward, too much day dreaming,
+        # - no food because, dopamine drop after eating
+        # - must do exercise snack
+        # or pick task from list
+        # set graph.current_node = graph.all_nodes[i]
+        return response
 
 def repeat_task(graph):
     pass
+
+def read_all_tasks(graph):

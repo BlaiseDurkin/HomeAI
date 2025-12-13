@@ -76,7 +76,7 @@ WA6 = ['rice', 'chicken', 'turmeric', 'black_pepper', 'parsley', 'onion', 'pomeg
 WA7 = ['rice', 'eggplant', 'tomato', 'garlic', 'onion', 'turmeric', 'olive_oil', 'black_pepper', 'parsley', 'egg']
 WA8 = ['rice','turmeric', 'cinnamon', 'onion', 'cumin', 'lentils', 'lemon', 'parsley', 'garlic', 'black_pepper', 'olive_oil']
 
-WA_meals = [WA1, WA2, WA3, WA4, WA5, WA6, WA7]
+WA_meals = [WA1, WA2, WA3, WA4, WA5, WA6, WA7, WA8]
 
 #Europe
 E1 = ['bread','eggplant', 'zucchini', 'bell_pepper', 'onion', 'tomato', 'garlic', 'olive_oil', 'thyme', 'basil', 'black_pepper']
@@ -88,7 +88,7 @@ E6 = ["chicken", "potato", "rosemary"]
 E7 = ['pasta', 'tomato', 'garlic', 'eggplant', 'oregano']
 E8 = ['pasta', 'zucchini', 'garlic', 'pork']
 E9 = ['pasta', "pesto", "chicken"]
-E_meals = [E1, E2, E3, E4, E5, E6, E7, E8]
+E_meals = [E1, E2, E3, E4, E5, E6, E7, E8, E9]
 
 
 #Africa
@@ -108,7 +108,6 @@ Mx4 = ["tortilla","lard", "beans", "lettuce", "salsa"]
 Mx5 = ["tortilla", "pork", "onion", "cilantro", "chipotle_pepper"]
 Mx6 = ["tortilla", "steak", "cheese", "cream", "salsa"]
 Mx_meals = [Mx1, Mx2, Mx3, Mx4, Mx5, Mx6]
-
 
 RegionRecipes = {'EastAsia': EA_meals, 'SouthEastAsia': SEA_meals, 'SouthAsia': SA_meals, 'WestAsia': WA_meals, "Europe": E_meals, "Africa": Af_meals, "America": Mx_meals}
 
@@ -148,7 +147,15 @@ processed_recipes = {'apple_filling': T6, 'pumpkin_filling': T5, 'turkey_filling
 
 #pesto
 #vegan_sauce
+#nut_sauce_ea1
+#nut_sauce_ea2
+# nut + liquid + flavor + salt
+# flavor ~ {herb spice or seasoning}
 #salsa
+
+
+
+
 
 
 

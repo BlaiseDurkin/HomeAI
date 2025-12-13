@@ -40,7 +40,14 @@ sprint = {dnb, dubstep}
 locked in = {binural beats}
 ponder = {dune, interstellar, oppenheimer, the king}
 """
+# -------- tasks -----------
 
+garage_tasks = ['organize stuff', 'build helping hand', 'buy chair']
+garden_tasks = ['prune shrub', 'plant seeds', 'water plants']
+tasks_2_do = ['apply to jobs', 'fix resumay', 'work on certifications']
+projects = ['buy raspberry pi 5']
+
+# -------- food ------------
 
 #maman
 # food preference: Europe, WestAsia, SouthAsia, Mex, SouthEastAsia, EastAsia, Africa
