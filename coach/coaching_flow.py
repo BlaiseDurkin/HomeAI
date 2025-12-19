@@ -6,19 +6,45 @@ from coach.coach_ass import *
 # coach
 #   - data : task_lists { easy_task, hard_task
 #   - mantras: internal narrative hacking
+class Task:
+    def __init__(self, raw):
+        self.name = ""
+        self.description = ""
+        self.time = 0
+        self.score = 0
+        self.raw = raw
+        self.process_self(raw)
 
+    def process_self(self, raw):
+        for x in raw:
+            x = x.split(":")
+            if x[0].strip() == "name":
+                self.name = x[1].strip()
+            elif x[0].strip() == "description":
+                self.description = x[1].strip()
+            elif x[0].strip() == "time":
+                self.time = x[1].strip()
+            elif x[0].strip() == "score":
+                self.score = x[1].strip()
 
 class CoachAssistantGraph:
     def __init__(self):
         self.current_node = None
         self.all_nodes = []
         self.workout = ""
+        self.task = None
+        self.task_name = ""
 
     def update(self, message):
         response = self.current_node.update(message)
         #TODO
         # - check if response is string
         return response
+
+    def update_task(self, task):
+        new_task = Task(task)
+        self.task = new_task
+        self.task_name = task.name
 
 
 
@@ -63,10 +89,12 @@ asked_to_start_workout = CoachNode(["start"], {"start": [start_workout]}, CAG)
 
 said_workout = CoachNode(["repeat", "done"], {"repeat": [repeat_workout], "done": [finished_workout]}, CAG)
 
+asked_if_say_task = CoachNode(["yes", "next"], {"yes": [repeat_task], "next": []}, CAG)
+
 said_task = CoachNode(["repeat", "done"], {"repeat": [repeat_task], "done": [finished_workout]}, CAG)
 
 #----------------------------------------------------------
-nodes = [said_good_morning, asked_to_start_workout, said_workout, said_task]
+nodes = [said_good_morning, asked_to_start_workout, said_workout, asked_if_say_task, said_task]
 CAG.all_nodes = nodes
 # ------------- Edges ---------------------
 
@@ -78,6 +106,8 @@ asked_to_start_workout.map["start"].append(said_workout)
 
 said_workout.map["repeat"].append(said_workout)
 said_workout.map["done"].append(said_task) #default next node
+
+asked_if_say_task.map["yes"].append(said_task)
 
 said_task.map["repeat"].append(said_task)
 said_task.map["done"].append(said_task)

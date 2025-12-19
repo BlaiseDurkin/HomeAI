@@ -41,11 +41,72 @@ locked in = {binural beats}
 ponder = {dune, interstellar, oppenheimer, the king}
 """
 # -------- tasks -----------
+"""
+class Task
+    - sub tasks
+    ex: to start mushroom, drill holes in log, and put spores in wood, and seal with wax
+    
+    
+    
+    garden_tasks = [gt1, gt2,... ]
+    gt1 = {name: cut tree, location: in back yard, details: cut the tree pushing over the fence, score: 15, expected_time: 1 hour}
+    
+    garage...
+    wst1 = {name: organize stuff, location: in garage, details: parts like wires and switches need to be organized, score: 7}
+    
+    
+    
+"""
 
-garage_tasks = ['organize stuff', 'build helping hand', 'buy chair']
-garden_tasks = ['prune shrub', 'plant seeds', 'water plants']
+# -- garden --
+garden_tasks = ['start mushroom', 'prune shrub', 'plant seeds', 'water plants', 'cut down tree']
+garden_tasks_desc = ['name: start mushroom. description: drill holes in log, put spores in wood, seal with wax. time: 2 hours. location: side yard.',
+                     'name: cut tree. description: cut the tree pushing over the fence, score: 15, time: 1 hour.',
+                     'name: plant seeds. description: put seeds in wet paper, put tumeric in ground. time: 2 minutes.',
+                     'name: water plants. description: water fig clones, water pea seeds. time: 30 minutes.'
+                     ]
+
+# -- core tasks --
 tasks_2_do = ['apply to jobs', 'fix resumay', 'work on certifications']
-projects = ['buy raspberry pi 5']
+
+projects = ['buy raspberry pi 5', 'record audio', 'build smart home']
+
+audio_projects = ['dustups video', 'water harvesting video', 'machine learning lesson']
+core_tasks_desc = [
+    'name: apply to jobs. description: apply to fitting jobs, and take notes on where to upskill. time: 1 hour. score: 10.',
+    'name: tailor resumay. description: remake several resumays for each job. time: 3 hours. score: 40.',
+    'name: buy raspberry pi 5. time: 30 minutes',
+    'name: record audio. description: record machine learning lesson. time: 1 hour. score: 30.',
+    'name: build smart home. description: implement functions and fix bugs. time: 30 minutes. score: 15.'
+]
+
+
+# -- garage projects --
+garage_tasks = ['organize stuff', 'build helping hand', 'buy chair']
+garage_tasks_desc = [
+    'name: organize stuff. description: organize stuff. time: 3 hours',
+    'name: build helping hand. description: get wire and clips to build a helping hand. time: 2 hours',
+    'name: buy chair. description: find an office chair. time: 30 minutes'
+]
+
+# ----- all tasks -----------
+all_tasks = {'garden' : garden_tasks_desc, 'garage': garage_tasks_desc, 'main': core_tasks_desc}
+
+
+
+
+
+
+
+
+# garage -> stuff -> tools, parts,... build shelves
+#   - sub tasks: find scap for garage
+
+# ----- accountability schedule tracker ------------
+# saves data for a week and then compresses -> rolling average
+#   accomplishment rate, productivity level - points score, happiness, area of focus,
+
+
 
 # -------- food ------------
 

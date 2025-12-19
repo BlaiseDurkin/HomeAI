@@ -17,6 +17,7 @@ go, splash, water, on your, face. go, chug, water. how, did, you, sleep.
 ...
 > wait for user to say 'start workout'
 > generate workout - say good job
+TODO ---v
 > list garden_task
 > for all tasks: ask if item is complete - say good job and make new list
 > recommend item from list... wait for response {no, yes, finished}
@@ -70,6 +71,14 @@ the four seasons - vivaldi
 # new years music
 """
 Baroque Hoedown (in the stlye of Vivaldi)
+"""
+
+#house music
+"""
+
+Mack & Diesel - The Rhythm
+TCTS & Hayley May - Daylight
+
 """
 
 
