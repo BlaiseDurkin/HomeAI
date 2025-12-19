@@ -44,7 +44,7 @@ class CoachAssistantGraph:
     def update_task(self, task):
         new_task = Task(task)
         self.task = new_task
-        self.task_name = task.name
+        self.task_name = new_task.name
 
 
 
