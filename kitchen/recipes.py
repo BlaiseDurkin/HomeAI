@@ -147,9 +147,9 @@ roasted root veg: turnips, carrots
 mushroom pie - mustard, mushroom, garlic, onion, carrot, thyme
 
 """
-christmas_bread = [bread_dough, 'nuts', 'fruit']
+christmas_bread = ['bread_dough', 'nuts', 'fruit']
 ginger_bread = []
-mushroom_pie = [pie_dough, 'nuts', 'mushroom', 'onion', 'carrot, thyme', 'garlic']
+mushroom_pie = ['pie_dough', 'nuts', 'mushroom', 'onion', 'carrot, thyme', 'garlic']
 roasted_root_veg = ['carrot', 'turnip']
 
 def random_christmas_meat():
