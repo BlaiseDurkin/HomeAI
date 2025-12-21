@@ -43,7 +43,7 @@ def is_near_holiday(today, threshold_days: int = 2):
         "July 4th": date(this_year, 7, 4),
         "Easter": lambda y: _easter_date(y),
         "Asian New Year": _lunar_new_year_date(this_year),
-        "My Birthday": date(this_year, 5, 15),
+        "Birthday": date(this_year, 5, 29),
     }
     close_holiday = None
     closest = None

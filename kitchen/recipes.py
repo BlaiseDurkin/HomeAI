@@ -124,7 +124,7 @@ T6 = ['apple', 'nutmeg', 'cinnamon', 'honey']
 T7 = ['pie_dough', 'apple_filling'] #apple_filling = T6
 T8 = ['pie_dough', 'pumpkin_filling'] #pumpkin_filling = T5
 T9 = ['turkey', 'turkey_filling'] #turkey_filling = T3
-TG_meals = [T1, T2, T3, T4, T7, T8, T9]
+Thanksgiving_meals = [T1, T2, T3, T4, T7, T8, T9]
 
 #ChineeseNewYear
 EAny1 = ['dumpling_dough', 'dumpling_filling']
@@ -133,7 +133,30 @@ EAny3 = ['pork','cabbage','carrot','green_onion','sesame_oil', 'white_pepper', '
 
 dough = ['flour', 'water', 'salt']
 pie_dough = ['flour', 'butter', 'water', 'salt']
+bread_dough = ['flour', 'yeast', 'water']
 
+# christmas
+"""
+roman honey fritters
+stuffed dates
+roasted boar, ham, lamb, chicken, turkey, salmon
+beetroot soup
+Panettone: Italian sweet bread with fruits and nuts / Stollen: German fruit bread
+ginger bread
+roasted root veg: turnips, carrots
+mushroom pie - mustard, mushroom, garlic, onion, carrot, thyme
+
+"""
+christmas_bread = [bread_dough, 'nuts', 'fruit']
+ginger_bread = []
+mushroom_pie = [pie_dough, 'nuts', 'mushroom', 'onion', 'carrot, thyme', 'garlic']
+roasted_root_veg = ['carrot', 'turnip']
+
+def random_christmas_meat():
+    options = ['ham', 'lamb', 'chicken', 'turkey', 'salmon']
+    return random.choice(options)
+
+Christmas_meals = [christmas_bread, mushroom_pie, roasted_root_veg]
 #salad
 S1 = ['broccoli', 'sauce']
 
@@ -143,7 +166,9 @@ def random_dumpling_filling():
     options = [EAny2, EAny3]
     return random.choice(options)
 
-processed_recipes = {'apple_filling': T6, 'pumpkin_filling': T5, 'turkey_filling': T3, 'dumpling_filling': random_dumpling_filling, 'dumpling_dough': dough, 'pie_dough': pie_dough}
+processed_recipes = {'apple_filling': T6, 'pumpkin_filling': T5, 'turkey_filling': T3,
+                     'dumpling_filling': random_dumpling_filling, 'dumpling_dough': dough, 'pie_dough': pie_dough,
+                        'bread_dough': bread_dough, 'christmas_bread': christmas_bread, 'ginger_bread': ginger_bread}
 
 #pesto
 #vegan_sauce
@@ -152,9 +177,21 @@ processed_recipes = {'apple_filling': T6, 'pumpkin_filling': T5, 'turkey_filling
 # nut + liquid + flavor + salt
 # flavor ~ {herb spice or seasoning}
 #salsa
+Newyears_meals = []
+July4_meals = []
+Easter_meals = []
+Asianewyears_meals = []
+Bday_meals = []
 
-
-
+holiday_meals = {
+    "Thanksgiving": Thanksgiving_meals,
+    "Christmas": Christmas_meals,
+    "New Years": Newyears_meals,
+    "July 4th": July4_meals,
+    "Easter": Easter_meals,
+    "Asian New Year": Asianewyears_meals,
+    "Birthday": Bday_meals
+}
 
 
 

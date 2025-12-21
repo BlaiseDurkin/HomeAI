@@ -91,7 +91,7 @@ said_workout = CoachNode(["repeat", "done"], {"repeat": [repeat_workout], "done"
 
 asked_if_say_task = CoachNode(["yes", "next"], {"yes": [repeat_task], "next": []}, CAG)
 
-said_task = CoachNode(["repeat", "done"], {"repeat": [repeat_task], "done": [finished_workout]}, CAG)
+said_task = CoachNode(["repeat", "done", "explain"], {"repeat": [repeat_task], "done": [finished_workout], "explain": [explain_task]}, CAG)
 
 #----------------------------------------------------------
 nodes = [said_good_morning, asked_to_start_workout, said_workout, asked_if_say_task, said_task]
@@ -111,6 +111,7 @@ asked_if_say_task.map["yes"].append(said_task)
 
 said_task.map["repeat"].append(said_task)
 said_task.map["done"].append(said_task)
+said_task.map["explain"].append(said_task)
 
 #__task list__
 #-apply to jobs

@@ -38,12 +38,23 @@ TODO ---v
 
 
 
+"""
+TODO:
+- holiday food, mood: responses, expexted actions
+    - 5 days till christmas
+- synonym for expected word
+
+- play 50 questions
+- constantly ask questions and guess inorder to move up the decision tree (dreaming)... but dont dream too much during the day
+- 
+
+
+"""
 
 
 
 
-
-
+#say happy christmas @greeting & @goodbye
 
 
 

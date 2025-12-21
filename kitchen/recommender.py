@@ -691,7 +691,8 @@ def get_compair_pair(region_scores):
 
 #def is_near_holiday():
 
-
+def select_holiday_meal(day):
+    return random.choice(holiday_meals[day])
 
 #TODO --
 # - if new diet has ingredients then replace old ingredients
@@ -701,10 +702,11 @@ def recommend_meal(diet, graph, change=False, fresh=False):
 
     #holiday special
     today = date.today()
-    is_near_day, time_2_day, day_name = is_near_holiday(today, threshold_days=2)
+    is_near_day, time_2_day, day_name = is_near_holiday(today, threshold_days=6)
     if is_near_day:
         #todo: change to holiday
-        recipe = TG_meals[5]
+        #recipe = select_holiday_meal(day_name)
+        recipe = select_holiday_meal(day_name)
         recipe = kosherize(recipe, diet)
         graph.current_node = graph.all_nodes[0]
         graph.recipe = recipe

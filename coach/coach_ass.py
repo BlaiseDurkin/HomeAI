@@ -2,18 +2,29 @@ import random
 from datetime import datetime
 import calendar
 from data.users import *
+from kitchen.seasonal import *
 
 def good_morning():
     #todo fix date time
     # afternoon
     # evening
+    # holiday
+    #if holiday = 0
+    is_near_day, time_2_day, day_name = is_near_holiday(date.today(),5)
+    holiday_greet = ''
+    if is_near_day:
+        if time_2_day <6:
+            holiday_greet = 'happy, '+day_name+", "
     hr = datetime.now().hour
     time_greet = "good, morning, "
+    time_greet_end = ". do not, look, at, your phone. do not, look, at, your screen. go, splash, water, on your, face. go, chug, water. how, did, you, sleep."
     if hr > 11 and hr < 18:
         time_greet = "good, afternoon, "
+        time_greet_end = ". stop, gooning. go, splash, water, on your, face. go, chug, water. how, is, the day, so far."
     if hr >= 18:
         time_greet = "good, evening, "
-    txt = time_greet+"today is, "+datetime.now().strftime("%A")+", "+calendar.month_name[datetime.now().month]+", "+str(datetime.now().day)+". time is "+str(datetime.now().hour)+", "+str(datetime.now().minute)+". do not, look, at, your phone. do not, look, at, your screen. go, splash, water, on your, face. go, chug, water. how, did, you, sleep."
+        time_greet_end = ". stop, gooning. how, was, your, day"
+    txt = time_greet+holiday_greet+"today is, "+datetime.now().strftime("%A")+", "+calendar.month_name[datetime.now().month]+", "+str(datetime.now().day)+". time is "+str(datetime.now().hour)+", "+str(datetime.now().minute)+time_greet_end
     return txt
 
 
@@ -96,16 +107,7 @@ def max_score_task(tasks):
     return max_t
 
 def select_top_task():
-    """
-    * needs to keep track of where i am in the day == what tasks ive done so far
-    best task = f(time of day, time length of task, score
-    if time <=11 --> apply to jobs, tailor resume
-    if time >11 and < 14 --> garden task
-        short garden task if now + expected_time > 14
-    if time > 14 --> code, job app, record audio, garage
-    if time > 18 --> code, record audio
-
-    """
+   #TODO keep track of completed tasks for next task recommender
     if datetime.now().hour <= 11:
         #return top score core task
         return max_score_task(core_tasks_desc)
@@ -143,6 +145,8 @@ def finished_workout(graph):
 
 def repeat_task(graph):
     return graph.task_name
+def explain_task(graph):
+    return graph.task.description
 
 
 def read_all_tasks(graph):
