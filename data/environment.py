@@ -47,7 +47,7 @@ TODO:
 - play 50 questions
 - constantly ask questions and guess inorder to move up the decision tree (dreaming)... but dont dream too much during the day
 - 
-
+- night time read
 
 """
 

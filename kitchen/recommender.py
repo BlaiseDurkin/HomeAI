@@ -705,7 +705,8 @@ def recommend_meal(diet, graph, change=False, fresh=False):
     is_near_day, time_2_day, day_name = is_near_holiday(today, threshold_days=6)
     if is_near_day:
         #todo: change to holiday
-        #recipe = select_holiday_meal(day_name)
+        #ask user mood
+        #ask to plan feast
         recipe = select_holiday_meal(day_name)
         recipe = kosherize(recipe, diet)
         graph.current_node = graph.all_nodes[0]

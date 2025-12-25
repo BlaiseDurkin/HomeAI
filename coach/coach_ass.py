@@ -13,8 +13,10 @@ def good_morning():
     is_near_day, time_2_day, day_name = is_near_holiday(date.today(),5)
     holiday_greet = ''
     if is_near_day:
-        if time_2_day <6:
+        if time_2_day <3:
             holiday_greet = 'happy, '+day_name+", "
+            if day_name == "Christmas":
+                holiday_greet = 'ho, ho, ho, merry, christmas, '
     hr = datetime.now().hour
     time_greet = "good, morning, "
     time_greet_end = ". do not, look, at, your phone. do not, look, at, your screen. go, splash, water, on your, face. go, chug, water. how, did, you, sleep."
@@ -24,7 +26,12 @@ def good_morning():
     if hr >= 18:
         time_greet = "good, evening, "
         time_greet_end = ". stop, gooning. how, was, your, day"
+    if hr > 21:
+        time_greet = "good, night, "
+        time_greet_end = "go to sleep"
+        #todo change next state
     txt = time_greet+holiday_greet+"today is, "+datetime.now().strftime("%A")+", "+calendar.month_name[datetime.now().month]+", "+str(datetime.now().day)+". time is "+str(datetime.now().hour)+", "+str(datetime.now().minute)+time_greet_end
+  
     return txt
 
 
