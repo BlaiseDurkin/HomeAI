@@ -126,6 +126,11 @@ KAG = KitchenAssistantGraph(start_diet)
 
 # --------------- Create Nodes ---------------------------------------
 
+# TODO
+#   - output recipe name!
+#   --> name = bread, pie, dumplinmg, carb+veg+protein
+#   - hungry hello " i want to eat" --> hungryHello() {self.graph = kag; response = "what ingredients do you have" | "what are you in the mood for"
+
 
 asked_user_if_invent_meal = SubNode(['yes', 'no'], {'yes': [invent_meal], 'no': [give_random_meal]}, KAG)
 

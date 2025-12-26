@@ -33,7 +33,7 @@ class State:
         self.start_time = time.time()
 
         self.character_mode = 'default'
-        self.all_characters = ['default', 'french', 'fun']
+        self.all_characters = ['default', 'french', 'funny', 'sexy']
         
         # need more vars to track state...
         self.is_engaged = False #turn to true when 'Hey computer', turn to false after 5 min

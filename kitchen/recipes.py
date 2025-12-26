@@ -148,15 +148,16 @@ mushroom pie - mustard, mushroom, garlic, onion, carrot, thyme
 
 """
 christmas_bread = ['bread_dough', 'nuts', 'fruit']
-ginger_bread = []
-mushroom_pie = ['pie_dough', 'nuts', 'mushroom', 'onion', 'carrot, thyme', 'garlic']
+ginger_bread = ['flour', 'water', 'cinnamon', 'clove', 'ginger', 'sugar', 'egg', 'butter']
+mushroom_pie = ['pie_dough', 'mushroom', 'onion', 'thyme', 'garlic']
 roasted_root_veg = ['carrot', 'turnip']
+apple_bread = ['flour', 'water', 'salt', 'cinnamon', 'apple', 'honey']
 
 def random_christmas_meat():
     options = ['ham', 'lamb', 'chicken', 'turkey', 'salmon']
     return random.choice(options)
 
-Christmas_meals = [christmas_bread, mushroom_pie, roasted_root_veg]
+Christmas_meals = [christmas_bread, mushroom_pie, roasted_root_veg, apple_bread, random_christmas_meat()]
 #salad
 S1 = ['broccoli', 'sauce']
 

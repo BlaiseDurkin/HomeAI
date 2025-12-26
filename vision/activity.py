@@ -85,7 +85,7 @@ def estimate_activity(pose_results, state, height_threshold_ratio=0.15, angle_th
     if is_horizontal:
         return Activity.LYING
 
-    elif abs(body_angle - 180) < angle_threshold:
+    elif abs(body_angle - 180) < angle_threshold or abs(body_angle - 0) < angle_threshold:
         # Torso and legs are straight → standing (or upright plank, but rare)
         return Activity.STANDING
 
