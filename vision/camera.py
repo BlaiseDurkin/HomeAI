@@ -33,6 +33,7 @@ mp_drawing = mp.solutions.drawing_utils
 def detect_pose(frame):
     #print('detecting pose...')
     rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    results = None
     try:
         results = pose.process(rgb)
 

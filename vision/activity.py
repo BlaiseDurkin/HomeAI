@@ -24,6 +24,8 @@ def estimate_activity(pose_results, state, height_threshold_ratio=0.15, angle_th
     Returns:
         Activity enum and confidence dict
     """
+    if pose_results is None:
+        return Activity.UNKNOWN
     if pose_results.pose_landmarks is None:
         return Activity.UNKNOWN
 
