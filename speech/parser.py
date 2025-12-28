@@ -84,8 +84,10 @@ def parse_message(text, state):
     # assume concise easy messages
     # construct message object
     # check if message is recognized command
+    """
     if text == None:
         return text
+    """
     if state.just_spoke:
         print('you: ',len(text))
         print('me: ',len(state.last_response))
