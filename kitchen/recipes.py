@@ -156,7 +156,7 @@ apple_bread = ['flour', 'water', 'salt', 'cinnamon', 'apple', 'honey']
 
 def random_christmas_meat():
     options = ['ham', 'lamb', 'chicken', 'turkey', 'salmon']
-    return random.choice(options)
+    return [random.choice(options)]
 
 Christmas_meals = [christmas_bread, mushroom_pie, roasted_root_veg, apple_bread, random_christmas_meat()]
 
