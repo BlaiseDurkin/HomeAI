@@ -13,7 +13,7 @@ def good_morning():
     is_near_day, time_2_day, day_name = is_near_holiday(date.today(),5)
     holiday_greet = ''
     if is_near_day:
-        if time_2_day <3:
+        if time_2_day <2:
             holiday_greet = 'happy, '+day_name+", "
             if day_name == "Christmas":
                 holiday_greet = 'ho, ho, ho, merry, christmas, '
