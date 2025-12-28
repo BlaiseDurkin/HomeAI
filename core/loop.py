@@ -38,7 +38,7 @@ def run_loop(state, camera, flow):
         text = get_latest_text() #mainly used for debugging
         #TODO: change to parse_last_message
         #   - check if command or statement: {give information, express feeling/belief} or question
-        command = parse_message(text, state) if text else None
+        command = parse_message(text, state)
 
         # --- voice command ---
         message = get_latest_spoken()
