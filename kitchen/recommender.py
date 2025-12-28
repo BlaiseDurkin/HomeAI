@@ -541,6 +541,7 @@ def change_meal(diet, KAG):
     og_meal = KAG.recipe
     #print('og_meal: ', og_meal)
     #diet = KAG.diet   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! the bug
+
     new_meal = recommend_meal(diet, KAG, change=True)
     if new_meal == og_meal:
         return kosherize(give_random_meal(diet, KAG), diet)
@@ -694,26 +695,34 @@ def get_compair_pair(region_scores):
 def select_holiday_meal(day):
     return random.choice(holiday_meals[day])
 
-#TODO --
-# - if new diet has ingredients then replace old ingredients
-# - else
-def recommend_meal(diet, graph, change=False, fresh=False):
+def recommend_holiday_meal(diet, graph):
+    graph.holiday_themed = True
+    recipe = select_holiday_meal(graph.holiday_name)
+    recipe = kosherize(recipe, diet)
+    graph.current_node = graph.all_nodes[0]
+    graph.recipe = recipe
+    return recipe
+
+def recommend_meal_no_holiday(diet, graph):
+    return recommend_meal(diet, graph, asked_holiday=True)
+
+
+#TODO: change asked_holiday to graph attributes
+def recommend_meal(diet, graph, change=False, fresh=False, asked_holiday=False):
     print('recommending meal...')
 
     #holiday special
     today = date.today()
-    is_near_day, time_2_day, day_name = is_near_holiday(today, threshold_days=6)
-    if is_near_day:
-        #todo: change to holiday
-        #ask user mood
-        #ask to plan feast
-        recipe = select_holiday_meal(day_name)
-        recipe = kosherize(recipe, diet)
-        graph.current_node = graph.all_nodes[0]
-        graph.recipe = recipe
-        return recipe
+    if not asked_holiday:
+        is_near_day, time_2_day, day_name = is_near_holiday(today, threshold_days=6)
+        if is_near_day:
+            #todo: change to holiday
+            #ask to plan feast
 
-
+            res = "do you, want, a, "+day_name+" dish"
+            graph.current_node = graph.all_nodes[5]
+            graph.holiday_name = day_name
+            return res
 
     region = ''
     if diet['preference'] != '':

@@ -50,6 +50,8 @@ class KitchenAssistantGraph:
         self.parent_recipe = None
         self.all_nodes = []
         self.recipe_index = 0
+        self.holiday_themed = False
+        self.holiday_name = ""
 
 
     def update_diet(self, diet):
@@ -148,6 +150,8 @@ asked_user_if_swap_item = SubNode(['yes', 'no'], {'yes': [ask_user_for_new_item]
 
 asked_for_new_item = SubNode([''], {'': [say_modified_recipe]}, KAG)
 
+asked_if_holiday = SubNode(['yes', 'no'], {'yes': recommend_holiday_meal, 'no': recommend_meal_no_holiday}, KAG)
+
 # ----- edges ---------------
 asked_user_if_invent_meal.map['yes'].append(gave_meal) #next node
 asked_user_if_invent_meal.map['no'].append(gave_meal)  #next node
@@ -183,7 +187,7 @@ asked_for_new_item.map[''].append(gave_meal) #new node
 
 #-------------------------------------------------------------------
 
-all_nodes = [gave_meal, asked_user_if_invent_meal, asked_for_ingredients, asked_user_to_compare, asked_for_new_item]
+all_nodes = [gave_meal, asked_user_if_invent_meal, asked_for_ingredients, asked_user_to_compare, asked_for_new_item, asked_if_holiday]
 KAG.all_nodes = all_nodes
 
 #-----------------------------------------------------------------

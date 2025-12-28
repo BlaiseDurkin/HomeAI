@@ -58,7 +58,7 @@ def run_loop(state, camera, flow):
         # --------- Process Inputs ----------
         # --- 4. Decision Logic ---
         response = None
-        if command or message:
+        if command or message or state.talking:
             state, response = process_command(voice_msg, state)
             state.just_spoke = False
 

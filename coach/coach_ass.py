@@ -153,7 +153,7 @@ def finished_workout(graph):
 def repeat_task(graph):
     return graph.task_name
 def explain_task(graph):
-    return graph.task.description
+    return graph.task.description #TODO figure out why graph.task = none
 
 
 def read_all_tasks(graph):

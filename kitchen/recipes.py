@@ -29,27 +29,27 @@ class Recipe:
 #use spider graph to visualize
 
 #East Asia
-EA1 = ['rice', 'shrimp', 'ginger', 'garlic', 'carrot', 'broccoli', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion']
-EA2 = ['rice', 'steak', 'ginger', 'garlic', 'bell_pepper', 'broccoli', 'vinegar', 'soy_sauce', ' sesame_oil', 'white_pepper', 'green_onion']
-EA3 = ['rice', 'pork', 'ginger', 'garlic', 'cabbage', 'onion', 'carrot', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion']
-EA4 = ['rice', 'shrimp', 'ginger', 'garlic', 'carrot', 'bell_pepper', 'walnut', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion']
-EA5 = ['noodles', 'shrimp', 'ginger', 'garlic', 'carrot', 'broccoli', 'seaweed', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion']
-EA6 = ['rice', 'chicken', 'garlic', 'chili_pepper', 'soy_sauce', 'sesame_oil', 'ginger', 'green_onion', 'vinegar', 'peanut']
-EA7 = ['rice', 'steak', 'soy_sauce', 'sesame_oil', 'garlic', 'green_onion', 'spinach', 'carrot', 'zucchini', 'shiitake_mushroom', 'sprouts', 'egg', 'sesame_seed']
-EA8 = ['rice', 'carrot', 'cabbage', 'green_onion', 'sesame_seed', 'soy_sauce', 'sesame_oil', 'chili_pepper', 'shiitake_mushroom']
-EA9 = ['noodles', 'cabbage', 'celery', 'onion', 'soy_sauce', 'oyster_sauce']
+EA1 = ['rice', 'shrimp', 'ginger', 'garlic', 'carrot', 'broccoli', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion'] #shrim and broccoli with rice
+EA2 = ['rice', 'steak', 'ginger', 'garlic', 'bell_pepper', 'broccoli', 'vinegar', 'soy_sauce', ' sesame_oil', 'white_pepper', 'green_onion'] #steak and broccoli with rice
+EA3 = ['rice', 'pork', 'ginger', 'garlic', 'cabbage', 'onion', 'carrot', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion'] #pork with rice
+EA4 = ['rice', 'shrimp', 'ginger', 'garlic', 'carrot', 'bell_pepper', 'walnut', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion'] #shrimp and walnut with rice
+EA5 = ['noodles', 'shrimp', 'ginger', 'garlic', 'carrot', 'broccoli', 'seaweed', 'soy_sauce', 'sesame_oil', 'white_pepper', 'green_onion'] #
+EA6 = ['rice', 'chicken', 'garlic', 'chili_pepper', 'soy_sauce', 'sesame_oil', 'ginger', 'green_onion', 'vinegar', 'peanut'] #peanut chicken with rice
+EA7 = ['rice', 'steak', 'soy_sauce', 'sesame_oil', 'garlic', 'green_onion', 'spinach', 'carrot', 'zucchini', 'shiitake_mushroom', 'sprouts', 'egg', 'sesame_seed'] #stir fry with rice
+EA8 = ['rice', 'carrot', 'cabbage', 'green_onion', 'sesame_seed', 'soy_sauce', 'sesame_oil', 'chili_pepper', 'shiitake_mushroom'] #spicy mushroom with rice
+EA9 = ['noodles', 'cabbage', 'celery', 'onion', 'soy_sauce', 'oyster_sauce'] #chow mein
 
 EA_meals = [EA1, EA2, EA3, EA4, EA5, EA6, EA7, EA8, EA9]
 
 #South East Asia
-SEA1 = ['rice', 'steak','garlic', 'cilantro', 'peanut', 'soy_sauce', 'vinegar', 'mint', 'peanut', 'bell_pepper', 'green_onion']
-SEA2 = ['rice','shrimp', 'carrot','lettuce', 'sprouts', 'cilantro', 'mint', 'vinegar', 'peanut']
+SEA1 = ['rice', 'steak','garlic', 'cilantro', 'peanut', 'soy_sauce', 'vinegar', 'mint', 'peanut', 'bell_pepper', 'green_onion'] #steak with rice
+SEA2 = ['rice','shrimp', 'carrot','lettuce', 'sprouts', 'cilantro', 'mint', 'vinegar', 'peanut'] #shrimp with rice
 SEA3 = ['noodles', 'chicken', 'peanut','egg', 'sprouts', 'garlic', 'lime', 'vinegar', 'pepper', 'soy_sauce', 'basil', 'fish_sauce', 'green_onion'] #pad thai
 SEA4 = ['rice', 'chicken', 'onion', 'ginger', 'garlic', 'carrot', 'coriander', 'coconut', 'chili_pepper','turmeric','lemongrass', 'basil', 'green_beans'] #red curry
 SEA5 = ['rice', 'ginger', 'garlic', 'lemongrass', 'curry', 'eggplant', 'peas', 'coconut', 'basil', 'white_pepper']#green curry
 SEA6 = ['rice', 'zucchini', 'curry', 'coconut', 'turmeric', 'lemongrass', 'carrot', 'onion', 'coriander', 'cumin', 'white_pepper', 'ginger', 'garlic', 'cilantro', 'lime']#yellow curry
-SEA7 = ['rice', 'shrimp', 'chicken', 'egg', 'garlic', 'soy_sauce', 'fish_sauce', 'green_onion', 'chili_pepper', 'cucumber']
-SEA8 = ['rice', 'steak', 'garlic', 'chili_pepper', 'coconut', 'lemongrass', 'clove', 'cinnamon', 'coriander', 'star_anise', 'cumin']
+SEA7 = ['rice', 'shrimp', 'chicken', 'egg', 'garlic', 'soy_sauce', 'fish_sauce', 'green_onion', 'chili_pepper', 'cucumber'] #fried rice with chicken
+SEA8 = ['rice', 'steak', 'garlic', 'chili_pepper', 'coconut', 'lemongrass', 'clove', 'cinnamon', 'coriander', 'star_anise', 'cumin'] #steak with rice and coconut sauce
 
 
 SEA_meals = [SEA1, SEA2, SEA3, SEA4, SEA5, SEA6, SEA7, SEA8]
@@ -144,13 +144,14 @@ beetroot soup
 Panettone: Italian sweet bread with fruits and nuts / Stollen: German fruit bread
 ginger bread
 roasted root veg: turnips, carrots
-mushroom pie - mustard, mushroom, garlic, onion, carrot, thyme
+clam chowder
+
 
 """
 christmas_bread = ['bread_dough', 'nuts', 'fruit']
 ginger_bread = ['flour', 'water', 'cinnamon', 'clove', 'ginger', 'sugar', 'egg', 'butter']
-mushroom_pie = ['pie_dough', 'mushroom', 'onion', 'thyme', 'garlic']
-roasted_root_veg = ['carrot', 'turnip']
+mushroom_pie = ['pie_dough', 'mushroom', 'onion', 'thyme', 'garlic', 'salt']
+roasted_root_veg = ['carrot', 'turnip', 'garlic', 'lavender']
 apple_bread = ['flour', 'water', 'salt', 'cinnamon', 'apple', 'honey']
 
 def random_christmas_meat():
@@ -158,11 +159,13 @@ def random_christmas_meat():
     return random.choice(options)
 
 Christmas_meals = [christmas_bread, mushroom_pie, roasted_root_veg, apple_bread, random_christmas_meat()]
-#salad
+
+#---------------- salad ----------------------------
 S1 = ['broccoli', 'sauce']
 
-#TODO add random sauces and salads
 
+
+#
 def random_dumpling_filling():
     options = [EAny2, EAny3]
     return random.choice(options)
@@ -171,13 +174,25 @@ processed_recipes = {'apple_filling': T6, 'pumpkin_filling': T5, 'turkey_filling
                      'dumpling_filling': random_dumpling_filling, 'dumpling_dough': dough, 'pie_dough': pie_dough,
                         'bread_dough': bread_dough, 'christmas_bread': christmas_bread, 'ginger_bread': ginger_bread}
 
-#pesto
-#vegan_sauce
-#nut_sauce_ea1
-#nut_sauce_ea2
+# ------------------- sauces ------------------------
+
 # nut + liquid + flavor + salt
 # flavor ~ {herb spice or seasoning}
-#salsa
+
+salsa = ['tomato', 'onion', 'jalapeno_pepper', 'cilantro', 'lime', 'salt']
+pesto = ['basil', 'garlic', 'nut', 'olive_oil', 'salt', 'cheese']
+nut_sauce_euro1 = ['walnut', 'garlic', 'salt', 'basil', 'tomato', 'water']
+nut_sauce_euro2 = ['walnut', 'garlic', 'salt', 'onion', 'tomato', 'water']
+nut_sauce_sasia1 = ['walnut', 'garlic', 'salt', 'cashew', 'tomato', 'cumin', 'turmeric', 'clove','water']
+nut_sauce_easia = ['almond', 'seaweed', 'garlic', 'salt', 'water', 'ginger', 'white_pepper']
+nut_sauce_mex1 = ['walnut', 'chipotle_pepper', 'garlic', 'black_sage', 'tomato', 'salt', 'water']
+nut_sauce_wasia1 = ['walnut', 'pomegranate', 'olive_oil', 'salt', 'water', 'saffron', 'black_pepper']
+sauce_easia1 = ['soy_sauce', 'vinegar', 'sesame_oil', 'white_pepper']
+sauce_seasia1 = ['soy_sauce', 'vinegar', 'sesame_oil', 'peanut', 'mint']
+
+
+
+
 Newyears_meals = []
 July4_meals = []
 Easter_meals = []

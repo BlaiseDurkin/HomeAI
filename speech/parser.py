@@ -209,6 +209,8 @@ def parse_message(text, state):
         return Message(text, "command", "clear_diet", diet)
     if text == 'hello':
         return Message(text, "command", "hello", diet)
+    if text == 'hey computer':
+        return Message(text, "command", "hey_computer", diet)
     if text == 'bonjour':
         state.character_mode = "french"
         return Message(text, "command", "hello", diet)
