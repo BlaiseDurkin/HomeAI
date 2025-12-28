@@ -147,7 +147,7 @@ def finished_workout(graph):
             response = discipline_lecture + respo
         else:
             response = respo
-        graph.task = graph.update_task(select_top_task())
+        graph.update_task(select_top_task())
         return response
 
 def repeat_task(graph):

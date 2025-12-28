@@ -61,7 +61,7 @@ class Task
 # -- garden --
 garden_tasks = ['start mushroom', 'prune shrub', 'plant seeds', 'water plants', 'cut down tree']
 garden_tasks_desc = ['name: start mushroom. description: drill holes in log, put spores in wood, seal with wax. time: 2 hours. location: side yard.',
-                     'name: cut tree. description: cut the tree pushing over the fence, score: 15, time: 1 hour.',
+                     'name: cut tree. description: cut the tree pushing over the fence. score: 15. time: 1 hour.',
                      'name: plant seeds. description: put seeds in wet paper, put tumeric in ground. time: 2 minutes.',
                      'name: water plants. description: water fig clones, water pea seeds. time: 30 minutes.'
                      ]
