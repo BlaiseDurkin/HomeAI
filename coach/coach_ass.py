@@ -117,16 +117,16 @@ def select_top_task():
    #TODO keep track of completed tasks for next task recommender
     if datetime.now().hour <= 11:
         #return top score core task
-        return max_score_task(core_tasks_desc)
+        return max_score_task(all_tasks['core'])
     elif 11 < datetime.now().hour < 14:
         #return top score garden task
-        return max_score_task(garden_tasks_desc)
+        return max_score_task(all_tasks['garden'])
 
     #p(garage) = .15
     if random.random() < 0.15:
         #garage\
-        return max_score_task(garage_tasks_desc)
-    return weighted_random_task(core_tasks_desc)
+        return max_score_task(all_tasks['garage'])
+    return weighted_random_task(all_tasks['core'])
 
 
 def finished_workout(graph):

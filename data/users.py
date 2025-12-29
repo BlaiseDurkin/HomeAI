@@ -90,7 +90,59 @@ garage_tasks_desc = [
 ]
 
 # ----- all tasks -----------
-all_tasks = {'garden' : garden_tasks_desc, 'garage': garage_tasks_desc, 'main': core_tasks_desc}
+#all_tasks = {'garden' : garden_tasks_desc, 'garage': garage_tasks_desc, 'main': core_tasks_desc}
+
+def process_tasks_f(file):
+    garden_tasks = []
+    garage_tasks = []
+    core_tasks = []
+    add_2_garden = False
+    add_2_garage = False
+    add_2_core = False
+    try:
+        with open(file) as f:
+            for line in f:
+
+                if line == '\n':
+                    #print('new line')
+                    pass
+                elif line.startswith('__'):
+                    #print(line[2:-3])
+                    if line[2:-3] == 'garden':
+                        #print('gardennnn')
+                        add_2_garden = True
+                        add_2_garage = False
+                        add_2_core = False
+                    elif line[2:-3] == 'core':
+                        #print('coreeee')
+                        add_2_core = True
+                        add_2_garden = False
+                        add_2_garage = False
+                    elif line[2:-3] == 'garage':
+                        #print('gargeeee')
+                        add_2_garage = True
+                        add_2_core = False
+                        add_2_garden = False
+                else:
+                    #print(line[0:-1])
+                    if add_2_core:
+                        core_tasks.append(line[0:-1])
+                    elif add_2_garden:
+                        garden_tasks.append(line[0:-1])
+                    elif add_2_garage:
+                        garage_tasks.append(line[0:-1])
+
+
+
+    except:
+        print('error reading file')
+    #print('tasks')
+    #print(core_tasks)
+    #print(garden_tasks)
+    #print(garage_tasks)
+    all_tasks = {'garden': garden_tasks, 'core': core_tasks, 'garage': garage_tasks}
+    return all_tasks
+all_tasks = process_tasks_f('data/tasks.txt')
 
 
 

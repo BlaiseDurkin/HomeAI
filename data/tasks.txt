@@ -1,0 +1,20 @@
+__garden__
+
+name: start mushroom. description: drill holes in log, put spores in wood, seal with wax. time: 2 hours. location: side yard.
+name: cut tree. description: cut the tree pushing over the fence. score: 15. time: 1 hour.
+name: plant seeds. description: put seeds in wet paper, put tumeric in ground. time: 2 minutes.
+name: water plants. description: water fig clones, water pea seeds. time: 30 minutes.
+
+__garage__
+
+name: organize stuff. description: organize materials in the garage. time: 3 hours
+name: build helping hand. description: get wire and clips to build a helping hand. time: 2 hours
+name: buy chair. description: find an office chair. time: 30 minutes
+
+__core__
+
+name: apply to jobs. description: apply to fitting jobs, and take notes on where to upskill. time: 1 hour. score: 10.
+name: tailor resumay. description: remake several resumays for each job. time: 3 hours. score: 40.
+name: buy raspberry pi 5. time: 30 minutes
+name: record audio. description: record machine learning lesson. time: 1 hour. score: 30.
+name: build smart home. description: implement functions and fix bugs. time: 30 minutes. score: 15.
