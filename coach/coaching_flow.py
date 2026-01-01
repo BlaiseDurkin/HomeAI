@@ -129,12 +129,12 @@ said_task.map["repeat"].append(said_task)
 said_task.map["done"].append(said_task)
 said_task.map["explain"].append(said_task)
 
-asked_for_task_name.map[''].append(checked_task_name)
+asked_for_task_name.map['RAT'].append(checked_task_name)
 
 checked_task_name.map['yes'].append(asked_for_task_desc)
 checked_task_name.map['no'].append(asked_for_task_name)
 
-asked_for_task_desc.map[''].append(checked_task_desc)
+asked_for_task_desc.map['RAT'].append(checked_task_desc)
 
 checked_task_desc.map['yes'].append(asked_for_task_priority)
 checked_task_desc.map['no'].append(asked_for_task_desc)
