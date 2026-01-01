@@ -1,5 +1,6 @@
 import os
 import subprocess
+import time
 
 
 
@@ -27,13 +28,14 @@ def list_to_print_string(sequence):
 #  make seperate thread so it doesnt pause video
 
 
-def speak(text):
+def speak(text, wait=0.1):
     vol = 70
 
     #print(vol)
     print('say: ',text)
     cmd = f'espeak -a "{vol}" "{text}" -- stdout | aplay -D hw:1,0 2>/dev/null'
     subprocess.run(cmd, shell=True)
+    time.sleep(wait)
 
 
 
