@@ -113,7 +113,7 @@ def parse_message(text, state):
     if state.sub_in_action:
         expected_set = state.sub_graph.current_node.expected_words
         #todo -> check if expected set is empty... empty maps default function and new node or does nothing?
-        if expected_set[0] == 'RAT':
+        if expected_set[0] == 'RAT' and len(text) > 5:
             return Message(text, 'command', 'RAT', {'RAT':text, 'expected': ['RAT']})
 
 
