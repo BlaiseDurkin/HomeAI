@@ -177,7 +177,6 @@ explaining_recipe.map['change'].append(asked_user_if_swap_item)
 
 
 
-#recommend_meal_node.map[''].append(KAG.current_node) # this doesnt work
 recommend_meal_node.map[''].append(recommend_meal_node)
 
 asked_user_if_swap_item.map['yes'].append(asked_for_new_item) # new node

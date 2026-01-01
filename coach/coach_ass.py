@@ -161,20 +161,22 @@ def read_all_tasks(graph):
 
 
 def check_input(graph, text):
+    graph.temp_text = text
     return 'did you say, '+ text
 
 def try_again(graph):
     return 'try again'
 
 def ask_task_desc(graph):
+    graph.temp_t_name = graph.temp_text
     return 'describe the task'
 
 def ask_task_priority(graph):
+    graph.temp_t_desc = graph.temp_text
     return 'is the priority, high, medium, or low'
 
 def who_cares(graph):
     return 'yeah, i, do not care'
-
 
 
 def add_2_tasks_f(new_t, file='data/tasks.txt'):
@@ -199,6 +201,36 @@ def add_2_tasks_f(new_t, file='data/tasks.txt'):
     out = open(file, 'w')
     out.writelines(lines)
     out.close()
+
+
+
+def new_t_added(graph, score):
+    new_t = 'name: ' + graph.temp_t_name + '. description: ' + graph.temp_t_desc + '. score: ' + str(score) + '. '
+    add_2_tasks_f(['core', new_t])
+    #todo add to list all_tasks or reset with file read
+    all_tasks['core'].append(new_t)
+    graph.temp_t_name, graph.temp_t_desc, graph.temp_text = "", "", ""
+    return 'task' + graph.temp_t_name + '. ' + graph.temp_t_desc + '. added'
+
+
+def low_t_added(graph):
+    #todo make score low = 4
+    score = 4
+    return new_t_added(graph, score)
+
+def med_t_added(graph):
+    #todo score = 8
+    score = 8
+    return new_t_added(graph, score)
+
+def high_t_added(graph):
+    #todo score = 35
+    score = 35
+    return new_t_added(graph, score)
+
+
+
+
 
 
 

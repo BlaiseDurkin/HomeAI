@@ -34,6 +34,9 @@ class CoachAssistantGraph:
         self.workout = ""
         self.task = None
         self.task_name = ""
+        self.temp_t_name = ""
+        self.temp_t_desc = ""
+        self.temp_text = ""
 
     def update(self, message):
         response = self.current_node.update(message)
@@ -106,7 +109,7 @@ checked_task_name = CoachNode(['yes', 'no'], {'yes': [ask_task_desc], 'no': [try
 asked_for_task_desc = CoachNode(['RAT'],{'RAT': [check_input]}, CAG)
 checked_task_desc = CoachNode(['yes', 'no'], {'yes': [ask_task_priority], 'no': [try_again]}, CAG)
 
-asked_for_task_priority = CoachNode([''], {'': [who_cares]}, CAG)
+asked_for_task_priority = CoachNode(['low', 'medium', 'high'], {'low': [low_t_added], 'medium': [med_t_added], 'high': [high_t_added]}, CAG)
 
 manage_tasks = CoachNode([],{}, CAG)
 #----------------------------------------------------------
@@ -139,7 +142,9 @@ asked_for_task_desc.map['RAT'].append(checked_task_desc)
 checked_task_desc.map['yes'].append(asked_for_task_priority)
 checked_task_desc.map['no'].append(asked_for_task_desc)
 
-asked_for_task_priority.map[''].append(manage_tasks)
+asked_for_task_priority.map['low'].append(manage_tasks)
+asked_for_task_priority.map['medium'].append(manage_tasks)
+asked_for_task_priority.map['high'].append(manage_tasks)
 
 #__task list__
 #-apply to jobs
