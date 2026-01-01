@@ -109,7 +109,7 @@ checked_task_name = CoachNode(['yes', 'no'], {'yes': [ask_task_desc], 'no': [try
 asked_for_task_desc = CoachNode(['RAT'],{'RAT': [check_input]}, CAG)
 checked_task_desc = CoachNode(['yes', 'no'], {'yes': [ask_task_priority], 'no': [try_again]}, CAG)
 
-asked_for_task_priority = CoachNode(['low', 'medium', 'high'], {'low': [low_t_added], 'medium': [med_t_added], 'high': [high_t_added]}, CAG)
+asked_for_task_priority = CoachNode(['low', 'medium', 'high', 'hi'], {'low': [low_t_added], 'medium': [med_t_added], 'high': [high_t_added], 'hi': [high_t_added]}, CAG)
 
 manage_tasks = CoachNode([],{}, CAG)
 #----------------------------------------------------------
@@ -145,6 +145,7 @@ checked_task_desc.map['no'].append(asked_for_task_desc)
 asked_for_task_priority.map['low'].append(manage_tasks)
 asked_for_task_priority.map['medium'].append(manage_tasks)
 asked_for_task_priority.map['high'].append(manage_tasks)
+asked_for_task_priority.map['hi'].append(manage_tasks)
 
 #__task list__
 #-apply to jobs

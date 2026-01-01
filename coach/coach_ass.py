@@ -165,6 +165,7 @@ def check_input(graph, text):
     return 'did you say, '+ text
 
 def try_again(graph):
+    graph.temp_text = ""
     return 'try again'
 
 def ask_task_desc(graph):
