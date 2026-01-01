@@ -75,8 +75,12 @@ class CoachNode:
             else:
                 return ''
 
+
         self.graph.current_node = self.map[key][1]
-        response = self.map[key][0](self.graph)
+        if key == 'RAT':
+            response = self.map[key][0](self.graph, message.text)
+        else:
+            response = self.map[key][0](self.graph)
         #print('node update: ',response)
         return response
 
@@ -89,12 +93,24 @@ asked_to_start_workout = CoachNode(["start"], {"start": [start_workout]}, CAG)
 
 said_workout = CoachNode(["repeat", "done"], {"repeat": [repeat_workout], "done": [finished_workout]}, CAG)
 
-asked_if_say_task = CoachNode(["yes", "next"], {"yes": [repeat_task], "next": []}, CAG)
+asked_if_say_task = CoachNode(["yes"], {"yes": [repeat_task]}, CAG)
 
 said_task = CoachNode(["repeat", "done", "explain"], {"repeat": [repeat_task], "done": [finished_workout], "explain": [explain_task]}, CAG)
 
+
+
+
+asked_for_task_name = CoachNode(['RAT'], {'RAT': [check_input]}, CAG)
+checked_task_name = CoachNode(['yes', 'no'], {'yes': [ask_task_desc], 'no': [try_again]}, CAG)
+
+asked_for_task_desc = CoachNode(['RAT'],{'RAT': [check_input]}, CAG)
+checked_task_desc = CoachNode(['yes', 'no'], {'yes': [ask_task_priority], 'no': [try_again]}, CAG)
+
+asked_for_task_priority = CoachNode([''], {'': [who_cares]}, CAG)
+
+manage_tasks = CoachNode([],{}, CAG)
 #----------------------------------------------------------
-nodes = [said_good_morning, asked_to_start_workout, said_workout, asked_if_say_task, said_task]
+nodes = [said_good_morning, asked_to_start_workout, said_workout, asked_if_say_task, said_task, asked_for_task_name]
 CAG.all_nodes = nodes
 # ------------- Edges ---------------------
 
@@ -112,6 +128,18 @@ asked_if_say_task.map["yes"].append(said_task)
 said_task.map["repeat"].append(said_task)
 said_task.map["done"].append(said_task)
 said_task.map["explain"].append(said_task)
+
+asked_for_task_name.map[''].append(checked_task_name)
+
+checked_task_name.map['yes'].append(asked_for_task_desc)
+checked_task_name.map['no'].append(asked_for_task_name)
+
+asked_for_task_desc.map[''].append(checked_task_desc)
+
+checked_task_desc.map['yes'].append(asked_for_task_priority)
+checked_task_desc.map['no'].append(asked_for_task_desc)
+
+asked_for_task_priority.map[''].append(manage_tasks)
 
 #__task list__
 #-apply to jobs

@@ -142,6 +142,9 @@ def process_tasks_f(file):
     #print(garage_tasks)
     all_tasks = {'garden': garden_tasks, 'core': core_tasks, 'garage': garage_tasks}
     return all_tasks
+
+
+
 all_tasks = process_tasks_f('data/tasks.txt')
 
 

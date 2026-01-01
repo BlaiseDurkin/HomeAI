@@ -141,9 +141,9 @@ def finished_workout(graph):
         #-->give lecture, ask to receive lecture,
         graph.current_node = graph.all_nodes[3]
 
-        discipline_lecture = "no, weed, because, you, get, stoned, and space, out. no, pleasure, eating, because, your, dopamine, crashes after. remember, to ask, for, snacks. "
-        respo = "are you, ready, for, next task."
-        if random.random() > 0.3:
+        discipline_lecture = "remember, no, pleasure, eating, because, your, dopamine, crashes after. "
+        respo = "now, are you, ready, for, the next task."
+        if random.random() > 0.4:
             response = discipline_lecture + respo
         else:
             response = respo
@@ -160,6 +160,54 @@ def read_all_tasks(graph):
     pass
 
 
+def check_input(graph, text):
+    return 'did you say, '+ text
+
+def try_again(graph):
+    return 'try again'
+
+def ask_task_desc(graph):
+    return 'describe the task'
+
+def ask_task_priority(graph):
+    return 'is the priority, high, medium, or low'
+
+def who_cares(graph):
+    return 'yeah, i, do not care'
+
+
+
+def add_2_tasks_f(new_t, file='data/tasks.txt'):
+    #new_t = ['subject_area', 'task....']
+    if not new_t[1].endswith('\n'):
+        new_t[1] = new_t[1] + '\n'
+    indx = -1
+    with open(file) as f:
+        lines = f.readlines()
+        for i, line in enumerate(lines):
+            if line.startswith('__'):
+                # print(line[2:-3])
+                if line[2:-3] == new_t[0]:
+                    indx = i
+    if indx == -1:
+        if not lines[len(lines)-1].endswith('\n'):
+            lines[len(lines)-1] = lines[len(lines)-1] + '\n'
+        lines.append(new_t[1])
+    else:
+        lines.insert(indx+1, new_t[1])
+
+    out = open(file, 'w')
+    out.writelines(lines)
+    out.close()
+
+
+
+
+
+
+
+
+
 """
 
 task list
@@ -171,12 +219,6 @@ start_of_day - easy task: fun activity = drink tea outside
     - next task: core_work 2 to 4 hours
     - gym -- 4pm
     - garage or core_work 
-
-
-
-
-
-
 
 
 """

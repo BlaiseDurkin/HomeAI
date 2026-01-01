@@ -99,6 +99,9 @@ def parse_message(text, state):
 
     # assume
     # 1 clean message from .,()/|\-+*
+    has_task_trigger_1 = False
+    has_task_trigger_2 = False
+
     has_timer_trigger_1 = False
     has_timer_trigger_2 = False
 
@@ -110,6 +113,12 @@ def parse_message(text, state):
     if state.sub_in_action:
         expected_set = state.sub_graph.current_node.expected_words
         #todo -> check if expected set is empty... empty maps default function and new node or does nothing?
+        if expected_set[0] == 'RAT':
+            return Message(text, 'command', 'RAT', {'RAT':text, 'expected': ['RAT']})
+
+
+
+
     expected_words = []
 
     has_food_trigger_1 = False
@@ -151,6 +160,10 @@ def parse_message(text, state):
             has_timer_trigger_1 = True
         if word == 'timer' or word == 'time':
             has_timer_trigger_2 = True
+        if word == 'add':
+            has_task_trigger_1 = True
+        if word == 'task' or word == 'job':
+            has_task_trigger_2 = True
         if word in accepted_verbs:
             has_food_trigger_1 = True
         if word in meal_words:
@@ -194,6 +207,8 @@ def parse_message(text, state):
     if has_look_trigger_1 and has_look_trigger_2:
         return Message(text, "command", "turn_camera", key_param)
 
+    if has_task_trigger_1 and has_task_trigger_2:
+        return Message(text, "command", "add_task", key_param)
     if state.sub_in_action:
         if state.active_sub == 'kitchen' and len(expected_words) > 0:
             params = {'expected': expected_words, 'diet': diet}

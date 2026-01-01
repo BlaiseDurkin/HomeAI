@@ -61,6 +61,16 @@ def process_command(command, state):
         response = "camera turning, "+direction
         state.camera.turn_(direction)
 
+    elif command.intent == "add_task":
+        state.active_sub = "morning"
+        state.sub_in_action = True
+        state.sub_graph = state.morning_graph
+        response = 'tell, me, the task name'
+        state.sub_graph.current_node = state.sub_graph.all_nodes[5]
+
+    elif command.intent == 'RAT':
+        response = state.sub_graph.update(command)
+
     elif command.intent == "morning_update":
         response = state.sub_graph.update(command)
 
