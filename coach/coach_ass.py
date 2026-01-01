@@ -210,9 +210,10 @@ def new_t_added(graph, score):
     add_2_tasks_f(['core', new_t])
     #todo add to list all_tasks or reset with file read
     all_tasks['core'].append(new_t)
-    graph.temp_t_name, graph.temp_t_desc, graph.temp_text = "", "", ""
-    return 'task' + graph.temp_t_name + '. ' + graph.temp_t_desc + '. added'
 
+    response = 'task' + graph.temp_t_name + '. ' + graph.temp_t_desc + '. added'
+    graph.temp_t_name, graph.temp_t_desc, graph.temp_text = "", "", ""
+    return response
 
 def low_t_added(graph):
     #todo make score low = 4
