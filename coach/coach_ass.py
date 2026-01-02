@@ -182,6 +182,7 @@ def who_cares(graph):
 
 def add_2_tasks_f(new_t, file='data/tasks.txt'):
     #new_t = ['subject_area', 'task....']
+    print('add_2_tasks_f()')
     if not new_t[1].endswith('\n'):
         new_t[1] = new_t[1] + '\n'
     indx = -1
@@ -207,6 +208,7 @@ def add_2_tasks_f(new_t, file='data/tasks.txt'):
 
 def new_t_added(graph, score):
     new_t = 'name: ' + graph.temp_t_name + '. description: ' + graph.temp_t_desc + '. score: ' + str(score) + '. '
+    print(new_t)
     add_2_tasks_f(['core', new_t])
     #todo add to list all_tasks or reset with file read
     all_tasks['core'].append(new_t)
