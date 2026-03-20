@@ -57,7 +57,7 @@ class Task
     
     
 """
-
+"""
 # -- garden --
 garden_tasks = ['start mushroom', 'prune shrub', 'plant seeds', 'water plants', 'cut down tree']
 garden_tasks_desc = ['name: start mushroom. description: drill holes in log, put spores in wood, seal with wax. time: 2 hours. location: side yard.',
@@ -88,7 +88,7 @@ garage_tasks_desc = [
     'name: build helping hand. description: get wire and clips to build a helping hand. time: 2 hours',
     'name: buy chair. description: find an office chair. time: 30 minutes'
 ]
-
+"""
 # ----- all tasks -----------
 #all_tasks = {'garden' : garden_tasks_desc, 'garage': garage_tasks_desc, 'main': core_tasks_desc}
 
@@ -140,12 +140,23 @@ def process_tasks_f(file):
     #print(core_tasks)
     #print(garden_tasks)
     #print(garage_tasks)
-    all_tasks = {'garden': garden_tasks, 'core': core_tasks, 'garage': garage_tasks}
+    all_tasks = {'garden': garden_tasks, 'core': core_tasks, 'garage': garage_tasks, 'office': []} #add office category in future
     return all_tasks
 
 
-
 all_tasks = process_tasks_f('data/tasks.txt')
+
+
+#todo create a function that updates all_tasks
+#   change all_tasks to object
+
+
+class AllTaskContainer:
+    def __init__(self):
+        self.all_tasks = all_tasks
+    def update_tasks(self, tasks):
+        pass
+    #update = delete? add? edit?
 
 
 
@@ -162,17 +173,3 @@ all_tasks = process_tasks_f('data/tasks.txt')
 #   accomplishment rate, productivity level - points score, happiness, area of focus,
 
 
-
-# -------- food ------------
-
-#maman
-# food preference: Europe, WestAsia, SouthAsia, Mex, SouthEastAsia, EastAsia, Africa
-
-#papa
-# food preference: Europe, WestAsia, SouthAsia, Mex, SouthEastAsia, EastAsia, Africa
-
-#Blaise
-# food preference: WestAsia, SouthAsia, EastAsia, Mex, SouthEastAsia, Europe,  Africa
-
-#TODO get user data from file
-# - write to file if new user added or user user data changes

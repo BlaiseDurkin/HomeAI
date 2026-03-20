@@ -34,6 +34,16 @@ class State:
 
         self.character_mode = 'default'
         self.all_characters = ['default', 'french', 'funny', 'sexy']
+
+        self.traits = ['shyness', 'sadness', 'doubtfulness', 'alertness', 'humor', 'optimism', 'fear', 'conformity', 'curiosity']
+        # high fear bias conditions: {'but what if', 'or else'}
+        # high doubtfulness bias towards 'but what if'
+        # shyness considers more possible scenarios, noncommittal, uncertain
+        # increase sadness -> 'unfortunately... ' , decrease sadness -> happy_maxxing (plants, nature, beauty, fractals, good)
+        # alertness -> save compute for conciousness
+
+        #defualt mode vs dream mode
+        # default mode -> bias down equivalincies & bias up questions and functions
         
         # need more vars to track state...
         self.is_engaged = False #turn to true when 'Hey computer', turn to false after 5 min

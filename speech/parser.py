@@ -162,7 +162,7 @@ def parse_message(text, state):
             has_timer_trigger_2 = True
         if word == 'add':
             has_task_trigger_1 = True
-        if word == 'task' or word == 'job':
+        if word == 'task' or word == 'job' or word == 'jobs' or word == 'list':
             has_task_trigger_2 = True
         if word in accepted_verbs:
             has_food_trigger_1 = True
@@ -254,4 +254,8 @@ def parse_message(text, state):
     if text == 'continue':
         return Message(text, "command", "continue", key_param)
     return Message(text, "idk", "idk", key_param)
+
+
+#TODO
+# "tell me what to do" --> recommend task
 
