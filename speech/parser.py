@@ -125,6 +125,8 @@ def parse_message(text, state):
     has_food_trigger_1 = False
     has_food_trigger_2 = False
 
+    has_read_trigger_1 = False
+
     food_item_list = []  # TODO - negate elements
     allergy_list = [] #     {without __, i dont want __, no __}
     region = ''
@@ -163,8 +165,10 @@ def parse_message(text, state):
             has_timer_trigger_2 = True
         if word == 'add':
             has_task_trigger_1 = True
-        if word == 'task' or word == 'job' or word == 'jobs' or word == 'list':
+        if word == 'task' or word == 'tasks' or word == 'job' or word == 'jobs' or word == 'list':
             has_task_trigger_2 = True
+        if word == 'read':
+            has_read_trigger_1 = True
         if word in accepted_verbs:
             has_food_trigger_1 = True
         if word in meal_words:

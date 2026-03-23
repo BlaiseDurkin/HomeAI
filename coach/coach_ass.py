@@ -210,9 +210,11 @@ def add_2_tasks_f(new_t, file='data/tasks.txt'):
 
 def remove_from_tasks_f(tt, file='data/tasks.txt'):
     new_lines = []
+    print('tt',tt)
     with open(file) as f:
         lines = f.readlines()
         for i, line in enumerate(lines):
+            print('->',line)
             if line.split(".")[0].split(":")[1].strip() != tt.split(".")[0].split(":")[1].strip():
                 new_lines.append(line)
     out = open(file, 'w')
