@@ -1,5 +1,6 @@
 import random
 
+from coach.coaching_flow import read_task_name
 from kitchen.recommender import recommend_meal
 from coach.coach_ass import good_morning
 from core.utils import *
@@ -67,6 +68,14 @@ def process_command(command, state):
         state.sub_graph = state.morning_graph
         response = 'tell, me, the task name'
         state.sub_graph.current_node = state.sub_graph.all_nodes[5]
+
+    elif command.intent == "read_task":
+        state.active_sub = "morning"
+        state.sub_in_action = True
+        state.sub_graph = state.morning_graph
+        response = read_task_name(state.sub_graph)
+        state.sub_graph.current_node = state.sub_graph.all_nodes[6]
+
 
     elif command.intent == 'RAT':
         response = state.sub_graph.update(command)

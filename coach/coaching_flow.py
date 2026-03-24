@@ -134,7 +134,7 @@ read_task = CoachNode(['next', 'repeat', 'back', 'edit','delete', 'garden', 'gar
 # switch to category and read_task_name
 
 #----------------------------------------------------------
-nodes = [said_good_morning, asked_to_start_workout, said_workout, asked_if_say_task, said_task, asked_for_task_name]
+nodes = [said_good_morning, asked_to_start_workout, said_workout, asked_if_say_task, said_task, asked_for_task_name, read_task]
 CAG.all_nodes = nodes
 # ------------- Edges ---------------------
 

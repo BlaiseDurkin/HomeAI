@@ -214,6 +214,8 @@ def parse_message(text, state):
 
     if has_task_trigger_1 and has_task_trigger_2:
         return Message(text, "command", "add_task", key_param)
+    if has_read_trigger_1 and has_task_trigger_2:
+        return Message(text, "command", "read_task", key_param)
     if state.sub_in_action:
         if state.active_sub == 'kitchen' and len(expected_words) > 0:
             params = {'expected': expected_words, 'diet': diet}
