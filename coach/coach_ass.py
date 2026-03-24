@@ -214,7 +214,6 @@ def remove_from_tasks_f(tt, file='data/tasks.txt'):
     with open(file) as f:
         lines = f.readlines()
         for i, line in enumerate(lines):
-            print('->',line)
             if not line.strip().startswith('name'):
                 continue
             if line.split(".")[0].split(":")[1].strip() != tt.split(".")[0].split(":")[1].strip():
