@@ -102,7 +102,7 @@ def process_command(command, state):
         else:
             response = "uh, hey there"
     elif command.intent == "state_name":
-        response = "uh, i am, the, kitchen assistant"
+        response = "i am, the kitchen assistant"
     elif command.intent == "health_advice":
         response = "listen, bro, you need, "+ random_health_advice()
     elif command.intent == "set_timer": #or node = set_time_q

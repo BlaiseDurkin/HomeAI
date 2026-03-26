@@ -105,6 +105,8 @@ def parse_message(text, state):
     has_timer_trigger_1 = False
     has_timer_trigger_2 = False
 
+    has_weather_trigger_1 = False
+
     has_look_trigger_1 = False
     has_look_trigger_2 = False
     key_param = ''
@@ -119,7 +121,7 @@ def parse_message(text, state):
 
 
 
-
+    names = ['blaze', 'michael', 'colin', 'mother', 'justin']
     expected_words = []
 
     has_food_trigger_1 = False
@@ -163,6 +165,8 @@ def parse_message(text, state):
             has_timer_trigger_1 = True
         if word == 'timer' or word == 'time':
             has_timer_trigger_2 = True
+        if word == 'weather' or word == 'whether':
+            has_weather_trigger_1 = True
         if word == 'add':
             has_task_trigger_1 = True
         if word == 'task' or word == 'tasks' or word == 'job' or word == 'jobs' or word == 'list':
@@ -173,7 +177,6 @@ def parse_message(text, state):
             has_food_trigger_1 = True
         if word in meal_words:
             has_food_trigger_2 = True
-
         if word in look_verbs:
             has_look_trigger_1 = True
         if word in look_directions:
@@ -211,6 +214,7 @@ def parse_message(text, state):
 
     if has_look_trigger_1 and has_look_trigger_2:
         return Message(text, "command", "turn_camera", key_param)
+
 
     if has_task_trigger_1 and has_task_trigger_2:
         return Message(text, "command", "add_task", key_param)
@@ -255,6 +259,8 @@ def parse_message(text, state):
         return Message(text, "command", "set_timer", key_param)
     if text == 'switch character mode':
         return Message(text, "command", "switch_character_mode", key_param)
+    if has_weather_trigger_1:
+        return Message(text, "command", "weather_forecast", key_param)
 
     if text == 'stop':
         return Message(text, "command", "stop", key_param)
