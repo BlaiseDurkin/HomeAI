@@ -127,8 +127,8 @@ edit_task_feat = CoachNode(['name', 'description', 'priority', 'cancel', 'back']
 
 asked_for_task_feat = CoachNode(['RAT'], {'RAT': [change_task_feat]}, CAG)
 
-read_task = CoachNode(['next', 'repeat', 'back', 'edit','delete', 'garden', 'garage', 'main'],
-                      {'next': [read_next_task], 'repeat': [read_task_name], 'back': [read_prev_task], 'edit': [ask_user_edit_task], 'delete': [ask_user_delete_task], 'garden':[task_category_garden], 'garage': [task_category_garage], 'main':[task_category_core]}, CAG)
+read_task = CoachNode(['next', 'repeat', 'back', 'edit','delete', 'explain', 'garden', 'garage', 'main'],
+                      {'next': [read_next_task], 'repeat': [read_task_name], 'back': [read_prev_task], 'edit': [ask_user_edit_task],'explain': [read_task_desc], 'delete': [ask_user_delete_task], 'garden':[task_category_garden], 'garage': [task_category_garage], 'main':[task_category_core]}, CAG)
 
 #gaeden, garage, main, core
 # switch to category and read_task_name
@@ -193,6 +193,7 @@ read_task.map['next'].append(read_task)
 read_task.map['repeat'].append(read_task)
 read_task.map['back'].append(read_task)
 read_task.map['edit'].append(edit_task_feat)
+read_task.map['explain'].append(read_task)
 read_task.map['delete'].append(delete_task)
 read_task.map['garden'].append(read_task)
 read_task.map['garage'].append(read_task)

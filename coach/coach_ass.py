@@ -282,9 +282,23 @@ def ask_user_delete_task(graph):
 def read_task_name(graph):
     if graph.task_index > len(all_tasks[graph.task_category]) - 1:
         graph.task_index = len(all_tasks[graph.task_category]) - 1
-    response = all_tasks[graph.task_category][graph.task_index].split('.')[0][6:]
     if len(all_tasks[graph.task_category]) == 0:
         response = graph.task_category + " list, is empty"
+    else:
+        response = all_tasks[graph.task_category][graph.task_index].split('.')[0][6:]
+
+    return response
+
+def read_task_desc(graph):
+    if graph.task_index > len(all_tasks[graph.task_category]) - 1:
+        graph.task_index = len(all_tasks[graph.task_category]) - 1
+    if len(all_tasks[graph.task_category]) == 0:
+        response = graph.task_category + " list, is empty"
+    else:
+        response = "no description"
+        if all_tasks[graph.task_category][graph.task_index].split('.')[1].split(':')[0].strip() == "description":
+            response = all_tasks[graph.task_category][graph.task_index].split('.')[1].split(":")[1].strip()
+
     return response
 
 def remove_task(graph):
