@@ -136,7 +136,7 @@ class VideoCamera:
         # Always start at the center position
         print(f"Initializing servo to center position: {CENTER_ANGLE}°")
         set_angle(pwm, CENTER_ANGLE)
-        time.sleep(1)  # Give time for servo to reach position
+        time.sleep(.1)  # Give time for servo to reach position
 
         # Slowly move to MIN_ANGLE
         current_angle = CENTER_ANGLE
@@ -160,7 +160,7 @@ class VideoCamera:
         # Always start at the center position
         print(f"Initializing servo to center position: {CENTER_ANGLE}°")
         set_angle(pwm, CENTER_ANGLE)
-        time.sleep(1)  # Give time for servo to reach position
+        time.sleep(.1)  # Give time for servo to reach position
 
         # Slowly move to MAX_ANGLE
         current_angle = CENTER_ANGLE
@@ -182,7 +182,7 @@ class VideoCamera:
             return CENTER_ANGLE
         print('turning to the middle')
         set_angle(pwm, CENTER_ANGLE)
-        time.sleep(1)  # Give time for servo to reach position
+        time.sleep(.1)  # Give time for servo to reach position
         pwm.ChangeDutyCycle(0)  # "Stop" signal without pwm.stop()
         self.orientation = 'center'
         return CENTER_ANGLE

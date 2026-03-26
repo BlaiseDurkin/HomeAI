@@ -6,8 +6,21 @@ from coach.coach_ass import good_morning
 from core.utils import *
 #process command
 #command functions
+
 #increase volume
 #decrease volume
+
+#increase decrease funny
+
+#locate person (where name?)
+
+#explain person (who name?)
+
+#tell person (tell name msg) -- email
+
+#remind person (remind name msg) -- if sees person, speak(msg)
+
+#add guest ~ label person in cv
 
 
 
